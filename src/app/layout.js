@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "@/components/shared/navBar";
+import Footer from "@/components/shared/footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         <div className='container mx-auto grid justify-center items-center'>
         {children}
         </div>
+        <Footer></Footer>
       </body>
     </html>
   );
