@@ -9,7 +9,7 @@ const Bannar = () => {
   return (
     <div className="carousel w-full">
       {/* Slide 1 */}
-      <div id="slide1" className="carousel-item relative w-full h-[600px] rounded-md">
+      <div id="slide1" className="carousel-item relative w-full md:h[500px] h-[400px] lg:h-[600px] rounded-md">
         <Image
           src={img1}
           alt="Banner Image 1"
@@ -34,7 +34,7 @@ const Bannar = () => {
       </div>
 
       {/* Slide 2 */}
-      <div id="slide2" className="carousel-item relative w-full h-[600px] rounded-md">
+      <div id="slide2" className="carousel-item relative w-full md:h[500px] h-[400px] lg:h-[600px] rounded-md">
         <Image
           src={img2}
           alt="Banner Image 2"
@@ -59,7 +59,7 @@ const Bannar = () => {
       </div>
 
       {/* Slide 3 */}
-      <div id="slide3" className="carousel-item relative w-full h-[600px] rounded-md">
+      <div id="slide3" className="carousel-item relative w-full md:h[500px] h-[400px] lg:h-[600px] rounded-md">
         <Image
           src={img3}
           alt="Banner Image 3"
@@ -84,7 +84,7 @@ const Bannar = () => {
       </div>
 
       {/* Slide 4 */}
-      <div id="slide4" className="carousel-item relative w-full h-[600px] rounded-md">
+      <div id="slide4" className="carousel-item relative w-full md:h[500px] h-[400px] lg:h-[600px] rounded-md">
         <Image
           src={img4}
           alt="Banner Image 4"

@@ -22,10 +22,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme='light'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased mx-5 text-black  bg-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-black  bg-gray-100`}
       >
         <NavBar></NavBar>
-        <div className='container mx-auto'>
+        <div className='container mx-auto grid justify-center items-center'>
         {children}
         </div>
       </body>

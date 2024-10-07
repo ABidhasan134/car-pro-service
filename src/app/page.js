@@ -1,13 +1,16 @@
+
 import ServiceCard from "@/components/services/serviceCard";
 import HomeMain from "./home/page";
 import Bannar from "@/components/homepage/bannar";
 
 export default function Home() {
   return (
-    <div>
+    <div >
       <HomeMain></HomeMain>
       <Bannar></Bannar>
-      <ServiceCard></ServiceCard>
+      <div className='flex justify-center'>
+      <ServiceCard></ServiceCard>      
+      </div>
     </div>
   );
 }
