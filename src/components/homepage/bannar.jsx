@@ -23,7 +23,8 @@ const Bannar = () => {
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-outline text-white mx-2">Discover More</button>
+            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
           </div>
         </div>
         <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
@@ -47,7 +48,8 @@ const Bannar = () => {
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-outline text-white mx-2">Discover More</button>
+            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
           </div>
         </div>
         <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
@@ -71,7 +73,8 @@ const Bannar = () => {
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-outline text-white mx-2">Discover More</button>
+            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
           </div>
         </div>
         <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
@@ -95,7 +98,8 @@ const Bannar = () => {
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-outline text-white mx-2">Discover More</button>
+            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
           </div>
         </div>
         <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
