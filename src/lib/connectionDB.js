@@ -24,3 +24,5 @@ let db;
         console.log(error);
     }
 }
+
+export default connectionDB
