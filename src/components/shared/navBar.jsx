@@ -8,8 +8,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const NavBar = () => {
   const pathName = usePathname();
-  console.log(pathName);
-  
+  // console.log(pathName);
   const navItems = [
     {
       url: '/',
@@ -57,7 +56,7 @@ const NavBar = () => {
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         {navItems.map((item, index) => (
             <li key={index}>
-              <Link href={item.url} className={pathName === item.url ? 'text-white bg-[#FF3811]' : ''}>
+              <Link href={item.url} className={pathName === item.url ? 'text-white bg-[#FF3811] !important' : ''}>
                 {item.title}
               </Link>
             </li>

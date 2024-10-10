@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { getAllServices } from '@/utils/fetchServices';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ServiceCard = () => {
     const [data, setData] = useState(null);
@@ -31,7 +32,9 @@ const ServiceCard = () => {
                    <h2 className="card-title">{service.title}</h2>
                    <p>{service.description.slice(0,40)}....</p>
                    <div className="card-actions justify-end">
+                     <Link href={`services/${service._id}`}>
                      <button className="btn btn-outline">veiw Details</button>
+                     </Link>
                    </div>
                  </div>
                </div>
