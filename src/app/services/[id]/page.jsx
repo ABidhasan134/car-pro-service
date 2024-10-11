@@ -1,5 +1,6 @@
 'use client'
 import ServiceBannar from '@/components/services/serviceBannar';
+import ServiceDetials from '@/components/services/serviceDetials';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
@@ -25,16 +26,8 @@ const Page = ({ params }) => {
   return (
     <section>
       <ServiceBannar></ServiceBannar>
-      <section className="flex justify-center">
-     <div className='w-[70%]'>
-      <img src={service.img} alt={service.img} className="w-full h-[450px]"></img>
-     <p>{service.title}</p> <br />
-      <p>{service.description}</p>
-      {/* You can add more service details here */}
-     </div>
-     <div className='w-[30%]'>
-
-     </div>
+      <section className="flex justify-center mt-20">
+     <ServiceDetials service={service}></ServiceDetials>
     </section>
     </section>
   );

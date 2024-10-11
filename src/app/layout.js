@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-black  bg-gray-100`}
       >
         <NavBar></NavBar>
-        <div className='container mx-auto grid justify-center items-center'>
+        <div className='container mx-auto grid justify-center'>
         {children}
         </div>
         <Footer></Footer>
