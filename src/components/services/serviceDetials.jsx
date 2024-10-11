@@ -1,8 +1,25 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import FacilityService from './facilityService';
+import ServiceCatagory from './serviceCatagory';
+import { getAllServices } from '@/utils/fetchServices';
 
 const ServiceDetials = ({service}) => {
-    // console.log(service.facility);
+   const [services,setService]=useState([]);
+   const [loading,setLoading]=useState(true)
+    useEffect(() => {
+        const fetchData = async () => {
+            const serviceData = await getAllServices();
+            // console.log(serviceData.result);
+            setService(serviceData.result)
+            setLoading(false)
+        };
+        fetchData();
+    }, []);
+    if(loading)
+    {
+      return <div>Loading for data</div>
+    }
   return (
     <>
       <div className='w-[70%]'>
@@ -16,11 +33,18 @@ const ServiceDetials = ({service}) => {
             })
         }
       </div>
-      {/* You can add more service details here */}
+      {/* 20% side section */}
      </div>
-     <div className='w-[30%]'>
+     <section className='w-[30%]'>
+      <div className=' bg-orange-100 mx-4 py-2'>
+      {
+        services.map((service)=>{
+          return <ServiceCatagory servicesTitle={service.title} ></ServiceCatagory>
+        })
+      }
        
-     </div>
+      </div>
+     </section>
     </>
   )
 }
