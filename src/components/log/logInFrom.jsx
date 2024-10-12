@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const LogInForm = () => {
@@ -6,10 +7,10 @@ const LogInForm = () => {
       <div className="w-full">
         <div className="grid items-center justify-center h-full py-16 bg-gray-100">
           <form action="" className="flex flex-col items-center justify-center w-full">
-            <div className="text-4xl font-semibold text-black mb-8 text-center">Log In <br />Car Doctor</div>
+            <div className="text-4xl font-semibold text-black mb-8 text-center">Welcome back <br />Car Doctor</div>
             <div className='flex justify-start  w-full'>
                 {/* border-2 border-red-500 */}
-            <label htmlFor="email" className=''>Enter your Email</label>
+            <label htmlFor="email" className=''> Email</label>
             </div>
             <input 
               type="email" 
@@ -21,7 +22,7 @@ const LogInForm = () => {
             />
             <div className='flex justify-start  w-full'>
                 {/* border-2 border-red-500 */}
-            <label htmlFor="password" className=''>Password</label>
+            <label htmlFor="password" className=''> Password</label>
             </div>
             <input 
               type="password" 
@@ -44,7 +45,7 @@ const LogInForm = () => {
               Login with Facebook
             </div>
             <p className="text-gray-500 mt-4 text-sm">
-              Don't have an account? <a href="#" className="font-bold">Sign Up</a>
+              Don't have an account? <Link href="/signUp" className="font-bold">Sign Up</Link>
             </p>
        
         </div>

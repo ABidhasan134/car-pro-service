@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "@/components/shared/navBar";
 import Footer from "@/components/shared/footer";
+import AuthProvider from "@/service/authProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,9 +27,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-black  bg-gray-100`}
       >
         <NavBar></NavBar>
+        <AuthProvider>
         <div className='container mx-auto grid justify-center'>
         {children}
         </div>
+        </AuthProvider>
         <Footer></Footer>
       </body>
     </html>
