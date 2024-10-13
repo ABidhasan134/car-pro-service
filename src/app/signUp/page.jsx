@@ -4,9 +4,9 @@ import logImg from '@/../../public/assets/images/login/login.svg'
 import SignUpFrom from '@/components/signUp/signUpFrom'
 const page = () => {
   return (
-    <div className='m-6 flex justify-between'>
+    <div className='m-6 flex justify-between w-full'>
       <Image src={logImg} ></Image>
-      <SignUpFrom></SignUpFrom>
+      <SignUpFrom ></SignUpFrom>
     </div>
   )
 }
