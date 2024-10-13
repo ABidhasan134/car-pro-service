@@ -1,31 +1,33 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-// this will call api/auth/signin default by next js
-export const authOption ={
+export const authOption = {
+  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 60 * 60, // 1 hour
+  },
+//   provider should be written like this
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {  },
+        password: {  },
+      },
+      async authorize(credentials) {
+        return true;
+      },
+    }),
+  ],
+  callbacks: {
+  
+  },
+  pages: {
+    signIn: '/logIn', // Custom log-in page where oure page landing
+  },
+};
 
-    secret:process.env.NEXT_PUBLIC_AUTH_SECRET,
-    session:{
-        strategy: "jwt",
-        maxAge: 60*60,
-    },
-    providers:[
-        CredentialsProvider({
-            credentials:{
-                email:{},
-            password:{}
-            }
-             authorize async(credentials){
-                return true;
-            }
-        })
-    ],
-    callbacks:{},
-    page:{
-        signIn:'/logIn'
-    }
+const handler = NextAuth(authOption);
 
-}
-const handeler=NextAuth(authOption);
-
-export {handeler as GET, handeler as POST}
+export { handler as GET, handler as POST };
