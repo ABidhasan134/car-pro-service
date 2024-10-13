@@ -6,15 +6,23 @@ import {signIn} from "next-auth/react"
 
 const LogInForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => {
-    const resp= signIn('credentials',{
+  // async for respons of backend
+  const onSubmit = async (data) => {
+    const resp = await signIn('credentials', {
       email: data.email,
       password: data.password,
-      redirect: false
-    })
-    console.log(data)
-    console.log('Login successful:', resp);
+      redirect: false, 
+    });
+  
+    if (resp?.status === 200) {
+      console.log("Login successful");
+      // You can redirect the user or handle successful login here
+    } else {
+      console.log("Login failed:", resp?.error);
+      // Show error to the user based on resp.error
+    }
   };
+  
 
   return (
     <>
