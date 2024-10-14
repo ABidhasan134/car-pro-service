@@ -1,6 +1,8 @@
 import connectionDB from "@/lib/connectionDB";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google"; 
+import FacebookProvider from "next-auth/providers/facebook";
 
 
 export const authOption = {
@@ -45,6 +47,16 @@ export const authOption = {
         console.log("Login successful");
         return { id: currentUser._id, name: currentUser.name, email: currentUser.email };
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+    }),
+    // 1621590658603449
+    // 81a3f3868b17d31ca6f6340f8c86eb6e
+    FacebookProvider({
+      clientId: process.env.NEXT_FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.NEXT_FACEBOOK_CLIENT_SECRET,
     }),
   ],
   callbacks: {

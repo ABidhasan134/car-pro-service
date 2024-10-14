@@ -1,3 +1,4 @@
+
 import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "@/components/shared/navBar";
@@ -26,13 +27,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-black  bg-gray-100`}
       >
-        <NavBar></NavBar>
+      
         <AuthProvider>
+        <NavBar></NavBar>
         <div className='container mx-auto grid justify-center'>
         {children}
         </div>
-        </AuthProvider>
         <Footer></Footer>
+        </AuthProvider>
+        
       </body>
     </html>
   );

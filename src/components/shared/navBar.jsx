@@ -4,11 +4,12 @@ import Link from 'next/link';
 import React from 'react';
 import logo from '../../../public/assets/logo.svg';
 import { usePathname } from 'next/navigation';
-import { GiHamburgerMenu } from "react-icons/gi";
+import { useRouter } from 'next/navigation'
 
 const NavBar = () => {
   const pathName = usePathname();
-  // console.log(pathName);
+  const router=useRouter()
+  console.log(router);
   const navItems = [
     {
       url: '/',

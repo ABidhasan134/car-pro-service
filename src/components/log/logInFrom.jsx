@@ -3,6 +3,8 @@ import Link from 'next/link';
 import React from 'react';
 import { useForm } from "react-hook-form";
 import {signIn} from "next-auth/react"
+import SocialLog from './socialLog';
+
 
 const LogInForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -78,9 +80,7 @@ const LogInForm = () => {
           </p>
 
           {/* Login with Facebook Button */}
-          <div className="w-full hover:bg-black hover:text-white mt-4 p-4 text-black text-center font-bold rounded-full shadow-lg cursor-pointer bg-inherit">
-            Login with Facebook
-          </div>
+          <SocialLog></SocialLog>
 
           {/* Sign Up Link */}
           <p className="text-gray-500 mt-4 text-sm">
