@@ -13,7 +13,7 @@ const ServiceCard = () => {
             const serviceData = await getAllServices();
             setData(serviceData.result);
             setLoading(false);
-            console.log(serviceData.result);
+            // console.log(serviceData?.result);
         };
         fetchData();
     }, []);
@@ -22,7 +22,7 @@ const ServiceCard = () => {
 
     return (
         <div className='grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3  gap-2'>
-            {data.map(service => (
+            {data?.map(service => (
                  <div className="card bg-base-100 w-96 shadow-xl mb-2">
                  <figure>
                    <Image src={service.img} width={300} height={350}

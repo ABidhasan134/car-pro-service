@@ -8,7 +8,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const SocialLog = () => {
   const session=useSession();
    
-    console.log(session)
+    // console.log(session)
 
   const handleSocialLogin = async (provider) => {
     

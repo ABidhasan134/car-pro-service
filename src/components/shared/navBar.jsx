@@ -8,8 +8,7 @@ import { useRouter } from 'next/navigation'
 
 const NavBar = () => {
   const pathName = usePathname();
-  const router=useRouter()
-  console.log(router);
+  
   const navItems = [
     {
       url: '/',

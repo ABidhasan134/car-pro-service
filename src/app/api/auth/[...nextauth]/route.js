@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google"; 
 import FacebookProvider from "next-auth/providers/facebook";
+import { signIn } from "next-auth/react";
 
 
 export const authOption = {
@@ -60,6 +61,28 @@ export const authOption = {
     }),
   ],
   callbacks: {
+    // google login data save in database
+    async signIn({user, account, email}){
+      if(account.provider==='google'||account.provider==='facebook')
+      {
+        const {name,email,image}=user;
+        try{
+          const db=await connectionDB();
+          const userCollaction= db.collection('users');
+          const userExists=await userCollaction.findOne({email})
+          if(!userExists){
+            const res=await userCollaction.insertOne(user)
+            return user;
+          }
+          else{
+            return user;
+          }
+        }
+        catch(error){
+          console.log(error)
+        }
+      }
+    }
   
   },
   pages: {

@@ -2,11 +2,13 @@
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from "react-hook-form";
-import {signIn} from "next-auth/react"
+import {signIn, useSession} from "next-auth/react"
 import SocialLog from './socialLog';
+import { useRouter } from 'next/navigation';
 
 
 const LogInForm = () => {
+  const router=useRouter()
   const { register, handleSubmit, formState: { errors } } = useForm();
   // async for respons of backend
   const onSubmit = async (data) => {
@@ -18,6 +20,7 @@ const LogInForm = () => {
   
     if (resp?.status === 200) {
       console.log("Login successful");
+      router.push('/')
       // You can redirect the user or handle successful login here
     } else {
       console.log("Login failed:", resp?.error);
