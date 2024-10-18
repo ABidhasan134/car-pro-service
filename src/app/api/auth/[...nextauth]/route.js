@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google"; 
 import FacebookProvider from "next-auth/providers/facebook";
 import { signIn } from "next-auth/react";
+import { NextResponse } from "next/server";
 
 
 export const authOption = {
@@ -15,14 +16,13 @@ export const authOption = {
 //   provider should be written like this
   providers: [
     CredentialsProvider({
-      name: "Credentials",
       credentials: {
-        email: {  },
-        password: {  },
+        email: {},
+        password: {},
       },
       async authorize(credentials) {
         const { email, password } = credentials;
-
+        console.log(email,password);
         if (!email || !password) {
           console.log("Credentials are missing");
           throw new Error("Please provide both email and password.");
@@ -44,11 +44,11 @@ export const authOption = {
           console.log("Invalid password");
           throw new Error("Invalid password. Please try again.");
         }
-
-        console.log("Login successful");
-        return { id: currentUser._id, name: currentUser.name, email: currentUser.email };
+          console.log("Login successful",currentUser);
+          return currentUser;
       },
     }),
+    
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
       clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,

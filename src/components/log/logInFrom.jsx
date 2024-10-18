@@ -1,33 +1,40 @@
 'use client'
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import {signIn, useSession} from "next-auth/react"
+import { signIn, useSession } from "next-auth/react";
 import SocialLog from './socialLog';
 import { useRouter } from 'next/navigation';
 
-
 const LogInForm = () => {
-  const router=useRouter()
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  // async for respons of backend
+  const { data: session, status } = useSession(); // Accessing the session
+
+  // Async function to handle form submission
   const onSubmit = async (data) => {
     const resp = await signIn('credentials', {
       email: data.email,
       password: data.password,
-      redirect: false, 
+      redirect: false, // Do not redirect automatically
     });
-  
-    if (resp?.status === 200) {
+    console.log(resp);
+    if (resp?.status === "200") {
       console.log("Login successful");
-      router.push('/')
-      // You can redirect the user or handle successful login here
+      router.push('/'); // Redirect to the home page
     } else {
       console.log("Login failed:", resp?.error);
-      // Show error to the user based on resp.error
     }
   };
-  
+
+  // If the user is already logged in (session available), redirect them
+  useEffect(() => {
+    if (status === "authenticated") {
+      console.log("User is authenticated:", session.user);
+      // Optionally, you can redirect the user
+      router.push('/');
+    }
+  }, [status, session, router]);
 
   return (
     <>
@@ -83,7 +90,7 @@ const LogInForm = () => {
           </p>
 
           {/* Login with Facebook Button */}
-          <SocialLog></SocialLog>
+          <SocialLog />
 
           {/* Sign Up Link */}
           <p className="text-gray-500 mt-4 text-sm">
