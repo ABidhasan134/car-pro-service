@@ -24,7 +24,7 @@ export const authOption = {
         const { email, password } = credentials;
         console.log(email,password);
         if (!email || !password) {
-          console.log("Credentials are missing");
+          // console.log("Credentials are missing");
           throw new Error("Please provide both email and password.");
         }
 
@@ -33,7 +33,7 @@ export const authOption = {
         const currentUser = await userCollection.findOne({ email: email });
 
         if (!currentUser) {
-          console.log("User not found");
+          // console.log("User not found");
           throw new Error("You don't have an account. Please sign up.");
         //   return "401"
         }
@@ -41,10 +41,10 @@ export const authOption = {
         // Here you would normally check the password hash and compare it.
         // Assuming a simple password check for now.
         if (currentUser.password !== password) {
-          console.log("Invalid password");
+          // console.log("Invalid password");
           throw new Error("Invalid password. Please try again.");
         }
-          console.log("Login successful",currentUser);
+          // console.log("Login successful",currentUser);
           return currentUser;
       },
     }),
@@ -61,30 +61,31 @@ export const authOption = {
     }),
   ],
   callbacks: {
-    // google login data save in database
-    async signIn({user, account, email}){
-      if(account.provider==='google'||account.provider==='facebook')
-      {
-        const {name,email,image}=user;
-        try{
-          const db=await connectionDB();
-          const userCollaction= db.collection('users');
-          const userExists=await userCollaction.findOne({email})
-          if(!userExists){
-            const res=await userCollaction.insertOne(user)
-            return user;
+    async signIn({ user, account, profile }) {
+      if (account.provider === 'google' || account.provider === 'facebook') {
+        const { email, name, image } = user;
+        try {
+          const db = await connectionDB();
+          const userCollection = db.collection('users');
+  
+          // Check if the user already exists
+          const userExists = await userCollection.findOne({ email });
+  
+          if (!userExists) {
+            
+            return null;
+          } else {
+            // User already exists, continue login
+            return true;
           }
-          else{
-            return user;
-          }
-        }
-        catch(error){
-          console.log(error)
+        } catch (error) {
+          // console.log("Error during signIn callback:", error);
+          return false; // This will prevent login if an error occurs
         }
       }
+      return true; // For providers other than Google or Facebook
     }
-  
-  },
+  },  
   pages: {
     signIn: '/logIn', // Custom log-in page where oure page landing
   },

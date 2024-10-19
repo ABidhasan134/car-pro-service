@@ -1,15 +1,14 @@
 'use client'
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
-import { signIn, useSession } from "next-auth/react";
+import { signIn} from "next-auth/react";
 import SocialLog from './socialLog';
 import { useRouter } from 'next/navigation';
 
 const LogInForm = () => {
   const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { data: session, status } = useSession(); // Accessing the session
 
   // Async function to handle form submission
   const onSubmit = async (data) => {
@@ -18,23 +17,15 @@ const LogInForm = () => {
       password: data.password,
       redirect: false, // Do not redirect automatically
     });
-    console.log(resp);
-    if (resp?.status === "200") {
+    // console.log(resp?.status===200);
+    if (resp?.status===200) {
       console.log("Login successful");
       router.push('/'); // Redirect to the home page
     } else {
       console.log("Login failed:", resp?.error);
     }
   };
-
-  // If the user is already logged in (session available), redirect them
-  useEffect(() => {
-    if (status === "authenticated") {
-      console.log("User is authenticated:", session.user);
-      // Optionally, you can redirect the user
-      router.push('/');
-    }
-  }, [status, session, router]);
+  
 
   return (
     <>
