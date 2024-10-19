@@ -64,16 +64,13 @@ export const authOption = {
     async signIn({ user, account, profile }) {
       if (account.provider === 'google' || account.provider === 'facebook') {
         const { email, name, image } = user;
-        try {
-          const db = await connectionDB();
-          const userCollection = db.collection('users');
-  
-          // Check if the user already exists
-          const userExists = await userCollection.findOne({ email });
-  
-          if (!userExists) {
-            
-            return null;
+        try{
+          const db=await connectionDB();
+          const userCollaction= db.collection('users');
+          const userExists=await userCollaction.findOne({email})
+          if(!userExists){
+            const res=await userCollaction.insertOne(user)
+            return res;
           } else {
             // User already exists, continue login
             return true;

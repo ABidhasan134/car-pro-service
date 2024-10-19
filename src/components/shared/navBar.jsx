@@ -5,10 +5,13 @@ import React from 'react';
 import logo from '../../../public/assets/logo.svg';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react';
+import UserInfo from './userInfo';
 
 const NavBar = () => {
   const pathName = usePathname();
-  
+  const sesseion = useSession()
+  // console.log(sesseion?.data?.user);
   const navItems = [
     {
       url: '/',
@@ -77,7 +80,11 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn" href='/logIn'>Log In</Link>
+ 
+        {
+          sesseion?.data?<UserInfo user={sesseion?.data?.user}></UserInfo>:<Link className="btn" href='/logIn'>Log In</Link>
+          
+        }
       </div>
     </div>
   );

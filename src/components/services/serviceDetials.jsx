@@ -3,10 +3,15 @@ import React, { useEffect, useState } from 'react'
 import FacilityService from './facilityService';
 import ServiceCatagory from './serviceCatagory';
 import { getAllServices } from '@/utils/fetchServices';
+import DetialsLoading from '../shared/detialsLoading';
+import { useSession } from 'next-auth/react';
+import axios from 'axios';
 
 const ServiceDetials = ({service}) => {
    const [services,setService]=useState([]);
-   const [loading,setLoading]=useState(true)
+   const [loading,setLoading]=useState(true);
+   const session = useSession();
+  //  console.log(session.data.user);
     useEffect(() => {
         const fetchData = async () => {
             const serviceData = await getAllServices();
@@ -16,22 +21,39 @@ const ServiceDetials = ({service}) => {
         };
         fetchData();
     }, []);
+   
     if(loading)
     {
-      return <div>Loading for data</div>
+      return <DetialsLoading></DetialsLoading>
     }
+    const handleBookNow = async () => {
+      const email=session.data.user.email;
+      if (!email) {
+          console.error("User email not available");
+          return;
+      }
+  
+      try {
+          const res = await axios.post(`/api/service/email/${email}`)
+          console.log("Response from backend:", res.data);
+      } catch (error) {
+          console.error("Error booking service:", error);
+      }
+  };
   return (
     <>
       <div className='w-[70%]'>
       <img src={service.img} alt={service.img} className="w-full h-[450px]"></img>
      <p className='my-6 text-3xl font-bold'>{service.title}</p> <br />
       <p>{service.description}</p>
+      <button className='btn btn-outline btn-error w-[30%] mt-2' onClick={()=>handleBookNow()}>Book Now</button>
       <div className='grid grid-cols-2 justify-evenly'>
       {
             service.facility.map((facility, index)=>{
                 return <FacilityService facility={facility} key={index}></FacilityService>
             })
         }
+        
       </div>
       {/* 20% side section */}
      </div>
