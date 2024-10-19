@@ -4,10 +4,12 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { signIn} from "next-auth/react";
 import SocialLog from './socialLog';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const LogInForm = () => {
   const router = useRouter();
+  const searchParams= useSearchParams();
+  const path=searchParams.get('redirect')
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   // Async function to handle form submission
@@ -15,12 +17,14 @@ const LogInForm = () => {
     const resp = await signIn('credentials', {
       email: data.email,
       password: data.password,
-      redirect: false, // Do not redirect automatically
+      redirect: true, // Do not redirect automatically
+      callbackUrl: path ? path:'/'
     });
-    // console.log(resp?.status===200);
+    console.log(resp?.status===200);
+    console.log(path)
     if (resp?.status===200) {
       console.log("Login successful");
-      router.push('/'); // Redirect to the home page
+      router.push(`${path} ? ${path}:'/'`); // Redirect to the home page
     } else {
       console.log("Login failed:", resp?.error);
     }

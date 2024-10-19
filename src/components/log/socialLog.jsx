@@ -1,18 +1,23 @@
 
 import { signIn} from 'next-auth/react';
 import { useSession } from "next-auth/react";
+import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const SocialLog = () => {
   const session=useSession();
-   
+   const searchParams=useSearchParams()
+   const path = searchParams.get("redirect")
     // console.log(session)
 
   const handleSocialLogin = async (provider) => {
     
-    const res = await signIn(provider);
+    const res = await signIn(provider,{
+      redirect: true,
+      callbackUrl: path?path:'/'
+    });
     if (res?.error) {
       console.log("Social login failed", res.error);
     }

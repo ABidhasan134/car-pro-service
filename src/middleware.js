@@ -12,8 +12,8 @@ export function middleware(request) {
     }
 
     if(!token) {
-
-        return NextResponse.redirect(new URL(`/logIn`, request.url))
+        // pathName as search params 
+        return NextResponse.redirect(new URL(`/logIn?redirect=${pathName}`, request.url))
     }
   return NextResponse.next();
 }
