@@ -26,15 +26,17 @@ const ServiceDetials = ({service}) => {
     {
       return <DetialsLoading></DetialsLoading>
     }
-    const handleBookNow = async () => {
+    const handleBookNow = async (payment) => {
+      console.log(payment);
       const email=session.data.user.email;
+
       if (!email) {
           console.error("User email not available");
           return;
       }
   
       try {
-          const res = await axios.post(`/api/service/email/${email}`)
+          const res = await axios.post(`/api/service/email/${email}`,{payment:payment})
           console.log("Response from backend:", res.data);
       } catch (error) {
           console.error("Error booking service:", error);
@@ -46,7 +48,7 @@ const ServiceDetials = ({service}) => {
       <img src={service.img} alt={service.img} className="w-full h-[450px]"></img>
      <p className='my-6 text-3xl font-bold'>{service.title}</p> <br />
       <p>{service.description}</p>
-      <button className='btn btn-outline btn-error w-[30%] mt-2' onClick={()=>handleBookNow()}>Book Now</button>
+      <button className='btn btn-outline btn-error w-[30%] mt-2' onClick={()=>handleBookNow(service.price)}>Book Now</button>
       <div className='grid grid-cols-2 justify-evenly'>
       {
             service.facility.map((facility, index)=>{
