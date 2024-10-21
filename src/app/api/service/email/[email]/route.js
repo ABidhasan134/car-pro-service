@@ -15,7 +15,7 @@ export async function POST(request, { params }) {
         }
         
         // If the user already has payments, add the new payment to the history
-        let updatedPayHistory = user.payHistory || []; // Initialize payHistory if it doesn't exist
+        let updatedPayHistory = user.servicesHistory || []; // Initialize payHistory if it doesn't exist
 
         // Check if payHistory is an array and has 5 or more elements
         if (Array.isArray(updatedPayHistory) && updatedPayHistory.length >= 5) {

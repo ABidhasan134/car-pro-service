@@ -6,11 +6,14 @@ import { getAllServices } from '@/utils/fetchServices';
 import DetialsLoading from '../shared/detialsLoading';
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+import PdfInvoice from '../invoice/pdfInvoice';
 
 const ServiceDetials = ({service}) => {
    const [services,setService]=useState([]);
    const [loading,setLoading]=useState(true);
    const session = useSession();
+   const [tempData,setTempData]=useState(false);
   //  console.log(session.data.user);
     useEffect(() => {
         const fetchData = async () => {
@@ -37,7 +40,18 @@ const ServiceDetials = ({service}) => {
   
       try {
           const res = await axios.post(`/api/service/email/${email}`,{payment:payment})
-          console.log("Response from backend:", res.data);
+          console.log("Response from backend:", res.data.paymentUpdate);
+          // paymentUpdate.modifiedCount
+          if(res.data.paymentUpdate.modifiedCount>0){
+            setTempData(true);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
       } catch (error) {
           console.error("Error booking service:", error);
       }
@@ -66,8 +80,11 @@ const ServiceDetials = ({service}) => {
           return <ServiceCatagory servicesTitle={service.title} ></ServiceCatagory>
         })
       }
-       
+      
       </div>
+      {/* {
+        tempData ? <PdfInvoice service={services}></PdfInvoice>: "null"
+       } */}
      </section>
     </>
   )
