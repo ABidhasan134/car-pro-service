@@ -82,9 +82,9 @@ const ServiceDetials = ({service}) => {
       }
       
       </div>
-      {/* {
-        tempData ? <PdfInvoice service={services}></PdfInvoice>: "null"
-       } */}
+      {
+        tempData ? null : <PdfInvoice service={service} user={session}></PdfInvoice>
+       }
      </section>
     </>
   )
