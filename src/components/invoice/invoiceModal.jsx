@@ -3,9 +3,15 @@ import Image from "next/image";
 import logo from "@/../../public/assets/logo.svg";
 import React from 'react';
 import jsPDF from 'jspdf';
+import uuid4 from "uuid4";
+
+// Generate a new UUID
+var id = uuid4();
 
 
 const InvoiceModal = ({ service, user }) => {
+  // Generate a new UUID
+  const invoceId = uuid4();
   const date = new Date();
   const currentDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   const getOffer = 1;
@@ -24,7 +30,7 @@ const generatePdf = (service, user) => {
   doc.text('Invoice', 10, 10); // Title
 
   doc.setFontSize(12);
-  doc.text(`Invoice #3682303`, 10, 20); // Invoice Number
+  doc.text(`Invoice #${invoceId}`, 10, 20); // Invoice Number
   doc.text(`Date: ${currentDate}`, 10, 30); // Date
   doc.text(`Bill To: ${user.data.user.name}`, 10, 40); // Customer Name
   doc.text(`Email: ${user.data.user.email}`, 10, 50); // Customer Email
@@ -59,7 +65,7 @@ const generatePdf = (service, user) => {
 
             <div className="text-end">
               <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-neutral-200">Invoice #</h2>
-              <span className="mt-1 block text-gray-500 dark:text-neutral-500">3682303</span>
+              <span className="mt-1 block text-gray-500 dark:text-neutral-500">{invoceId}</span>
               <address className="mt-4 not-italic text-gray-800 dark:text-neutral-200">
                 45 Mirpur<br />Dhaka<br />Bangladesh
               </address>
