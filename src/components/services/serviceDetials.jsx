@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import PdfInvoice from '../invoice/pdfInvoice';
+import OnAndOffPay from './onAndOffPay';
 
 const ServiceDetials = ({service}) => {
    const [services,setService]=useState([]);
@@ -62,7 +63,6 @@ const ServiceDetials = ({service}) => {
       <img src={service.img} alt={service.img} className="w-full h-[450px]"></img>
      <p className='my-6 text-3xl font-bold'>{service.title}</p> <br />
       <p>{service.description}</p>
-      <button className='btn btn-outline btn-error w-[30%] mt-2' onClick={()=>handleBookNow(service.price)}>Book Now</button>
       <div className='grid grid-cols-2 justify-evenly'>
       {
             service.facility.map((facility, index)=>{
@@ -83,8 +83,11 @@ const ServiceDetials = ({service}) => {
       
       </div>
       {
-        tempData ? null : <PdfInvoice service={service} user={session}></PdfInvoice>
+        tempData ? <PdfInvoice service={service} user={session}></PdfInvoice>: null
        }
+       <OnAndOffPay></OnAndOffPay>
+       <p className='text-5xl font-semibold mx-4'>Price: ${service.price}</p>
+       <button className='mx-4 btn btn-outline btn-error w-[90%] flex justify-center mt-2' onClick={()=>handleBookNow(service.price)}>Book Now</button>
      </section>
     </>
   )
