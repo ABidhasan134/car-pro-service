@@ -4,10 +4,10 @@ import person from '@/../../public/assets/images/about_us/person.jpg'
 import Image from 'next/image'
 const AboutSection = () => {
   return (
-    <section className='relative flex justify-center p-6'>
+    <section className='relative flex justify-center p-6 mb-20'>
       <div className='w-[50%]'>
         <Image className='relative z-10' src={person} width={600} height={600}></Image>
-        <Image  className='relative z-50 -top-[210px] -right-[270px] border-[8px] border-white' src={parts} width={350} height={350}></Image>
+        <Image  className='absolute z-50 top-60 left-80  border-[8px] border-white' src={parts} width={350} height={350}></Image>
       </div>
       <div className='w-[50%]'>
         <h1 className='text-3xl text-[#e76637]'>About us</h1>

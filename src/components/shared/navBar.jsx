@@ -32,7 +32,7 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="navbar bg-slate-300 px-10">
+    <div className="navbar bg-slate-300 px-10 border-b-4 border-[#e27762] rounded-b-xl">
       <div className="navbar-start">
         
       <Link href="/" className='lg:w-[100px] w-[70px]'>
