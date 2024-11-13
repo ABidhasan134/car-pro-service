@@ -9,7 +9,7 @@ const OnAndOffPay = ({ service }) => {
   console.log(service);
   const serviceId = service._id;
   const name = service.title;
-  const price = service.price;
+  const price = service.price-2/100*service.price ;
   const typeOffPay = "online";
   const date = new Date();
 

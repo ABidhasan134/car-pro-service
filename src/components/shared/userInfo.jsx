@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const UserInfo = ({user}) => {
-    console.log(user)
+    // console.log(user)
   return (
     <div className='flex gap-2 w-auto'>
       <button className="btn btn-outline btn-error" onClick={()=>signOut()}>Log out</button>

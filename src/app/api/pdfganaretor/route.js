@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
 
 export async function handler(req, res) {
-  console.log("this is the requiste",req)
+  // console.log("this is the requiste",req)
   if (req.method === 'POST') {
     try {
       const { htmlContent } = req.body;
@@ -38,7 +38,7 @@ export async function handler(req, res) {
 async 
 
 export async function POST(request){
-  console.log(request)
+  // console.log(request)
   return NextResponse.json({
     status: 200,
   })

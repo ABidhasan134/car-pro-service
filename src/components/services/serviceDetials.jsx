@@ -35,7 +35,7 @@ const ServiceDetials = ({ service }) => {
     const serviceId = service._id;
     const name = service.title;
     const price = service.price;
-    const typeOffPay = "online";
+    const typeOffPay = "offline";
     const date = new Date();
 
     let day = date.getDate();
