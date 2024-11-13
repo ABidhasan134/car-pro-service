@@ -8,7 +8,7 @@ export async function POST(request, { params }) {
         const filter = { email: params.email }; // Properly define the filter object
         const user = await userCollection.findOne(filter); // Find user by email
         const data = await request.json();
-        const payment = data.payment;
+        const payment = data.payInfo;
         
         if (!user) {
             return new NextResponse(JSON.stringify({ success: false, message: "User not found" }), { status: 403 });
