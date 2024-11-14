@@ -6,8 +6,8 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 const OnAndOffPay = ({ service }) => {
   const session=useSession();
-  const userName=session.data.user.name;
-  const userEmail=session.data.user.email;
+  const userName=session?.data.user.name;
+  const userEmail=session?.data.user.email;
   console.log(service);
   const serviceId = service._id;
   const name = service.title;
