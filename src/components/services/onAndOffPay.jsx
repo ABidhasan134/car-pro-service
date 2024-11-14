@@ -6,6 +6,8 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 const OnAndOffPay = ({ service }) => {
   const session=useSession();
+  const userName=session.data.user.name;
+  const userEmail=session.data.user.email;
   console.log(service);
   const serviceId = service._id;
   const name = service.title;
@@ -18,12 +20,15 @@ const OnAndOffPay = ({ service }) => {
   let year = date.getFullYear();
 
   let currentDate = `${day}-${month}-${year}`;
-  const payInfo={serviceId,name,price,typeOffPay,currentDate}
+  const payInfo={serviceId,name,userName,userEmail,price,typeOffPay,currentDate}
   const handelPayOnline = () => {
-    const email=session.data.user.email;
-    console.log(payInfo);
-    axios.post("/api/service/onlinePay",{payInfo});
+    axios.post("/api/service/onlinePay", { payInfo })
+      .then((res) => console.log(res.data))
+      .catch((error) => {
+        console.error("Error in axios request:", error.response?.data || error.message);
+      });
   };
+  
   return (
     <section className="w-[92%] py-4 bg-black grid justify-center text-center text-white m-4 rounded-lg">
       <Image className="p-4 relative left-7" src={logImg}></Image>
