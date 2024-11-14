@@ -96,7 +96,7 @@ const ServiceDetials = ({ service }) => {
         <div className=" bg-orange-100 mx-4 py-2">
           {services.map((service) => {
             return (
-              <ServiceCatagory servicesTitle={service.title}></ServiceCatagory>
+              <ServiceCatagory servicesTitle={service.title} serviceId={service._id}></ServiceCatagory>
             );
           })}
         </div>

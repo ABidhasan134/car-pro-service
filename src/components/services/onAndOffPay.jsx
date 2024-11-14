@@ -8,7 +8,7 @@ const OnAndOffPay = ({ service }) => {
   const session=useSession();
   const userName=session?.data.user.name;
   const userEmail=session?.data.user.email;
-  console.log(service);
+  // console.log(service);
   const serviceId = service._id;
   const name = service.title;
   const price = service.price-2/100*service.price ;
