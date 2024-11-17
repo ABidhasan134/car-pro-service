@@ -10,6 +10,7 @@ import part6 from '../../../public/assets/images/products/6.png';
 
 import Image from 'next/image';
 import useProducts from '@/Hooks/useProducts';
+import Link from 'next/link';
 
 
 const ProductCard = () => {
@@ -46,9 +47,9 @@ const ProductCard = () => {
           <div className="card-body">
             <h2 className="card-title">{product.name}</h2>
             <p>{product.description}</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
+            <Link href={`/products/${product._id}`}>
+              <button className="btn btn-outline">Buy Now</button>
+              </Link>
           </div>
         </div>
       ))}

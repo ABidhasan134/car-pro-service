@@ -25,6 +25,7 @@
     "react-to-pdf": "^1.0.1",
     "sslcommerz-lts": "^1.1.0",
     "sweetalert2": "^11.14.4",
+    "swiper": "^11.1.14",
     "uuid4": "^2.0.3"
   },
   "devDependencies": {

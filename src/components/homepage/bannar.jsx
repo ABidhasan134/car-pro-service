@@ -1,113 +1,69 @@
-import React from 'react';
+'use client'
 import Image from 'next/image';
 import img1 from '../../../public/assets/images/banner/1.jpg';
 import img2 from '../../../public/assets/images/banner/2.jpg';
 import img3 from '../../../public/assets/images/banner/3.jpg';
 import img4 from '../../../public/assets/images/banner/4.jpg';
+import React, { useRef, useState } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import './styles.css';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const Bannar = () => {
+  const progressCircle = useRef(null);
+  const progressContent = useRef(null);
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    progressCircle.current.style.setProperty('--progress', 1 - progress);
+    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+  };
   return (
-    <div className="carousel w-full snap-none">
-      {/* Slide 1 */}
-      <div id="slide1" className="carousel-item relative w-full md:h-[500px] h-[400px] lg:h-[600px] rounded-md">
-        <Image
-          src={img1}
-          alt="Banner Image 1"
-          className="w-full"
-          layout="responsive"
-        />
-        <div className="absolute inset-0 rounded-md bg-black bg-opacity-60 flex items-center justify-center">
-          <div className="text-white p-6 ">
-            <h1 className="mb-5 text-5xl font-bold">Service your car</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-            </p>
-            <button className="btn btn-outline text-white mx-2">Discover More</button>
-            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
-          </div>
+    <div>
+    <Swiper
+      spaceBetween={2}
+      centeredSlides={true}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
+      pagination={{
+        clickable: false,
+      }}
+      navigation={true}
+      modules={[Autoplay, Pagination, Navigation]}
+      onAutoplayTimeLeft={onAutoplayTimeLeft}
+      className="mySwiper relative flex justify-center p-6 mb-20 w-[1500px] h-[400px]"
+    >
+      <SwiperSlide>
+        <div className='w-[50%]'>
+          here
         </div>
-        <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
-          <a href="#slide4" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❮</a>
-          <a href="#slide2" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❯</a>
-        </div>
+        <Image src={img1} height={600} className='w-[50%]'></Image>
+      </SwiperSlide>
+      <SwiperSlide>Slide 2</SwiperSlide>
+      <SwiperSlide>Slide 3</SwiperSlide>
+      <SwiperSlide>Slide 4</SwiperSlide>
+      <SwiperSlide>Slide 5</SwiperSlide>
+      <SwiperSlide>Slide 6</SwiperSlide>
+      <SwiperSlide>Slide 7</SwiperSlide>
+      <SwiperSlide>Slide 8</SwiperSlide>
+      <SwiperSlide>Slide 9</SwiperSlide>
+      <div className="autoplay-progress" slot="container-end">
+        <svg viewBox="0 0 48 48" ref={progressCircle} className='hidden'>
+          <circle cx="24" cy="24" r="20"></circle>
+        </svg>
+        <span  ref={progressContent} className='hidden'></span>
       </div>
-
-      {/* Slide 2 */}
-      <div id="slide2" className="carousel-item relative w-full md:h-[500px] h-[400px] lg:h-[600px] rounded-md">
-        <Image
-          src={img2}
-          alt="Banner Image 2"
-          className="w-full"
-          layout="responsive"
-        />
-         <div className="absolute inset-0 rounded-md bg-black bg-opacity-60 flex items-center justify-center">
-          <div className="text-white p-6 ">
-            <h1 className="mb-5 text-5xl font-bold">Service your car</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-            </p>
-            <button className="btn btn-outline text-white mx-2">Discover More</button>
-            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
-          </div>
-        </div>
-        <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
-          <a href="#slide1" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❮</a>
-          <a href="#slide3" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❯</a>
-        </div>
-      </div>
-
-      {/* Slide 3 */}
-      <div id="slide3" className="carousel-item relative w-full md:h-[500px] h-[400px] lg:h-[600px] rounded-md">
-        <Image
-          src={img3}
-          alt="Banner Image 3"
-          className="w-full"
-          layout="responsive"
-        />
-         <div className="absolute inset-0 rounded-md bg-black bg-opacity-60 flex items-center justify-center">
-          <div className="text-white p-6 ">
-            <h1 className="mb-5 text-5xl font-bold">Service your car</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-            </p>
-            <button className="btn btn-outline text-white mx-2">Discover More</button>
-            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
-          </div>
-        </div>
-        <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
-          <a href="#slide2" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❮</a>
-          <a href="#slide4" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❯</a>
-        </div>
-      </div>
-
-      {/* Slide 4 */}
-      <div id="slide4" className="carousel-item relative w-full md:h-[500px] h-[400px] lg:h-[600px] rounded-md">
-        <Image
-          src={img4}
-          alt="Banner Image 4"
-          className="w-full"
-          layout="responsive"
-        />
-         <div className="absolute inset-0 rounded-md bg-black bg-opacity-60 flex items-center justify-center">
-          <div className="text-white p-6 ">
-            <h1 className="mb-5 text-5xl font-bold">Service your car</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda <br/>
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-            </p>
-            <button className="btn btn-outline text-white mx-2">Discover More</button>
-            <button className="btn btn-outline btn-error mx-2">Latest Project</button>
-          </div>
-        </div>
-        <div className="absolute left-5 right-5 bottom-0 flex -translate-y-1/2 transform justify-end gap-2">
-          <a href="#slide3" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❮</a>
-          <a href="#slide1" className="btn btn-circle hover:bg-orange-500 border-0 hover:text-white">❯</a>
-        </div>
-      </div>
-    </div>
+    </Swiper>
+  </div>
   );
 };
 

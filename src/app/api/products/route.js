@@ -6,7 +6,7 @@ export async function GET(request){
     try{
         const productListcollection= db.collection('productsList')
         const result= await productListcollection.find().toArray();
-        console.log("THIS IS PRODUCTS LIST",result)
+        // console.log("THIS IS PRODUCTS LIST",result)
         return NextResponse.json({
             massage: "successfully service found",
             status: 200,
