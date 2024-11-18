@@ -1,9 +1,9 @@
 'use client'
 import Image from 'next/image';
-import img1 from '../../../public/assets/images/banner/1.jpg';
-import img2 from '../../../public/assets/images/banner/2.jpg';
-import img3 from '../../../public/assets/images/banner/3.jpg';
-import img4 from '../../../public/assets/images/banner/4.jpg';
+import img3 from '../../../public/assets/images/banner/7.png';
+import img4 from '../../../public/assets/images/banner/8.png';
+import img1 from '../../../public/assets/images/banner/9.webp';
+import img2 from '../../../public/assets/images/banner/10.jpg';
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -31,37 +31,48 @@ const Bannar = () => {
       spaceBetween={2}
       centeredSlides={true}
       autoplay={{
-        delay: 3000,
+        delay: 30000,
         disableOnInteraction: false,
       }}
       pagination={{
         clickable: false,
       }}
       navigation={true}
-      modules={[Autoplay, Pagination, Navigation]}
+      modules={[Autoplay, Navigation]}
       onAutoplayTimeLeft={onAutoplayTimeLeft}
-      className="mySwiper relative flex justify-center p-6 mb-20 w-[1500px] h-[400px]"
+      className="mySwiper m-0 p-0 relative flex justify-center bg-[#F3F4F6] w-[1500px] h-[600px]"
     >
-      <SwiperSlide>
-        <div className='w-[50%]'>
+      <SwiperSlide className='bg-[#F3F4F6] m-0 p-0'>
+        <div className='w-[50%] '>
           here
         </div>
-        <Image src={img1} height={600} className='w-[50%]'></Image>
+        <Image src={img1}  className='w-[90%] h-[600px]'></Image>
       </SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      <SwiperSlide>Slide 5</SwiperSlide>
-      <SwiperSlide>Slide 6</SwiperSlide>
-      <SwiperSlide>Slide 7</SwiperSlide>
-      <SwiperSlide>Slide 8</SwiperSlide>
-      <SwiperSlide>Slide 9</SwiperSlide>
-      <div className="autoplay-progress" slot="container-end">
-        <svg viewBox="0 0 48 48" ref={progressCircle} className='hidden'>
+      <SwiperSlide className='bg-[#F3F4F6] m-0 p-0'>
+        <div className='w-[50%] '>
+          here
+        </div>
+        <Image src={img2}  className='w-[90%] h-[600px]'></Image>
+      </SwiperSlide>
+      <SwiperSlide className='bg-[#F3F4F6] m-0 p-0'>
+        <div className='w-[50%] '>
+          here
+        </div>
+        <Image src={img3}  className='w-[90%] h-[600px]'></Image>
+      </SwiperSlide>
+      <SwiperSlide className='bg-[#F3F4F6] m-0 p-0'>
+        <div className='w-[50%] '>
+          here
+        </div>
+        <Image src={img4}  className='w-[90%] h-[600px]'></Image>
+      </SwiperSlide>
+
+      {/* <div className="autoplay-progress" slot="container-end">
+        <svg ref={progressCircle} className='hidden'>
           <circle cx="24" cy="24" r="20"></circle>
         </svg>
         <span  ref={progressContent} className='hidden'></span>
-      </div>
+      </div> */}
     </Swiper>
   </div>
   );

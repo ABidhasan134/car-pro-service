@@ -1,12 +1,14 @@
 .swiper {
   position: relative;
     border: 2px solid red;
+    background-color: #F3F4F6;
+
   }
   
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    background: #F3F4F6;;
   
     /* Center slide text vertically */
     display: flex;
@@ -15,10 +17,7 @@
   }
   
   .swiper-slide img {
-    display: block;
-    width: 70%;
-    height: 70%;
-    object-fit: cover;
+    display: flex;
   }
   
   .autoplay-progress {
@@ -26,8 +25,6 @@
     right: 16px;
     bottom: 16px;
     z-index: 10;
-    width: 48px;
-    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
