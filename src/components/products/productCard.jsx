@@ -15,7 +15,7 @@ import Link from 'next/link';
 
 const ProductCard = () => {
   const [productss, isLoading, refetch]=useProducts()
-  console.log(productss);
+  // console.log(productss);
 
   const parts = [part1, part2, part3, part4, part5, part6];
 

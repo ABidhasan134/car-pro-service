@@ -12,23 +12,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
 import './styles.css';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import axios from 'axios';
+import useBannar from '@/Hooks/useBannar';
 
 const Bannar = () => {
-
-  useEffect(() => {
-    axios('/data.json')
-      .then((res) => {
-        console.log("bannar components",res.data);
-      })
-      .catch((err) => console.error('Error fetching data:', err));
-  }, []);
-
+  const [bannarList,isLoading,refetch]=useBannar();
+  console.log("this is bannar data",bannarList);
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s, time, progress) => {
