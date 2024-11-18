@@ -1,113 +1,30 @@
 [
-    {
-      "name": "Mountain Bike Tire",
-      "image": "https://example.com/images/mountain-bike-tire.jpg",
-      "review": 4.5,
-      "description": "Durable mountain bike tire with excellent grip for off-road terrains.",
-      "price": 35.99,
-      "quantity": 120,
-      "retailer_name": "Trek Supplies",
-      "brand_name": "Continental",
-      "size": "29 inches"
-    },
-    {
-      "name": "Carbon Fiber Handlebar",
-      "image": "https://example.com/images/carbon-fiber-handlebar.jpg",
-      "review": 4.8,
-      "description": "Lightweight carbon fiber handlebar for superior control and comfort.",
-      "price": 120.00,
-      "quantity": 50,
-      "retailer_name": "Cycling Pro",
-      "brand_name": "Shimano",
-      "size": "780 mm"
-    },
-    {
-      "name": "Hydraulic Disc Brakes",
-      "image": "https://example.com/images/hydraulic-disc-brakes.jpg",
-      "review": 4.9,
-      "description": "High-performance hydraulic disc brakes for reliable stopping power.",
-      "price": 95.50,
-      "quantity": 200,
-      "retailer_name": "Brake Master",
-      "brand_name": "SRAM",
-      "size": "160 mm"
-    },
-    {
-      "name": "Road Bike Saddle",
-      "image": "https://example.com/images/road-bike-saddle.jpg",
-      "review": 4.6,
-      "description": "Ergonomic road bike saddle designed for comfort during long rides.",
-      "price": 45.00,
-      "quantity": 75,
-      "retailer_name": "Ride Comfort",
-      "brand_name": "Fizik",
-      "size": "275 x 145 mm"
-    },
-    {
-      "name": "Chainring",
-      "image": "https://example.com/images/chainring.jpg",
-      "review": 4.7,
-      "description": "Durable chainring for smooth and efficient power transfer.",
-      "price": 35.20,
-      "quantity": 300,
-      "retailer_name": "Gear Hub",
-      "brand_name": "RaceFace",
-      "size": "32 teeth"
-    },
-    {
-      "name": "Mountain Bike Suspension Fork",
-      "image": "https://example.com/images/suspension-fork.jpg",
-      "review": 4.9,
-      "description": "Suspension fork for improved control on rough terrains.",
-      "price": 250.00,
-      "quantity": 40,
-      "retailer_name": "Off-Road Bikes",
-      "brand_name": "RockShox",
-      "size": "29 inches"
-    },
-    {
-      "name": "Bike Chain",
-      "image": "https://example.com/images/bike-chain.jpg",
-      "review": 4.4,
-      "description": "Rust-resistant bike chain for long-lasting performance.",
-      "price": 18.99,
-      "quantity": 500,
-      "retailer_name": "CycleParts Co.",
-      "brand_name": "KMC",
-      "size": "116 links"
-    },
-    {
-      "name": "Tubeless Tire Sealant",
-      "image": "https://example.com/images/tubeless-tire-sealant.jpg",
-      "review": 4.7,
-      "description": "Reliable tubeless tire sealant for puncture protection.",
-      "price": 12.50,
-      "quantity": 350,
-      "retailer_name": "Bike Essentials",
-      "brand_name": "Stan's NoTubes",
-      "size": "32 ounces"
-    },
-    {
-      "name": "Flat Pedals",
-      "image": "https://example.com/images/flat-pedals.jpg",
-      "review": 4.6,
-      "description": "Durable and lightweight flat pedals with excellent grip.",
-      "price": 45.00,
-      "quantity": 150,
-      "retailer_name": "Pedal Experts",
-      "brand_name": "Crankbrothers",
-      "size": "Standard"
-    },
-    {
-      "name": "Bike Helmet",
-      "image": "https://example.com/images/bike-helmet.jpg",
-      "review": 4.8,
-      "description": "Lightweight and aerodynamic bike helmet with adjustable fit.",
-      "price": 80.00,
-      "quantity": 100,
-      "retailer_name": "SafeCycle Gear",
-      "brand_name": "Giro",
-      "size": "Medium"
-    }
-  ]
-  
+  {
+    "category": "Car Modification",
+    "title": "Custom Body Kit Installation",
+    "offer": "20% Off on Premium Kits",
+    "description": "Enhance your car's aesthetics and aerodynamics with custom body kits designed for performance and style.",
+    "image": "https://example.com/images/custom-body-kit.jpg"
+  },
+  {
+    "category": "Car Repair",
+    "title": "Engine Diagnostics and Repair",
+    "offer": "Free Diagnostics with Every Repair",
+    "description": "Comprehensive engine diagnostics and repair services to ensure your car runs smoothly.",
+    "image": "https://example.com/images/engine-repair.jpg"
+  },
+  {
+    "category": "Car Modification",
+    "title": "Advanced Audio System Installation",
+    "offer": "15% Off on All Audio Upgrades",
+    "description": "Upgrade your car's sound system with state-of-the-art speakers, amplifiers, and subwoofers.",
+    "image": "https://example.com/images/audio-upgrade.jpg"
+  },
+  {
+    "category": "Car Repair",
+    "title": "Brake Pad Replacement",
+    "offer": "10% Off on Brake Services",
+    "description": "Ensure your safety with high-quality brake pad replacement and maintenance services.",
+    "image": "https://example.com/images/brake-repair.jpg"
+  }
+]

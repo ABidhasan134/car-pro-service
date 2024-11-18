@@ -6,7 +6,7 @@ const useProducts = () => {
         queryKey: ['products'],
         queryFn: async () => {
             const res = await axios.get('/api/products');
-            console.log('API Response:', res.data.result); // Debug API response
+            // console.log('API Response:', res.data.result); // Debug API response
             return res.data.result;
         }
     });

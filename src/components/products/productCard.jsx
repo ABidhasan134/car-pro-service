@@ -19,8 +19,8 @@ const ProductCard = () => {
 
   const parts = [part1, part2, part3, part4, part5, part6];
 
-  console.log('Products:', productss);
-  console.log('Is array:', Array.isArray(productss));
+  // console.log('Products:', productss);
+  // console.log('Is array:', Array.isArray(productss));
 
   if (isLoading) {
     refetch();
