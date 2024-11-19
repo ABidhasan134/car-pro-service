@@ -3,7 +3,7 @@ import React from "react";
 const CustomBtn = ({title,color}) => {
   return (
     <div>
-      <button class={`relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-[#${color}] rounded-md group`}>
+      <button class={`relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-[#e76637] rounded-md group`}>
         <span class={`absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-[#842c1a] rounded group-hover:-mr-4 group-hover:-mt-4`}>
           <span class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
         </span>
