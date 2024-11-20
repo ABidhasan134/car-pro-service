@@ -1,11 +1,19 @@
 import DetailsSlider from '@/components/products/detailsSlider'
 import React from 'react'
 
-const page = () => {
+const page = ({params}) => {
+  console.log(params)
   return (
     <div>
-      products details page
-      <DetailsSlider></DetailsSlider>
+      <div className='flex mt-6'>
+    <div>
+    <DetailsSlider id={params.id}></DetailsSlider>
+    </div>
+      <div>
+        here
+      </div>
+      </div>
+      
     </div>
   )
 }

@@ -9,11 +9,11 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 import './style.css'
 
-const DetailsSlider = () => {
+const DetailsSlider = (id) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
+  console.log(id);
   return (
-    <>
+    <div className='min-h-[600px]'>
       {/* Main Swiper */}
       <Swiper
         style={{
@@ -22,16 +22,16 @@ const DetailsSlider = () => {
         }}
         loop={true}
         spaceBetween={10}
-        navigation={true}
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }} // Ensure valid thumbsSwiper
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
+        modules={[FreeMode, Thumbs]}
+        className="mySwiper2 "
       >
         {[...Array(10)].map((_, index) => (
           <SwiperSlide key={index}>
             <img
               src={`https://swiperjs.com/demos/images/nature-${index + 1}.jpg`}
               alt={`Nature ${index + 1}`}
+              className='rounded-xl mb-1'
             />
           </SwiperSlide>
         ))}
@@ -50,14 +50,14 @@ const DetailsSlider = () => {
       >
         {[...Array(10)].map((_, index) => (
           <SwiperSlide key={index}>
-            <img
+            <img className='h-[50px] w-[50px]'
               src={`https://swiperjs.com/demos/images/nature-${index + 1}.jpg`}
               alt={`Nature ${index + 1}`}
             />
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

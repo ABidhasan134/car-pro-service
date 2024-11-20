@@ -22,6 +22,7 @@ import BoxReveal from "../ui/box-reveal";
 
 const Bannar = () => {
   const [bannarList, isLoading, refetch] = useBannar();
+  const ispanding=true
   const bannarImage = [img1, img2, img3, img4];
   console.log("this is bannar data", bannarList);
   const progressCircle = useRef(null);
@@ -30,7 +31,20 @@ const Bannar = () => {
     progressCircle.current.style.setProperty("--progress", 1 - progress);
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    refetch()
+    return <div
+    class="flex bg-neutral-300 w-[100%] h-72 animate-pulse rounded-xl p-4 gap-4"
+  >
+    <div class="grid w-[49%] items-center">
+      <div class="bg-neutral-400/50 w-full p-0 m-0 h-8 animate-pulse rounded-md"></div>
+      <div class="bg-neutral-400/50 w-4/5 p-0 m-0 h-4 animate-pulse rounded-md"></div>
+      <div class="bg-neutral-400/50 w-full p-0 m-0 h-4 animate-pulse rounded-md"></div>
+      <div class="bg-neutral-400/50 w-[100px] p-0 m-0 h-12 animate-pulse rounded-md"></div>
+    </div>
+    <div class="w-[50%] bg-neutral-400/50 h-64 animate-pulse rounded-md"></div>
+  </div>
+  ;}
   if (!bannarList.length) return <div>No banners available</div>;
 
   return (

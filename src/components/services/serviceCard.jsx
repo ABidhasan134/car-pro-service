@@ -21,9 +21,9 @@ const ServiceCard = () => {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div className='grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3  gap-2'>
+        <div className=' grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3  gap-2'>
             {data?.map(service => (
-                 <div className="card bg-base-100 w-96 shadow-xl mb-2">
+                 <div className="border-y-2 border-[#e76637] card bg-base-100 w-96 shadow-xl mb-2">
                  <figure>
                    <Image src={service.img} width={300} height={350}
                    ></Image>

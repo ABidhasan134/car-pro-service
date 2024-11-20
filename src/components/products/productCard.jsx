@@ -35,7 +35,7 @@ const ProductCard = () => {
   return (
     <div className="flex flex-wrap gap-4 justify-center">
       {productss.slice(0,9).map((product, index) => (
-        <div key={index} className="card bg-base-100 w-96 shadow-xl">
+        <div key={index} className="border-y-2 border-[#e76637] card bg-base-100 w-96 shadow-xl">
           <figure>
             <Image
               src={parts[index]} 
