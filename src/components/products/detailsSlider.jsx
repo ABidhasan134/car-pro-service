@@ -9,9 +9,9 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 import './style.css'
 
-const DetailsSlider = (id) => {
+const DetailsSlider = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  console.log(id);
+  // console.log(id);
   return (
     <div className='min-h-[600px]'>
       {/* Main Swiper */}
