@@ -20,4 +20,49 @@ export  async function GET(request,{params}) {
   }
 }
 
+export async function POST(request, { params }) {
+  const db = await connectionDB();
+  const body = await request.json();
 
+  const filter = { _id: new ObjectId(params.id) };
+
+  try {
+    const productListCollection = db.collection('productsList');
+    const product = await productListCollection.findOne(filter);
+
+    if (!product) {
+      return NextResponse.json({ message: 'Product not found', status: 404 });
+    }
+
+    const quantityUser = body.quantity;
+    const newQuantity = product.quantity - quantityUser;
+
+    // Ensure the quantity doesn't go below zero
+    if (newQuantity < 0) {
+      return NextResponse.json({
+        message: 'Insufficient stock',
+        status: 400,
+      });
+    }
+
+    const updateDoc = {
+      $set: {
+        quantity: newQuantity,
+      },
+    };
+
+    const result = await productListCollection.updateOne(filter, updateDoc);
+    console.log(result)
+    return NextResponse.json({
+      message: 'Successfully updated product quantity',
+      status: 200,
+      result:result,
+    });
+  } catch (error) {
+    console.error('Error updating product quantity:', error);
+    return NextResponse.json({
+      message: 'An error occurred while updating the product',
+      status: 500,
+    });
+  }
+}

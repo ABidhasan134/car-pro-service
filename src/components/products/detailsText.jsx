@@ -2,19 +2,38 @@
 import useOneProduct from '@/Hooks/useOneProduct';
 import React, { useEffect, useState } from 'react';
 import AddAndSubBtn from './addAndSubBtn';
+import axios from 'axios';
 
-export const handelIncrese = (newValue, setStock) => {
-  if (newValue >= 0) { // Ensure stock doesn't go negative
-    setStock(newValue);
-    console.log("Updated stock value:", newValue);
+export const handelIncrese = async (newValue, setStock, id,refetch) => {
+  if (newValue >= 0) {
+    try {
+      console.log("Updating stock for product ID:", id);
+
+      // Update the local state
+      setStock(newValue);
+
+      // Await the API response
+      const res = await axios.post(`/api/products/${id}`, { quantity: newValue });
+
+      // Access the resolved data
+      console.log("Server response:", res.data.result);
+      if(res.data.result.modifiedCount)
+      {
+        alert("sucessfully updated")
+        refetch();
+      }
+    } catch (error) {
+      console.error("Error updating stock:", error);
+    }
   } else {
     console.log("Stock cannot be less than zero.");
   }
 };
+
 const DetailsText = ({ id }) => {
   const [oneProduct, isLoading, refetch] = useOneProduct(id);
-  const [stock, setStock] = useState(oneProduct?.stock || 0);
-
+  const [stock, setStock] = useState(oneProduct?.quantity || 0);
+  // console.log("id of product",oneProduct?.quantity)
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -41,9 +60,9 @@ const DetailsText = ({ id }) => {
       <hr />
       <p>Description: {oneProduct?.description}</p>
       <hr />
-      <p>Last {oneProduct?.stock || 1} left, make it yours</p>
+      <p>Last {oneProduct?.quantity || 1} left, make it yours</p>
       <div className="flex gap-6">
-        <AddAndSubBtn stock={stock} setStock={setStock} />
+        <AddAndSubBtn stock={stock} setStock={setStock} id={oneProduct?._id} refetch={refetch}/>
         <button className="btn btn-outline">Add to Cart</button>
       </div>
     </div>
