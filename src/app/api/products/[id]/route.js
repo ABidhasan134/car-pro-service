@@ -6,10 +6,10 @@ import { NextResponse } from "next/server";
 export  async function GET(request,{params}) {
   const db= await connectionDB();
   const productListCollection = db.collection('productsList');
-  console.log("paramiter form backend",params.id);
+  // console.log("paramiter form backend",params.id);
   try{
     const product= await productListCollection.findOne({_id:new ObjectId(params.id)})
-    console.log("product details from oneProduct",product)
+    // console.log("product details from oneProduct",product)
     if(!product){
         return NextResponse.json({message: 'Product not found'},{status: 404})
     }
