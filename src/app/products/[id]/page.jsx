@@ -6,8 +6,7 @@ const page = ({params}) => {
   console.log("paramiter from main details page",params.id)
   console.log('details page hit')
   return (
-    <div>
-      <div className='flex mt-6'>
+      <div className='flex justify-between mt-6 gap-6 w-full p-5'>
     <div>
     <DetailsSlider ></DetailsSlider>
     </div>
@@ -15,8 +14,7 @@ const page = ({params}) => {
     <DetailsText id={params.id}></DetailsText>
       </div>
       </div>
-      
-    </div>
+
   )
 }
 

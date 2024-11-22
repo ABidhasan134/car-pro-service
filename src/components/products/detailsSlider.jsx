@@ -13,7 +13,7 @@ const DetailsSlider = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   // console.log(id);
   return (
-    <div className='min-h-[600px]'>
+    <div className='min-h-[600px] m-4'>
       {/* Main Swiper */}
       <Swiper
         style={{
