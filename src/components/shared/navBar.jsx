@@ -2,9 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import logo from '../../../public/assets/logo.svg';
+import logo from '../../../public/assets/logo.png';
 import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react';
 import UserInfo from './userInfo';
 

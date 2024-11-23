@@ -1,14 +1,15 @@
 import React from 'react'
-import logo from '../../../public/assets/logo.svg';
+import logo from '../../../public/assets/logo.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
     <footer className="footer bg-[rgb(203,213,225)] text-base-content justify-center md:justify-evenly p-10">
   <aside>
-    <Image src={logo}>
-
-    </Image>
+    <Link href="/" className='lg:w-[100px] w-[70px]'>
+    <Image src={logo} className='lg:w-[100px] w-[70px]'></Image>
+    </Link>
     <p>
       ACME Industries Ltd.
       <br />
