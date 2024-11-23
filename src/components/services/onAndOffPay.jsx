@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import logImg from "../../../public/assets/logo.svg";
+import logImg from "../../../public/assets/logo.png";
 import Image from "next/image";
 import axios from "axios";
 import { useSession } from "next-auth/react";

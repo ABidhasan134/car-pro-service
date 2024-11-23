@@ -7,13 +7,21 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
-import './style.css'
+import './style.css';
+import useOneProduct from '@/Hooks/useOneProduct';
 
-const DetailsSlider = () => {
+const DetailsSlider = ({ id }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  // console.log(id);
+  const [oneProduct, isLoading, refetch] = useOneProduct(id);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  const images = oneProduct?.image;
+
   return (
-    <div className='min-h-[600px] m-4'>
+    <div className="min-h-[600px] m-4">
       {/* Main Swiper */}
       <Swiper
         style={{
@@ -22,24 +30,37 @@ const DetailsSlider = () => {
         }}
         loop={true}
         spaceBetween={10}
-        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }} // Ensure valid thumbsSwiper
+        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         modules={[FreeMode, Thumbs]}
-        className="mySwiper2 "
+        className="mySwiper2"
       >
-        {[...Array(10)].map((_, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={`https://swiperjs.com/demos/images/nature-${index + 1}.jpg`}
-              alt={`Nature ${index + 1}`}
-              className='rounded-xl mb-1'
-            />
-          </SwiperSlide>
-        ))}
+        {Array.isArray(images) && images.length > 0 ? (
+          images.map((item, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={item}
+                alt={`Product ${index + 1}`}
+                className="rounded-xl mb-1"
+              />
+            </SwiperSlide>
+          ))
+        ) : (
+          // Fallback to placeholder images
+          [...Array(10)].map((_, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={`https://swiperjs.com/demos/images/nature-${index + 1}.jpg`}
+                alt={`Placeholder ${index + 1}`}
+                className="rounded-xl mb-1"
+              />
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
 
       {/* Thumbnail Swiper */}
       <Swiper
-        onSwiper={setThumbsSwiper} // Initialize thumbsSwiper
+        onSwiper={setThumbsSwiper}
         loop={true}
         spaceBetween={10}
         slidesPerView={4}
@@ -48,14 +69,27 @@ const DetailsSlider = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        {[...Array(10)].map((_, index) => (
-          <SwiperSlide key={index}>
-            <img className='h-[50px] w-[50px]'
-              src={`https://swiperjs.com/demos/images/nature-${index + 1}.jpg`}
-              alt={`Nature ${index + 1}`}
-            />
-          </SwiperSlide>
-        ))}
+        {Array.isArray(images) && images.length > 0 ? (
+          images.map((item, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={item}
+                alt={`Thumbnail ${index + 1}`}
+                className="h-[50px] w-[50px]"
+              />
+            </SwiperSlide>
+          ))
+        ) : (
+          [...Array(10)].map((_, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={`https://swiperjs.com/demos/images/nature-${index + 1}.jpg`}
+                alt={`Thumbnail Placeholder ${index + 1}`}
+                className="h-[50px] w-[50px]"
+              />
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
     </div>
   );

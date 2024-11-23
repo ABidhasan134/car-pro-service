@@ -8,7 +8,7 @@ const page = ({params}) => {
   return (
       <div className='flex justify-between mt-6 gap-6 w-full p-5'>
     <div>
-    <DetailsSlider ></DetailsSlider>
+    <DetailsSlider id={params.id}></DetailsSlider>
     </div>
       <div> 
     <DetailsText id={params.id}></DetailsText>

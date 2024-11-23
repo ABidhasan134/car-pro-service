@@ -31,14 +31,14 @@ const ProductCard = () => {
     refetch();
     return <p>No products available.</p>;
   }
-
+  console.log("productss", productss);
   return (
     <div className="flex flex-wrap gap-4 justify-center">
-      {productss.slice(0,9).map((product, index) => (
+      {productss.map((product, index) => (
         <div key={index} className="border-y-2 border-[#e76637] card bg-base-100 w-96 shadow-xl">
           <figure>
             <Image
-              src={parts[index]} 
+              src={parts[index] || product.image[0]} 
               alt={product.image}
               height={200}
               width={200}
