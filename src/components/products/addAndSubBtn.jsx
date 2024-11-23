@@ -5,9 +5,9 @@ const AddAndSubBtn = ({ stock, setStock,id,refetch }) => {
   // console.log("id from addAndSub",id);
   const valueProvider = (value, mode) => {
     if (mode === 'decrease') {
-      handelIncrese(value - 1, setStock,id,refetch);
+      handelIncrese(value - 1, setStock,id,refetch,mode='decrease');
     } else if (mode === 'increase') {
-      handelIncrese(value + 1, setStock,id,refetch);
+      handelIncrese(value + 1, setStock,id,refetch,mode='increase');
     }
   };
 

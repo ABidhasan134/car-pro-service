@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import AddAndSubBtn from './addAndSubBtn';
 import axios from 'axios';
 
-export const handelIncrese = async (newValue, setStock, id,refetch) => {
+export const handelIncrese = async (newValue, setStock, id,refetch,mode) => {
+  console.log("newValue from details",newValue)
   if (newValue >= 0) {
     try {
       console.log("Updating stock for product ID:", id);
@@ -13,7 +14,7 @@ export const handelIncrese = async (newValue, setStock, id,refetch) => {
       setStock(newValue);
 
       // Await the API response
-      const res = await axios.post(`/api/products/${id}`, { quantity: newValue });
+      const res = await axios.post(`/api/products/${id}`, { quantity: newValue,mode});
 
       // Access the resolved data
       console.log("Server response:", res.data.result);
