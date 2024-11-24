@@ -3,9 +3,11 @@ import useOneProduct from '@/Hooks/useOneProduct';
 import React, { useEffect, useState } from 'react';
 import AddAndSubBtn from './addAndSubBtn';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 
-export const handelIncrese = async (newValue, setStock, id,refetch,mode) => {
+export const handelIncrese = async (newValue,setCardItem, setStock, id,refetch,mode) => {
   console.log("newValue from details",newValue)
+  setCardItem(newValue);
   if (newValue >= 0) {
     try {
       console.log("Updating stock for product ID:", id);
@@ -34,7 +36,15 @@ export const handelIncrese = async (newValue, setStock, id,refetch,mode) => {
 const DetailsText = ({ id }) => {
   const [oneProduct, isLoading, refetch] = useOneProduct(id);
   const [stock, setStock] = useState(oneProduct?.quantity || 0);
+  const [cardItem,setCardItem]=useState(0);
+  const session=useSession();
   // console.log("id of product",oneProduct?.quantity)
+  const handelCardList=async()=>{
+    const userEmail=session.data.user.email;
+    const res=await axios.post(`/api/user/${userEmail}`)
+    const data=res.data;
+    console.log(data);
+  }
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -63,8 +73,10 @@ const DetailsText = ({ id }) => {
       <hr />
       <p>Last {oneProduct?.quantity || 1} left, make it yours</p>
       <div className="flex gap-6">
-        <AddAndSubBtn stock={stock} setStock={setStock} id={oneProduct?._id} refetch={refetch}/>
-        <button className="btn btn-outline">Add to Cart</button>
+        <AddAndSubBtn stock={stock} setCardItem={setCardItem} setStock={setStock} id={oneProduct?._id} refetch={refetch}/>
+        <button  className={`btn btn-outline ${cardItem <= 0 ? 'disable' : ''}`} 
+  disabled={cardItem <= 0}
+         onClick={()=>handelCardList()}>Add to Cart</button>
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 import React from 'react';
 import { handelIncrese } from './detailsText';
 
-const AddAndSubBtn = ({ stock, setStock,id,refetch }) => {
+const AddAndSubBtn = ({ stock,setCardItem, setStock,id,refetch }) => {
   // console.log("id from addAndSub",id);
   const valueProvider = (value, mode) => {
     if (mode === 'decrease') {
-      handelIncrese(value - 1, setStock,id,refetch,mode='decrease');
+      handelIncrese(value - 1,setCardItem, setStock,id,refetch,mode='decrease');
     } else if (mode === 'increase') {
-      handelIncrese(value + 1, setStock,id,refetch,mode='increase');
+      handelIncrese(value + 1,setCardItem, setStock,id,refetch,mode='increase');
     }
   };
 
