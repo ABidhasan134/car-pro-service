@@ -38,12 +38,27 @@ const DetailsText = ({ id }) => {
   const [stock, setStock] = useState(oneProduct?.quantity || 0);
   const [cardItem,setCardItem]=useState(0);
   const session=useSession();
-  // console.log("id of product",oneProduct?.quantity)
+  // console.log("id of product",oneProduct)
   const handelCardList=async()=>{
-    const userEmail=session.data.user.email;
-    const res=await axios.post(`/api/user/${userEmail}`)
-    const data=res.data;
+    const productData = {
+      name: oneProduct.name,
+      title: oneProduct.title,
+      category: oneProduct.category,
+      review: oneProduct.review,
+      brand_name: oneProduct.brand_name,
+      price: oneProduct.price,
+      size: oneProduct.size,
+      retailer_name: oneProduct.retailer_name,
+      quentity: stock
+    }
+    console.log(productData)
+    const email=session.data.user.email;
+    const res=await axios.post(`/api/user/${email}`,{productData})
+    const data=res.data.result;
     console.log(data);
+    if(res.data.result.modifiedCount){
+      
+    }
   }
   if (isLoading) {
     return <div>Loading...</div>;
