@@ -1,12 +1,20 @@
-'use client'
-import useOneProduct from '@/Hooks/useOneProduct';
-import React, { useEffect, useState } from 'react';
-import AddAndSubBtn from './addAndSubBtn';
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
+"use client";
+import useOneProduct from "@/Hooks/useOneProduct";
+import React, { useEffect, useState } from "react";
+import AddAndSubBtn from "./addAndSubBtn";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import Swal from "sweetalert2";
 
-export const handelIncrese = async (newValue,setCardItem, setStock, id,refetch,mode) => {
-  console.log("newValue from details",newValue)
+export const handelIncrese = async (
+  newValue,
+  setCardItem,
+  setStock,
+  id,
+  refetch,
+  mode
+) => {
+  console.log("newValue from details", newValue);
   setCardItem(newValue);
   if (newValue >= 0) {
     try {
@@ -16,13 +24,15 @@ export const handelIncrese = async (newValue,setCardItem, setStock, id,refetch,m
       setStock(newValue);
 
       // Await the API response
-      const res = await axios.post(`/api/products/${id}`, { quantity: newValue,mode});
+      const res = await axios.post(`/api/products/${id}`, {
+        quantity: newValue,
+        mode,
+      });
 
       // Access the resolved data
       console.log("Server response:", res.data.result);
-      if(res.data.result.modifiedCount)
-      {
-        alert("sucessfully updated")
+      if (res.data.result.modifiedCount) {
+        alert("sucessfully updated");
         refetch();
       }
     } catch (error) {
@@ -36,10 +46,10 @@ export const handelIncrese = async (newValue,setCardItem, setStock, id,refetch,m
 const DetailsText = ({ id }) => {
   const [oneProduct, isLoading, refetch] = useOneProduct(id);
   const [stock, setStock] = useState(oneProduct?.quantity || 0);
-  const [cardItem,setCardItem]=useState(0);
-  const session=useSession();
+  const [cardItem, setCardItem] = useState(0);
+  const session = useSession();
   // console.log("id of product",oneProduct)
-  const handelCardList=async()=>{
+  const handelCardList = async () => {
     const productData = {
       name: oneProduct.name,
       title: oneProduct.title,
@@ -49,17 +59,50 @@ const DetailsText = ({ id }) => {
       price: oneProduct.price,
       size: oneProduct.size,
       retailer_name: oneProduct.retailer_name,
-      quentity: stock
-    }
-    console.log(productData)
-    const email=session.data.user.email;
-    const res=await axios.post(`/api/user/${email}`,{productData})
-    const data=res.data.result;
-    console.log(data);
-    if(res.data.result.modifiedCount){
-      
-    }
-  }
+      quantity: stock,
+    };
+  
+    console.log("Product Data:", productData);
+    const email = session.data.user.email;
+  
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to order?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Order Now",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.post(`/api/user/${email}`, { productData });
+          const { modifiedCount } = res.data.result; 
+          if (modifiedCount >= 1) {
+            Swal.fire({
+              title: "Order Placed!",
+              text: "Your order was successfully received.",
+              icon: "success",
+            });
+          } else {
+            Swal.fire({
+              title: "Order Failed",
+              text: "Unable to process your order. Please try again later.",
+              icon: "error",
+            });
+          }
+        } catch (error) {
+          console.error("Error placing order:", error);
+          Swal.fire({
+            title: "Error",
+            text: "An error occurred while processing your order.",
+            icon: "error",
+          });
+        }
+      }
+    });
+  };
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -88,10 +131,20 @@ const DetailsText = ({ id }) => {
       <hr />
       <p>Last {oneProduct?.quantity || 1} left, make it yours</p>
       <div className="flex gap-6">
-        <AddAndSubBtn stock={stock} setCardItem={setCardItem} setStock={setStock} id={oneProduct?._id} refetch={refetch}/>
-        <button  className={`btn btn-outline ${cardItem <= 0 ? 'disable' : ''}`} 
-  disabled={cardItem <= 0}
-         onClick={()=>handelCardList()}>Add to Cart</button>
+        <AddAndSubBtn
+          stock={stock}
+          setCardItem={setCardItem}
+          setStock={setStock}
+          id={oneProduct?._id}
+          refetch={refetch}
+        />
+        <button
+          className={`btn btn-outline ${cardItem <= 0 ? "disable" : ""}`}
+          disabled={cardItem <= 0}
+          onClick={() => handelCardList()}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
