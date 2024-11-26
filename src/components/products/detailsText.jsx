@@ -88,7 +88,7 @@ const DetailsText = ({ id }) => {
             });
             setTimeout(()=>{
               // here is the path of payment route
-              router.push('/')
+              router.push('/stripepayment')
             },[2000])
           } else {
             Swal.fire({
