@@ -5,7 +5,7 @@ import AddAndSubBtn from "./addAndSubBtn";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export const handelIncrese = async (
   newValue,
@@ -18,40 +18,28 @@ export const handelIncrese = async (
   console.log("newValue from details", newValue);
   setCardItem(newValue);
   if (newValue >= 0) {
-    try {
-      console.log("Updating stock for product ID:", id);
-
-      // Update the local state
-      setStock(newValue);
-
-      // Await the API response
-      const res = await axios.post(`/api/products/${id}`, {
-        quantity: newValue,
-        mode,
-      });
-
-      // Access the resolved data
-      console.log("Server response:", res.data.result);
-      if (res.data.result.modifiedCount) {
-        alert("sucessfully updated");
-        refetch();
-      }
-    } catch (error) {
-      console.error("Error updating stock:", error);
-    }
+    // console.log("Updating stock for product ID:", id);
+    setStock(newValue);
   } else {
+    alert("Stock cannot be less than zero.");
     console.log("Stock cannot be less than zero.");
   }
 };
 
 const DetailsText = ({ id }) => {
   const [oneProduct, isLoading, refetch] = useOneProduct(id);
-  const [stock, setStock] = useState(oneProduct?.quantity || 0);
+  const [stock, setStock] = useState(0);
   const [cardItem, setCardItem] = useState(0);
   const session = useSession();
-  const router=useRouter();
+  const router = useRouter();
   // console.log("id of product",oneProduct)
   const handelCardList = async () => {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
+    // console.log(currentDate);
     const productData = {
       name: oneProduct.name,
       title: oneProduct.title,
@@ -62,11 +50,13 @@ const DetailsText = ({ id }) => {
       size: oneProduct.size,
       retailer_name: oneProduct.retailer_name,
       quantity: stock,
+      order_type: "card",
+      order_date: currentDate
     };
-  
+
     console.log("Product Data:", productData);
     const email = session.data.user.email;
-  
+
     Swal.fire({
       title: "Are you sure?",
       text: "You want to order?",
@@ -79,17 +69,17 @@ const DetailsText = ({ id }) => {
       if (result.isConfirmed) {
         try {
           const res = await axios.post(`/api/user/${email}`, { productData });
-          const { modifiedCount } = res.data.result; 
+          const { modifiedCount } = res.data.result;
           if (modifiedCount >= 1) {
             Swal.fire({
               title: "Order Placed!",
               text: "Your order was successfully received.",
               icon: "success",
             });
-            setTimeout(()=>{
-              // here is the path of payment route
-              router.push('/stripepayment')
-            },[2000])
+            // setTimeout(() => {
+            //   // here is the path of payment route
+            //   router.push("/stripepayment");
+            // }, [2000]);
           } else {
             Swal.fire({
               title: "Order Failed",
@@ -108,7 +98,7 @@ const DetailsText = ({ id }) => {
       }
     });
   };
-  
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

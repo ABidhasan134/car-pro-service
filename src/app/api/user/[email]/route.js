@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(request, { params }) {
   const db = await connectionDB();
   const body = await request.json();
-  const productData = body.productData; // Data to be added to order history
+  const productData = body.productData; 
   const filter = { email: params.email };
   const userCollection = db.collection("users");
 
