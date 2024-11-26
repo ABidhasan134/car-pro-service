@@ -5,6 +5,7 @@ import AddAndSubBtn from "./addAndSubBtn";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
+import { useRouter } from 'next/navigation'
 
 export const handelIncrese = async (
   newValue,
@@ -48,6 +49,7 @@ const DetailsText = ({ id }) => {
   const [stock, setStock] = useState(oneProduct?.quantity || 0);
   const [cardItem, setCardItem] = useState(0);
   const session = useSession();
+  const router=useRouter();
   // console.log("id of product",oneProduct)
   const handelCardList = async () => {
     const productData = {
@@ -84,6 +86,10 @@ const DetailsText = ({ id }) => {
               text: "Your order was successfully received.",
               icon: "success",
             });
+            setTimeout(()=>{
+              // here is the path of payment route
+              router.push('/')
+            },[2000])
           } else {
             Swal.fire({
               title: "Order Failed",
