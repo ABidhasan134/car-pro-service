@@ -25,12 +25,14 @@ export async function POST(request, { params }) {
   const body = await request.json();
 
   const filter = { _id: new ObjectId(params.id) };
-  const { mode, quantity } = body;
-  console.log("quantity from the route",quantity);
+  const {  quantity } = body;
+  // console.log("quantity from the route",quantity);
   try {
     const productListCollection = db.collection("productsList");
     const product = await productListCollection.findOne(filter);
-
+     // Determine new quantity based on mode
+     let newQuantity = product.quantity;
+     newQuantity = newQuantity-quantity; // Reduce stock
     if (!product) {
       return NextResponse.json({ message: "Product not found", status: 404 });
     }
@@ -39,20 +41,6 @@ export async function POST(request, { params }) {
     if (quantity < 0) {
       return NextResponse.json({
         message: "Quantity must be greater than zero",
-        status: 400,
-      });
-    }
-
-    // Determine new quantity based on mode
-    let newQuantity = product.quantity;
-    if (mode === "increase") {
-      newQuantity = newQuantity-1; // Reduce stock
-    } else if (mode === "decrease") {
-      newQuantity=newQuantity+1; // Increase stock
-    } 
-    else {
-      return NextResponse.json({
-        message: "Invalid mode. Use 'increase' or 'decrease'.",
         status: 400,
       });
     }

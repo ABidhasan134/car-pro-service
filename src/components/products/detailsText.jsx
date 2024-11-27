@@ -32,8 +32,8 @@ const DetailsText = ({ id }) => {
   const [cardItem, setCardItem] = useState(0);
   const session = useSession();
   const router = useRouter();
-  // console.log("id of product",oneProduct)
-  const handelCardList = async () => {
+  // for add to card 
+  const handelCardList = async (type) => {
     const date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
@@ -50,13 +50,32 @@ const DetailsText = ({ id }) => {
       size: oneProduct.size,
       retailer_name: oneProduct.retailer_name,
       quantity: stock,
-      order_type: "card",
+      order_type: type,
       order_date: currentDate
     };
 
     console.log("Product Data:", productData);
     const email = session.data.user.email;
+    
+    try {
+      const res = await axios.post(`/api/user/${email}`, { productData });
+      const { modifiedCount } = res.data.result;
+      if (modifiedCount >= 1) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });}
+      }
+      catch(error){
+        console.log("card error:", error);
+      }
+    }
 
+  const handelOrderBook=async()=>{
+    
     Swal.fire({
       title: "Are you sure?",
       text: "You want to order?",
@@ -68,7 +87,9 @@ const DetailsText = ({ id }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.post(`/api/user/${email}`, { productData });
+          const res = await axios.post(`/api/products/${id}`, {
+            quantity: stock,
+          });
           const { modifiedCount } = res.data.result;
           if (modifiedCount >= 1) {
             Swal.fire({
@@ -76,10 +97,11 @@ const DetailsText = ({ id }) => {
               text: "Your order was successfully received.",
               icon: "success",
             });
-            // setTimeout(() => {
-            //   // here is the path of payment route
-            //   router.push("/stripepayment");
-            // }, [2000]);
+            setTimeout(()=>{
+              handelCardList('orderd');
+              refetch();
+              router.push("/stripepayment")
+            },[1500])
           } else {
             Swal.fire({
               title: "Order Failed",
@@ -97,8 +119,8 @@ const DetailsText = ({ id }) => {
         }
       }
     });
-  };
-
+      
+  }
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -126,7 +148,6 @@ const DetailsText = ({ id }) => {
       <p>Description: {oneProduct?.description}</p>
       <hr />
       <p>Last {oneProduct?.quantity || 1} left, make it yours</p>
-      <div className="flex gap-6">
         <AddAndSubBtn
           stock={stock}
           setCardItem={setCardItem}
@@ -134,14 +155,22 @@ const DetailsText = ({ id }) => {
           id={oneProduct?._id}
           refetch={refetch}
         />
+        <div className="flex gap-2">
         <button
           className={`btn btn-outline ${cardItem <= 0 ? "disable" : ""}`}
           disabled={cardItem <= 0}
-          onClick={() => handelCardList()}
+          onClick={() => handelCardList('card')}
         >
           Add to Cart
         </button>
-      </div>
+        <button
+          className={`btn btn-outline ${cardItem <= 0 ? "disable" : ""}`}
+          disabled={cardItem <= 0}
+          onClick={() => handelOrderBook()}
+        >
+          Order Now
+        </button>
+        </div>
     </div>
   );
 };
