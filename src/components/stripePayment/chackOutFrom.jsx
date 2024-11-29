@@ -7,19 +7,19 @@ import axios from 'axios';
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const { data: session } = useSession(); // Corrected session access
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [paymentSuccess, setPaymentSuccess] = useState('');
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
-    
     const fetchClientSecret = async () => {
       try {
-        const response = await axios.post('/api/stripe-create-intent')
-        const data = await response.json();
-        setClientSecret(data.clientSecret);
+        const response = await axios.post('/api/stripe-create-intent', {
+          price: 50, // Replace with dynamic price as needed
+        });
+        setClientSecret(response.data.clientSecret); // Use axios response directly
       } catch (error) {
         console.error('Error fetching client secret:', error);
         setErrorMessage('Failed to initialize payment. Please try again.');
