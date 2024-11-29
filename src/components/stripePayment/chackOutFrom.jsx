@@ -1,33 +1,15 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import React, { useState } from 'react';
+import { useStripe, useElements, CardElement, PaymentElement } from '@stripe/react-stripe-js';
 import { useSession } from 'next-auth/react';
-import axios from 'axios';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ clientSecret }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [paymentSuccess, setPaymentSuccess] = useState('');
-  const [clientSecret, setClientSecret] = useState('');
-
-  useEffect(() => {
-    const fetchClientSecret = async () => {
-      try {
-        const response = await axios.post('/api/stripe-create-intent', {
-          price: 50, // Replace with dynamic price as needed
-        });
-        setClientSecret(response.data.clientSecret); // Use axios response directly
-      } catch (error) {
-        console.error('Error fetching client secret:', error);
-        setErrorMessage('Failed to initialize payment. Please try again.');
-      }
-    };
-
-    fetchClientSecret();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,60 +30,51 @@ const CheckoutForm = () => {
       return;
     }
 
-    // Create payment method
-    const { error: paymentMethodError, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: card,
-    });
-
-    if (paymentMethodError) {
-      setErrorMessage(paymentMethodError.message);
+    // Ensure the `clientSecret` is valid
+    if (!clientSecret) {
+      setErrorMessage('Client secret is missing.');
       setLoading(false);
       return;
     }
 
-    // Confirm card payment
-    const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: paymentMethod.id,
-      receipt_email: session?.user?.email || 'anonymous',
+    // Confirm the card payment
+    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card,
+        billing_details: {
+          email: session?.user?.email || 'anonymous',
+        },
+      },
     });
 
-    if (confirmError) {
-      setErrorMessage(confirmError.message);
+    if (error) {
+      setErrorMessage(error.message);
       setLoading(false);
     } else {
-      setPaymentSuccess('Payment successful! Thank you for your purchase.');
+      setPaymentSuccess('Payment successful! Thank you.');
+      console.log('Payment Intent:', paymentIntent);
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mx-5 gap-2 min-w-[400px]">
-      <CardElement
+    <form onSubmit={handleSubmit} className="w-full min-w-[600px] mx-auto">
+      
+      <PaymentElement className="p-3 border border-gray-300 rounded-lg"
         options={{
-          style: {
-            base: {
-              fontSize: '16px',
-              color: '#424770',
-              '::placeholder': {
-                color: '#aab7c4',
-              },
-            },
-            invalid: {
-              color: '#9e2146',
-            },
-          },
-        }}
+          appearance: true, // Let Stripe's appearance API handle styling
+        }
+      }
       />
       <button
-        disabled={!stripe || !elements || loading || !clientSecret}
-        className={`btn btn-primary my-4 ${loading && 'opacity-50 cursor-not-allowed'}`}
+        disabled={!stripe || !elements || loading}
+        className={`btn btn-primary mt-4 w-full ${loading && 'opacity-50 cursor-not-allowed'}`}
         type="submit"
       >
         {loading ? 'Processing...' : 'Pay'}
       </button>
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-      {paymentSuccess && <p className="text-green-500">{paymentSuccess}</p>}
+      {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
+      {paymentSuccess && <p className="text-green-500 mt-2">{paymentSuccess}</p>}
     </form>
   );
 };

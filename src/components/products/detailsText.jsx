@@ -99,8 +99,8 @@ const DetailsText = ({ id }) => {
             });
             setTimeout(()=>{
               handelCardList('orderd');
+              router.push(`/stripepayment?price=${oneProduct?.price}`);// finding through parameters
               refetch();
-              router.push("/stripepayment")
             },[1500])
           } else {
             Swal.fire({
