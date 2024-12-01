@@ -6,14 +6,15 @@ import axios from 'axios';
 import CheckoutForm from '@/components/stripePayment/chackOutFrom';
 import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
+// console.log(process.env.NEXT_STRIPE_PRIMARY_KEY);
+const stripePromise = loadStripe('pk_test_51PMlPRCTwpklZGzJZtDzX3YVFsS2swKcgURN2NhpsOTLzRkrVzCk1CQsXeplPWDX0m4WawDKEAYClQhxzoQHmrDd00x6dik1k8'); 
 
-const stripePromise = loadStripe('pk_test_51PMlPRCTwpklZGzJZtDzX3YVFsS2swKcgURN2NhpsOTLzRkrVzCk1CQsXeplPWDX0m4WawDKEAYClQhxzoQHmrDd00x6dik1k8'); // Replace with your Stripe publishable key
 
 const PaymentPage = () => {
   const [clientSecret, setClientSecret] = useState(null);
   const searchParams = useSearchParams();
   const price = searchParams.get('price');
-  console.log("price of product",price)
+  // console.log("price of product",price)
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {
@@ -27,10 +28,10 @@ const PaymentPage = () => {
     createPaymentIntent();
   }, [price]);
 
-  console.log("client secret is here",clientSecret)
+  // console.log("client secret is here",clientSecret)
 
   const appearance = {
-    theme: 'night',
+    theme: 'stripe',
   };
 
   const options = {
@@ -40,7 +41,7 @@ const PaymentPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center min-h-[600px]">
       {clientSecret ? (
         <Elements stripe={stripePromise} options={options}>
          <CheckoutForm clientSecret={clientSecret} />

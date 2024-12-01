@@ -1,7 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import { useStripe, useElements, CardElement, PaymentElement } from '@stripe/react-stripe-js';
+import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import logo from '@/../../public/assets/logo.png';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const CheckoutForm = ({ clientSecret }) => {
   const stripe = useStripe();
@@ -10,72 +14,92 @@ const CheckoutForm = ({ clientSecret }) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [paymentSuccess, setPaymentSuccess] = useState('');
+  const router=useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage('');
     setPaymentSuccess('');
-
+  
     if (!stripe || !elements) {
       setErrorMessage('Stripe is not loaded yet.');
       setLoading(false);
       return;
     }
-
-    const card = elements.getElement(CardElement);
-    if (!card) {
-      setErrorMessage('Card Element not found.');
-      setLoading(false);
-      return;
-    }
-
-    // Ensure the `clientSecret` is valid
+  
     if (!clientSecret) {
       setErrorMessage('Client secret is missing.');
       setLoading(false);
       return;
     }
-
-    // Confirm the card payment
-    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card,
-        billing_details: {
-          email: session?.user?.email || 'anonymous',
+  
+    try {
+      console.log('Confirming payment using PaymentElement...');
+      const { paymentIntent, error } = await stripe.confirmPayment({
+        elements, 
+        confirmParams: {
+          payment_method_data: {
+            billing_details: {
+              email: session?.user?.email || 'anonymous@example.com',
+              name: session?.user?.name || 'Guest User',
+            },
+          },
         },
-      },
-    });
-
-    if (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
-    } else {
-      setPaymentSuccess('Payment successful! Thank you.');
-      console.log('Payment Intent:', paymentIntent);
+        redirect: 'if_required', // Avoiding unnecessary redirects
+      });
+  
+      if (error) {
+        console.error('Payment Error:', error.message);
+        setErrorMessage(error.message);
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+        console.log('Payment succeeded:', paymentIntent);
+  
+        // Save payment details to backend
+        const response = await axios.post('/api/save-payment', {
+          paymentIntentId: paymentIntent.id,
+          amount: paymentIntent.amount,
+          email: session?.user?.email || 'anonymous@gmail.com',
+          status: paymentIntent.status,
+        });
+  
+        const data = response.data;
+        console.log('Payment saved to database:', data);
+        setPaymentSuccess('Payment successful! Thank you.');
+        router.push('/success'); // Redirect after successful payment
+      } else {
+        setErrorMessage('Payment not completed. Please try again.');
+      }
+    } catch (err) {
+      console.error('Unexpected Error:', err.message);
+      setErrorMessage('An unexpected error occurred during payment.');
+    } finally {
       setLoading(false);
     }
   };
 
+
   return (
-    <form onSubmit={handleSubmit} className="w-full min-w-[600px] mx-auto">
-      
-      <PaymentElement className="p-3 border border-gray-300 rounded-lg"
-        options={{
-          appearance: true, // Let Stripe's appearance API handle styling
-        }
-      }
-      />
-      <button
-        disabled={!stripe || !elements || loading}
-        className={`btn btn-primary mt-4 w-full ${loading && 'opacity-50 cursor-not-allowed'}`}
-        type="submit"
-      >
-        {loading ? 'Processing...' : 'Pay'}
-      </button>
-      {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
-      {paymentSuccess && <p className="text-green-500 mt-2">{paymentSuccess}</p>}
-    </form>
+    <div>
+      <section className="flex justify-center">
+        <Image src={logo} alt="logo" height={200} width={200} />
+      </section>
+      {/* Stripe Payment */}
+      <form onSubmit={handleSubmit} className="w-full min-w-[600px] mx-auto">
+        <PaymentElement className="p-3 border border-gray-300 rounded-lg" />
+        <button
+          disabled={!stripe || !elements || loading}
+          className={`btn btn-outline btn-error mt-4 w-full ${
+            loading && 'opacity-50 cursor-not-allowed'
+          }`}
+          type="submit"
+        >
+          {loading ? 'Processing...' : 'Pay'}
+        </button>
+        {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
+        {paymentSuccess && <p className="text-green-500 mt-2">{paymentSuccess}</p>}
+      </form>
+    </div>
   );
 };
 
