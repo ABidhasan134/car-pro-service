@@ -13,8 +13,10 @@ const stripePromise = loadStripe('pk_test_51PMlPRCTwpklZGzJZtDzX3YVFsS2swKcgURN2
 const PaymentPage = () => {
   const [clientSecret, setClientSecret] = useState(null);
   const searchParams = useSearchParams();
-  const price = searchParams.get('price');
-  // console.log("price of product",price)
+  const productId = searchParams.get('id');
+  const price= searchParams.get('price');
+  // const [oneProduct, isLoading, refetch]= useOneProduct(productId)
+  // console.log("product from payment page",oneProduct)
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {
@@ -44,7 +46,7 @@ const PaymentPage = () => {
     <div className="flex justify-center items-center min-h-[600px]">
       {clientSecret ? (
         <Elements stripe={stripePromise} options={options}>
-         <CheckoutForm clientSecret={clientSecret} />
+         <CheckoutForm clientSecret={clientSecret} productId={productId} />
         </Elements>
       ) : (
         <p>Loading payment details...</p>

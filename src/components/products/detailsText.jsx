@@ -73,9 +73,10 @@ const DetailsText = ({ id }) => {
         console.log("card error:", error);
       }
     }
-
+    console.log( "this is from the text diteails ",oneProduct._id)
   const handelOrderBook=async()=>{
-    
+    const amount=oneProduct?.price*stock;
+    const ProductId= oneProduct._id;
     Swal.fire({
       title: "Are you sure?",
       text: "You want to order?",
@@ -99,7 +100,11 @@ const DetailsText = ({ id }) => {
             });
             setTimeout(()=>{
               handelCardList('orderd');
-              router.push(`/stripepayment?price=${oneProduct?.price}`);// finding through parameters
+              // use encodeURIcomponent for sending objects by URI
+              router.push(
+                `/stripepayment?id=${ProductId}
+                &price=${amount}`
+              ); 
               refetch();
             },[1500])
           } else {
