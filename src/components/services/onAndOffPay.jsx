@@ -4,10 +4,13 @@ import logImg from "../../../public/assets/logo.png";
 import Image from "next/image";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 const OnAndOffPay = ({ service }) => {
   const session=useSession();
   const userName=session?.data.user.name;
   const userEmail=session?.data.user.email;
+  const router = useRouter();
   // console.log(service);
   const serviceId = service._id;
   const name = service.title;
@@ -21,12 +24,21 @@ const OnAndOffPay = ({ service }) => {
 
   let currentDate = `${day}-${month}-${year}`;
   const payInfo={serviceId,name,userName,userEmail,price,typeOffPay,currentDate}
+  console.log('service on off', serviceId)
   const handelPayOnline = () => {
-    axios.post("/api/service/onlinePay", { payInfo })
-      .then((res) => console.log(res.data))
-      .catch((error) => {
-        console.error("Error in axios request:", error.response?.data || error.message);
-      });
+    // axios.post(`/api/products/${serviceId}`,{ quantity: 1})
+    //   .then((res) => {
+    //     `/stripepayment?id=${serviceId}
+    //             &price=${price}&type=service`
+    //     console.log(res.data)
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error in axios request:", error.response?.data || error.message);
+    //   });
+    router.push(
+      `/stripepayment?id=${serviceId}
+      &price=${price}&type=service`
+    ); 
   };
   
   return (

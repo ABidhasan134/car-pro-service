@@ -25,6 +25,8 @@ export async function POST(request) {
       Item_name,
       retailer_name,
       singel_price,
+      product_type,
+      pay_date
     } = body;
 
     const paymentInfo = {
@@ -35,6 +37,8 @@ export async function POST(request) {
       Item_name,
       retailer_name,
       singel_price,
+      product_type,
+      pay_date
     };
 
     // Prepare payment history

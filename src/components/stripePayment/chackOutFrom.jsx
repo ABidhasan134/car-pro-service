@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useStripe,
   useElements,
@@ -11,8 +11,9 @@ import logo from "@/../../public/assets/logo.png";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import useOneProduct from "@/Hooks/useOneProduct";
+import { getServiceDetails } from "@/app/services/[id]/page";
 
-const CheckoutForm = ({ clientSecret, productId,type }) => {
+const CheckoutForm = ({ clientSecret, productId, type }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { data: session } = useSession();
@@ -20,14 +21,31 @@ const CheckoutForm = ({ clientSecret, productId,type }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentSuccess, setPaymentSuccess] = useState("");
   const router = useRouter();
-  const [oneProduct, isLoading, refetch]= useOneProduct(productId)
-  const exchangeRet=110;
-  console.log("product from payment page",oneProduct)
-  // console.log("here is the product data from chack out from ",oneProduct)
-  // console.log(oneProduct._id,
-  //   oneProduct.name,
-  //   oneProduct.retailer_name,
-  // oneProduct.price,)
+  const [oneProduct, isLoading, refetch] = useOneProduct(productId);
+  const exchangeRet = 110;
+  const [serviceDetails,setServiceDetails] =useState([]);
+
+  const date = new Date();
+  const currentDate = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
+
+
+  useEffect(() => {
+    if (productId) {
+      getServiceDetails(productId)
+        .then((serviceDetails) => {
+          const data = serviceDetails.result;
+          setServiceDetails(serviceDetails)
+          console.log("product from payment page", serviceDetails);
+        })
+        .catch((error) => {
+          console.error("Error fetching service details:", error);
+        });
+    }
+  }, [productId]);
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -62,21 +80,48 @@ const CheckoutForm = ({ clientSecret, productId,type }) => {
 
       if (error) {
         setErrorMessage(error.message);
-      } 
-      if(paymentIntent && paymentIntent.status === "succeeded" && type==='service')
-      {
-        console.log("hit in service");
       }
-      else if (paymentIntent && paymentIntent.status === "succeeded" && type==='product') {
+      if (
+        paymentIntent &&
+        paymentIntent.status === "succeeded" &&
+        type === "service"
+      ) {
+        console.log("hit in service");
         const response = await axios.post("/api/save-payment", {
           paymentIntentId: paymentIntent.id,
-          amount: paymentIntent.amount/exchangeRet,
+          amount: paymentIntent.amount / exchangeRet,
+          email: session?.user?.email || "anonymous@gmail.com",
+          status: paymentIntent.status,
+          Item_id: serviceDetails._id || 10314,
+          Item_name: serviceDetails.title || "abid hasan",
+          retailer_name: serviceDetails.retailer_name || 'Motor Magic',
+          singel_price: serviceDetails.price || 5410000,
+          product_type: 'service++',
+          pay_date: currentDate
+        });
+
+        if (response.data.success) {
+          setPaymentSuccess("Payment successful! Thank you.");
+          router.push(`/success?paymentId=${paymentIntent.id}`);
+        } else {
+          setErrorMessage("Failed to save payment. Please contact support.");
+        }
+      } else if (
+        paymentIntent &&
+        paymentIntent.status === "succeeded" &&
+        type === "product"
+      ) {
+        const response = await axios.post("/api/save-payment", {
+          paymentIntentId: paymentIntent.id,
+          amount: paymentIntent.amount / exchangeRet,
           email: session?.user?.email || "anonymous@gmail.com",
           status: paymentIntent.status,
           Item_id: oneProduct._id || 10314,
           Item_name: oneProduct.name || "abid hasan",
           retailer_name: oneProduct.retailer_name || "user001",
           singel_price: oneProduct.price || 5410000,
+          product_type: 'Product',
+          pay_date: currentDate
         });
 
         if (response.data.success) {
