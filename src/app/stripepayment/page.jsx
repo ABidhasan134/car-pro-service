@@ -15,8 +15,9 @@ const PaymentPage = () => {
   const searchParams = useSearchParams();
   const productId = searchParams.get('id');
   const price= searchParams.get('price');
+  const type= searchParams.get('type');
   // const [oneProduct, isLoading, refetch]= useOneProduct(productId)
-  // console.log("product from payment page",oneProduct)
+  console.log("product from payment page",type)
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {
@@ -46,7 +47,7 @@ const PaymentPage = () => {
     <div className="flex justify-center items-center min-h-[600px]">
       {clientSecret ? (
         <Elements stripe={stripePromise} options={options}>
-         <CheckoutForm clientSecret={clientSecret} productId={productId} />
+         <CheckoutForm clientSecret={clientSecret} productId={productId} type={type}/>
         </Elements>
       ) : (
         <p>Loading payment details...</p>

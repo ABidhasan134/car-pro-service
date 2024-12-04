@@ -103,7 +103,7 @@ const DetailsText = ({ id }) => {
               // use encodeURIcomponent for sending objects by URI
               router.push(
                 `/stripepayment?id=${ProductId}
-                &price=${amount}`
+                &price=${amount}&type=product`
               ); 
               refetch();
             },[1500])

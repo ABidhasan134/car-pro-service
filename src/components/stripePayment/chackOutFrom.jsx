@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import useOneProduct from "@/Hooks/useOneProduct";
 
-const CheckoutForm = ({ clientSecret, productId }) => {
+const CheckoutForm = ({ clientSecret, productId,type }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { data: session } = useSession();
@@ -21,6 +21,7 @@ const CheckoutForm = ({ clientSecret, productId }) => {
   const [paymentSuccess, setPaymentSuccess] = useState("");
   const router = useRouter();
   const [oneProduct, isLoading, refetch]= useOneProduct(productId)
+  const exchangeRet=110;
   console.log("product from payment page",oneProduct)
   // console.log("here is the product data from chack out from ",oneProduct)
   // console.log(oneProduct._id,
@@ -61,10 +62,15 @@ const CheckoutForm = ({ clientSecret, productId }) => {
 
       if (error) {
         setErrorMessage(error.message);
-      } else if (paymentIntent && paymentIntent.status === "succeeded") {
+      } 
+      if(paymentIntent && paymentIntent.status === "succeeded" && type==='service')
+      {
+        console.log("hit in service");
+      }
+      else if (paymentIntent && paymentIntent.status === "succeeded" && type==='product') {
         const response = await axios.post("/api/save-payment", {
           paymentIntentId: paymentIntent.id,
-          amount: paymentIntent.amount,
+          amount: paymentIntent.amount/exchangeRet,
           email: session?.user?.email || "anonymous@gmail.com",
           status: paymentIntent.status,
           Item_id: oneProduct._id || 10314,
