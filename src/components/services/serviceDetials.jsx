@@ -101,12 +101,15 @@ const ServiceDetials = ({ service }) => {
           })}
         </div>
         {tempData ? (
-          <PdfInvoice service={service} user={session}></PdfInvoice>
+          <div>
+                      <PdfInvoice service={service} user={session}></PdfInvoice>
+                      <OnAndOffPay service={service}></OnAndOffPay>
+          </div>
         ) : null}
-        <OnAndOffPay service={service}></OnAndOffPay>
+        
         <p className="text-5xl font-semibold mx-4">Price: ${service.price}</p>
         <button
-          className="mx-4 btn btn-outline btn-error w-[90%] flex justify-center mt-2"
+          className="my-2 mx-4 btn btn-outline btn-error w-[90%] flex justify-center mt-2"
           onClick={handleBookNow}
         >
           Book Now

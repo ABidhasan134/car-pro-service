@@ -102,7 +102,7 @@ const CheckoutForm = ({ clientSecret, productId, type }) => {
 
         if (response.data.success) {
           setPaymentSuccess("Payment successful! Thank you.");
-          router.push(`/success?paymentId=${paymentIntent.id}`);
+          router.push(`/success?id=${serviceDetails._id}&type=service`);
         } else {
           setErrorMessage("Failed to save payment. Please contact support.");
         }
@@ -126,7 +126,7 @@ const CheckoutForm = ({ clientSecret, productId, type }) => {
 
         if (response.data.success) {
           setPaymentSuccess("Payment successful! Thank you.");
-          router.push(`/success?paymentId=${paymentIntent.id}`);
+          router.push(`/success?id=${oneProduct._id}&type=Product`);
         } else {
           setErrorMessage("Failed to save payment. Please contact support.");
         }

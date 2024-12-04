@@ -44,10 +44,10 @@ const OnAndOffPay = ({ service }) => {
   return (
     <section className="w-[92%] py-4 bg-black grid justify-center text-center text-white m-4 rounded-lg">
       <Image className="p-4 relative left-7" src={logImg}></Image>
-      <h1 className="flex text-center py-2">Pay Online Get 2% bonus</h1>
+      <h1 className="mx-4 flex text-center py-2">Pay Online Get 2% bonus</h1>
       <button
         onClick={handelPayOnline}
-        className="btn btn-outline text-[#FF3811] hover:text-white hover:bg-[#FF3811]"
+        className="mx-4 btn btn-outline text-[#FF3811] hover:text-white hover:bg-[#FF3811]"
       >
         pay Now
       </button>
