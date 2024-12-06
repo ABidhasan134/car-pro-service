@@ -16,6 +16,7 @@ const ServiceDetials = ({ service }) => {
   const [loading, setLoading] = useState(true);
   const session = useSession();
   const [tempData, setTempData] = useState(false);
+  const serialNo= uuid4(0,10).replace(/-/g, '').substring(0, 10);;
   //  console.log(session.data.user);
   useEffect(() => {
     const fetchData = async () => {
@@ -33,19 +34,19 @@ const ServiceDetials = ({ service }) => {
   const handleBookNow = async (payment) => {
     console.log("this is ofline payment methord", payment);
     const email = session.data.user.email;
-    const serialNo= uuid4(0,10).replace(/-/g, '').substring(0, 10);;
     const serviceId = service._id;
     const name = service.title;
     const price = service.price;
     const typeOffPay = "offline";
     const date = new Date();
+    const status='soon'
 
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
 
     let currentDate = `${day}-${month}-${year}`;
-    const payInfo = { serialNo,serviceId, name, price, typeOffPay, currentDate };
+    const payInfo = { serialNo,serviceId, name, price, typeOffPay, currentDate,status };
 
     if (!email) {
       console.error("User email not available");
@@ -105,17 +106,17 @@ const ServiceDetials = ({ service }) => {
         {tempData ? (
           <div>
                       <PdfInvoice service={service} user={session}></PdfInvoice>
-                      <OnAndOffPay service={service}></OnAndOffPay>
+                      <OnAndOffPay service={service} serialNo={serialNo}></OnAndOffPay>
           </div>
-        ) : null}
-        
-        <p className="text-5xl font-semibold mx-4">Price: ${service.price}</p>
+        ) : <><p className="text-5xl font-semibold mx-4">Price: ${service.price}</p>
         <button
           className="my-2 mx-4 btn btn-outline btn-error w-[90%] flex justify-center mt-2"
           onClick={handleBookNow}
         >
           Book Now
-        </button>
+        </button></>}
+        
+        
       </section>
     </>
   );

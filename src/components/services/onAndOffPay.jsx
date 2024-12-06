@@ -6,7 +6,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-const OnAndOffPay = ({ service }) => {
+const OnAndOffPay = ({ service,serialNo }) => {
   const session=useSession();
   const userName=session?.data.user.name;
   const userEmail=session?.data.user.email;
@@ -27,7 +27,7 @@ const OnAndOffPay = ({ service }) => {
   console.log('service on off', serviceId)
   const handelPayOnline = async() => {
     console.log("this is from the online pay service",service);
-    const res= await axios.post('/api/service/make-online',{email:userEmail})
+    const res= await axios.post('/api/service/make-online',{email:userEmail,serialNo})
     const data=res.data;
     console.log(data);
     // router.push(
