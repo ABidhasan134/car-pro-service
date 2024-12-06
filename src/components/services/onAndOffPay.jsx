@@ -25,20 +25,15 @@ const OnAndOffPay = ({ service }) => {
   let currentDate = `${day}-${month}-${year}`;
   const payInfo={serviceId,name,userName,userEmail,price,typeOffPay,currentDate}
   console.log('service on off', serviceId)
-  const handelPayOnline = () => {
-    // axios.post(`/api/products/${serviceId}`,{ quantity: 1})
-    //   .then((res) => {
-    //     `/stripepayment?id=${serviceId}
-    //             &price=${price}&type=service`
-    //     console.log(res.data)
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error in axios request:", error.response?.data || error.message);
-    //   });
-    router.push(
-      `/stripepayment?id=${serviceId}
-      &price=${price}&type=service`
-    ); 
+  const handelPayOnline = async() => {
+    console.log("this is from the online pay service",service);
+    const res= await axios.post('/api/service/make-online',{email:userEmail})
+    const data=res.data;
+    console.log(data);
+    // router.push(
+    //   `/stripepayment?id=${serviceId}
+    //   &price=${price}&type=service`
+    // ); 
   };
   
   return (

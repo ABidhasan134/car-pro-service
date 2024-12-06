@@ -22,3 +22,15 @@ export async function GET(request, { params }) {
     return NextResponse.json({ message: "Failed to fetch service" }, { status: 500 });
   }
 }
+
+export async function POST(request, {params}){
+  const db=await connectionDB();
+
+  try
+  {
+    return NextResponse.json({message: "service is updated"})
+  }
+  catch(error){
+    console.log("Error is heandling by for service", error)
+  }
+}

@@ -9,6 +9,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import PdfInvoice from "../invoice/pdfInvoice";
 import OnAndOffPay from "./onAndOffPay";
+import uuid4 from "uuid4";
 
 const ServiceDetials = ({ service }) => {
   const [services, setService] = useState([]);
@@ -32,6 +33,7 @@ const ServiceDetials = ({ service }) => {
   const handleBookNow = async (payment) => {
     console.log("this is ofline payment methord", payment);
     const email = session.data.user.email;
+    const serialNo= uuid4(0,10).replace(/-/g, '').substring(0, 10);;
     const serviceId = service._id;
     const name = service.title;
     const price = service.price;
@@ -43,7 +45,7 @@ const ServiceDetials = ({ service }) => {
     let year = date.getFullYear();
 
     let currentDate = `${day}-${month}-${year}`;
-    const payInfo = { serviceId, name, price, typeOffPay, currentDate };
+    const payInfo = { serialNo,serviceId, name, price, typeOffPay, currentDate };
 
     if (!email) {
       console.error("User email not available");
