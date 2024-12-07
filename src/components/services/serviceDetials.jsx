@@ -16,12 +16,13 @@ const ServiceDetials = ({ service }) => {
   const [loading, setLoading] = useState(true);
   const session = useSession();
   const [tempData, setTempData] = useState(false);
-  const serialNo= uuid4(0,10).replace(/-/g, '').substring(0, 10);;
+  const [serialNo,setSerialNo]=useState('1')
   //  console.log(session.data.user);
   useEffect(() => {
     const fetchData = async () => {
       const serviceData = await getAllServices();
       // console.log(serviceData.result);
+      setSerialNo(uuid4(0,10).replace(/-/g, '').substring(0, 10))
       setService(serviceData.result);
       setLoading(false);
     };

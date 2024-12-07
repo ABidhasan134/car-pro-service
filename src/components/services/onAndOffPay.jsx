@@ -24,16 +24,16 @@ const OnAndOffPay = ({ service,serialNo }) => {
 
   let currentDate = `${day}-${month}-${year}`;
   const payInfo={serviceId,name,userName,userEmail,price,typeOffPay,currentDate}
-  console.log('service on off', serviceId)
+  // console.log('service on off serial No', serialNo)
   const handelPayOnline = async() => {
-    console.log("this is from the online pay service",service);
+    console.log("this is from the online pay service",serialNo);
     const res= await axios.post('/api/service/make-online',{email:userEmail,serialNo})
     const data=res.data;
     console.log(data);
-    // router.push(
-    //   `/stripepayment?id=${serviceId}
-    //   &price=${price}&type=service`
-    // ); 
+    router.push(
+      `/stripepayment?id=${serviceId}
+      &price=${price}&type=service`
+    ); 
   };
   
   return (

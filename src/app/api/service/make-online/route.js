@@ -31,13 +31,13 @@ export async function POST(request) {
     );
 
     // If no document was found or updated
-    if (!result.value) {
+    if (!result) {
       return NextResponse.json({
         message: "Service history not found or already updated",
         status: 400,
       });
     }
-
+    console.log("this is from route update result",result);
     return NextResponse.json({
       message: "Payment type updated successfully",
       updatedDocument: result.value,
