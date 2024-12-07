@@ -37,11 +37,14 @@ export async function POST(request) {
         status: 400,
       });
     }
-    console.log("this is from route update result",result);
+    console.log("this is from route update result",result.servicesHistory[0].typeOffPay);
+    if(result.servicesHistory[0].typeOffPay==='offline'){
+      return NextResponse.json({message: "payment faild",status:500});
+    }
     return NextResponse.json({
       message: "Payment type updated successfully",
-      updatedDocument: result.value,
       status: 200,
+      result
     });
   } catch (error) {
     console.error("Failed to update payment type:", error);
