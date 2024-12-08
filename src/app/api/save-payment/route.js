@@ -1,5 +1,6 @@
 import connectionDB from "@/lib/connectionDB";
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request) {
   const db = await connectionDB();
@@ -26,9 +27,11 @@ export async function POST(request) {
       retailer_name,
       singel_price,
       product_type,
-      pay_date
+      pay_date,
+      email,
+      name
     } = body;
-
+    console.log("user in backend",email, name);
     const paymentInfo = {
       payment_Id: paymentIntentId,
       payment_status,
@@ -38,7 +41,7 @@ export async function POST(request) {
       retailer_name,
       singel_price,
       product_type,
-      pay_date
+      pay_date,
     };
 
     // Prepare payment history
@@ -58,8 +61,30 @@ export async function POST(request) {
 
     const options = { upsert: false };
     const result = await userCollection.updateOne(filter, updateDoc, options);
+    // sending mail to user
+    const auth = nodemailer.createTransport({
+      service: "gmail",
+      secure: true,
+      port: 465,
+      auth: {
+        user: process.env.NEXT_APP_EMAIL,
+        pass: process.env.NEXT_APP_PASSWORD,
+      },
+    });
+    const receiver = {
+      from: "abeydhasan134@gmail.com",
+      to: email,
+      subject: ``,
+      text: `We have recive ${payment_amount}.Thank your payment. your transaction id is ${paymentIntentId} `,
+    };
 
-    console.log("Database update result:", result);
+    auth.sendMail(receiver, (error, emailResponse) => {
+      if (error) throw error;
+      console.log("success!");
+      response.end();
+    });
+
+    // console.log("Database update result:", result);
 
     return NextResponse.json({
       success: true,

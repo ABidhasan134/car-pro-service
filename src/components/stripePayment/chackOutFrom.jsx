@@ -24,7 +24,7 @@ const CheckoutForm = ({ clientSecret, productId, type }) => {
   const [oneProduct, isLoading, refetch] = useOneProduct(productId);
   const exchangeRet = 110;
   const [serviceDetails,setServiceDetails] =useState([]);
-
+ 
   const date = new Date();
   const currentDate = `${date.getDate()}/${
     date.getMonth() + 1
@@ -97,7 +97,8 @@ const CheckoutForm = ({ clientSecret, productId, type }) => {
           retailer_name: serviceDetails.retailer_name || 'Motor Magic',
           singel_price: serviceDetails.price || 5410000,
           product_type: 'service++',
-          pay_date: currentDate
+          pay_date: currentDate,
+          name: session?.user?.name,
         });
 
         if (response.data.success) {
@@ -126,6 +127,9 @@ const CheckoutForm = ({ clientSecret, productId, type }) => {
 
         if (response.data.success) {
           setPaymentSuccess("Payment successful! Thank you.");
+          console.log("product payment successful!", response);
+          // send mail 
+          // success page
           router.push(`/pay-success?id=${oneProduct._id}&type=Product`);
         } else {
           setErrorMessage("Failed to save payment. Please contact support.");
