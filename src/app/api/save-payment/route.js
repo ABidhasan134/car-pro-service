@@ -74,8 +74,8 @@ export async function POST(request) {
     const receiver = {
       from: "abeydhasan134@gmail.com",
       to: email,
-      subject: ``,
-      text: `We have recive ${payment_amount}.Thank your payment. your transaction id is ${paymentIntentId} `,
+      subject: `payment successfully received`,
+      text: `We have recive ${payment_amount}.Thank you dear ${name} for your payment. your transaction id is ${paymentIntentId} `,
     };
 
     auth.sendMail(receiver, (error, emailResponse) => {

@@ -122,7 +122,8 @@ const CheckoutForm = ({ clientSecret, productId, type }) => {
           retailer_name: oneProduct.retailer_name || "user001",
           singel_price: oneProduct.price || 5410000,
           product_type: 'Product',
-          pay_date: currentDate
+          pay_date: currentDate,
+          name: session?.user?.name,
         });
 
         if (response.data.success) {
