@@ -30,10 +30,10 @@ const OnAndOffPay = ({ service,serialNo }) => {
     const res= await axios.post('/api/service/make-online',{email:userEmail,serialNo})
     const data=res.data;
     console.log(data);
-    router.push(
-      `/stripepayment?id=${serviceId}
-      &price=${price}&type=service`
-    ); 
+    // router.push(
+    //   `/stripepayment?id=${serviceId}
+    //   &price=${price}&type=service`
+    // ); 
   };
   
   return (
