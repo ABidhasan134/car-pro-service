@@ -1,30 +1,68 @@
 [
   {
-    "category": "Car Modification",
-    "title": "Custom Body Kit Installation",
-    "offer": "20% Off on Premium Kits",
-    "description": "Enhance your car's aesthetics and aerodynamics with custom body kits designed for performance and style.",
-    "image": ["https://eauto.co.in/cdn/shop/products/rolon-chain-sprocket-kit-for-honda-cb-trigger-150-4hole42l-15t-126l-225_1200x.jpg?v=1657242139","https://i0.wp.com/2wheelerspares.com/wp-content/uploads/2024/07/Honda-Hornet-160-Chain-Sprocket-Kit-Honda-Genuine-Parts-1.png?fit=500%2C500&ssl=1","https://s.alicdn.com/@sc04/kf/H071ab93da92549719247a2a4c10addac2.jpg_300x300.jpg","https://media.karousell.com/media/photos/products/2022/5/16/honda_rc30_sprocket_watch_1652704594_1aece751_progressive.jpg"]
+    "expert_name": "Robert Johnson",
+    "position": "Transmission Specialist",
+    "working_experience": 12,
+    "specialties": ["Transmission Overhaul", "Clutch Repair", "Gearbox Tuning"],
+    "social_links": {
+      "linkedin": "https://linkedin.com/in/robertjohnson",
+      "facebook": "https://facebook.com/robertjohnson"
+    },
+    "image": "https://shorturl.at/GU3hb"
   },
   {
-    "category": "Car Repair",
-    "title": "Engine Diagnostics and Repair",
-    "offer": "Free Diagnostics with Every Repair",
-    "description": "Comprehensive engine diagnostics and repair services to ensure your car runs smoothly.",
-    "image": "https://example.com/images/engine-repair.jpg"
+    "expert_name": "Emily Davis",
+    "position": "Diesel Engine Expert",
+    "working_experience": 8,
+    "specialties": ["Diesel Engines", "Turbochargers", "Fuel Injection Systems"],
+    "social_links": {
+      "linkedin": "https://linkedin.com/in/emilydavis",
+      "instagram": "https://instagram.com/emilydavis"
+    },
+    "image": "https://shorturl.at/7JNwJ"
   },
   {
-    "category": "Car Modification",
-    "title": "Advanced Audio System Installation",
-    "offer": "15% Off on All Audio Upgrades",
-    "description": "Upgrade your car's sound system with state-of-the-art speakers, amplifiers, and subwoofers.",
-    "image": "https://example.com/images/audio-upgrade.jpg"
+    "expert_name": "Michael Brown",
+    "position": "Electric Vehicle Technician",
+    "working_experience": 5,
+    "specialties": ["EV Batteries", "Motor Repairs", "Diagnostics"],
+    "social_links": {
+      "twitter": "https://twitter.com/michaelbrown",
+      "github": "https://github.com/michaelbrown"
+    },
+    "image": "https://shorturl.at/Xh7MQ"
   },
   {
-    "category": "Car Repair",
-    "title": "Brake Pad Replacement",
-    "offer": "10% Off on Brake Services",
-    "description": "Ensure your safety with high-quality brake pad replacement and maintenance services.",
-    "image": "https://example.com/images/brake-repair.jpg"
+    "expert_name": "Sophia Wilson",
+    "position": "Brake Systems Specialist",
+    "working_experience": 6,
+    "specialties": ["Brake Pads Replacement", "Hydraulic Brakes", "ABS Systems"],
+    "social_links": {
+      "linkedin": "https://linkedin.com/in/sophiawilson",
+      "facebook": "https://facebook.com/sophiawilson"
+    },
+    "image": "https://shorturl.at/7JNwJ"
+  },
+  {
+    "expert_name": "William Martinez",
+    "position": "Suspension Expert",
+    "working_experience": 9,
+    "specialties": ["Suspension Tuning", "Shock Absorbers", "Wheel Alignment"],
+    "social_links": {
+      "linkedin": "https://linkedin.com/in/williammartinez",
+      "twitter": "https://twitter.com/williammartinez"
+    },
+    "image": "https://shorturl.at/Xh7MQ"
+  },
+  {
+    "expert_name": "Olivia Hernandez",
+    "position": "Auto Electrician",
+    "working_experience": 11,
+    "specialties": ["Wiring Systems", "Battery Replacement", "Alternators"],
+    "social_links": {
+      "linkedin": "https://linkedin.com/in/oliviahernandez",
+      "facebook": "https://facebook.com/oliviahernandez"
+    },
+    "image": "https://shorturl.at/GU3hb"
   }
 ]

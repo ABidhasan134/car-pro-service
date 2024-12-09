@@ -6,6 +6,7 @@ import TitleAndSub from "@/components/shared/titleAndSub";
 import Link from "next/link";
 import Sapport from "@/components/homepage/sapport";
 import ProductList from "@/components/products/productList";
+import MainTeam from "@/components/team/mainTeam";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       </div>
       <Sapport></Sapport>
       <ProductList></ProductList>
+      <MainTeam></MainTeam>
     </div>
   );
 }
