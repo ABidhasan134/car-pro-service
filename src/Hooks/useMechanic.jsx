@@ -9,7 +9,7 @@ const useMechanic = () => {
         queryFn: async()=>{
             const res= await axios.get('/api/mechanics');
             const data=res.data.result;
-            console.log("This data for mechanics from hook",data);
+            // console.log("This data for mechanics from hook",data);
             return data;
         }
     })
