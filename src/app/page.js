@@ -7,6 +7,7 @@ import Link from "next/link";
 import Sapport from "@/components/homepage/sapport";
 import ProductList from "@/components/products/productList";
 import MainTeam from "@/components/team/mainTeam";
+import ChooseUs from "@/components/chooseUs/chooseUs";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <Sapport></Sapport>
       <ProductList></ProductList>
       <MainTeam></MainTeam>
+      <ChooseUs></ChooseUs>
     </div>
   );
 }
