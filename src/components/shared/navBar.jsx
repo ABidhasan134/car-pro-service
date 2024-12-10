@@ -6,11 +6,14 @@ import logo from '../../../public/assets/logo.png';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import UserInfo from './userInfo';
+import { motion, useScroll } from "framer-motion";
+import './nav.css'
 
 const NavBar = () => {
   const pathName = usePathname();
   const sesseion = useSession()
   // console.log(sesseion?.data?.user);
+  const { scrollYProgress } = useScroll();
   const navItems = [
     {
       url: '/',
@@ -31,7 +34,16 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="navbar sticky top-0 z-50 bg-slate-300 px-10 border-b-4 border-[#e27762] rounded-b-xl">
+    <>
+     <motion.div
+  className="progress-bar rounded-b-2xl mb-2"
+  style={{
+    scaleX: scrollYProgress, 
+    transformOrigin: '0%', 
+  }}
+/>
+
+    <div className="navbar sticky top-0 z-50 bg-slate-300 px-10 mb-1">
       <div className="navbar-start">
         
       <Link href="/" className='lg:w-[100px] w-[70px]'>
@@ -86,6 +98,7 @@ const NavBar = () => {
         }
       </div>
     </div>
+    </>
   );
 };
 
