@@ -1,10 +1,13 @@
+import UseUser from '@/Hooks/useUser'
 import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
 const UserInfo = ({user}) => {
-    // console.log(user)
+    // console.log(user.email)
+    const [oneUser,isloading,refetch]=UseUser(user.email);
+    console.log(oneUser);
   return (
     <div className='flex gap-2 w-auto'>
       <button className="btn btn-outline btn-error" onClick={()=>signOut()}>Log out</button>

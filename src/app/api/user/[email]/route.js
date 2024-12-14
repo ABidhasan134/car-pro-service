@@ -45,3 +45,17 @@ export async function POST(request, { params }) {
     );
   }
 }
+export async function GET(request,{params}){
+  const db= await connectionDB();
+  const filter={email:params.email};
+  // console.log("Filter",filter)
+  try{
+    const userCollection= db.collection('users')
+    const result= await userCollection.findOne(filter);
+    // console.log("this is one user from back end", result)
+    return NextResponse.json({message: "success", status:200,result})
+  }
+  catch(error){
+    console.log("Internal Server Error occurred",error);
+  }
+}
