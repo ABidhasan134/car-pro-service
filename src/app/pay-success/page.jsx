@@ -10,11 +10,11 @@ const page = () => {
     const searchParams = useSearchParams()
     const itemId=searchParams.get('id');
     const itemType=searchParams.get('type');
-    console.log(itemId,itemType);
+    // console.log(itemId,itemType);
     const [oneProduct,isLoading, refetch] = useOneProduct(itemId);
     const [itemDetails,setItemDetails]=useState();
     // const [serviceLoading, setServiceLoading] = useState(true)
-    console.log("this is successfully page for product", oneProduct);
+    // console.log("this is successfully page for product", oneProduct);
     
     useEffect(() => {
         if (itemType === 'service' && itemId) {
@@ -22,7 +22,7 @@ const page = () => {
                 .then((serviceDetails) => {
                     const data = serviceDetails.result;
                     setItemDetails(serviceDetails);
-                    console.log("success type service page", serviceDetails);
+                    // console.log("success type service page", serviceDetails);
                     // setServiceLoading(false);
                 })
                 .catch((error) => {

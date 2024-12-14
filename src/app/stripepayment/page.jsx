@@ -17,7 +17,7 @@ const PaymentPage = () => {
   const price= searchParams.get('price');
   const type= searchParams.get('type');
   // const [oneProduct, isLoading, refetch]= useOneProduct(productId)
-  console.log("product from payment page",type)
+  // console.log("product from payment page",type)
   useEffect(() => {
     const createPaymentIntent = async () => {
       try {

@@ -17,7 +17,7 @@ const LogInForm = () => {
     const resp = await signIn('credentials', {
       email: data.email,
       password: data.password,
-      redirect: true, // Do not redirect automatically
+      redirect: true, 
       callbackUrl: path ? path:'/'
     });
     console.log(resp?.status===200);

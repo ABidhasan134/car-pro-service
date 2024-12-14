@@ -10,9 +10,18 @@ export const POST = async(request)=>{
         if(user){
             return NextResponse.json({message:'user exists'},{status: 304})
         }
-        const resp=await userCollection.insertOne(newUser);
+        
+        if(newUser.role==='admin' || newUser.role==='retailer')
+        {
+            const userInfo={name:newUser.name, email:newUser.email,password:newUser.password,role:newUser.role,userStatus:"panding"}
+            const resp=await userCollection.insertOne(userInfo);
+            console.log("here is admin and retailer",resp);
+            return NextResponse.json({message:'success'},{status:200})
+        }
+        const userInfo={name:newUser.name, email:newUser.email,password:newUser.password,role:newUser.role,userStatus:"ok"}
+        const resp=await userCollection.insertOne(userInfo);
         console.log(resp);
-        return NextResponse.json({message:'success'},{status:200},resp)
+        return NextResponse.json({message:'success'},{status:200})
     }
     catch(err){
         return NextResponse.json({message:'faild'},{status:304})
