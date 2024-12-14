@@ -11,7 +11,7 @@ import logo from "@/../../public/assets/logo.png";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import useOneProduct from "@/Hooks/useOneProduct";
-import { getServiceDetails } from "@/app/services/[id]/page";
+import { getServiceDetails } from "@/app/(page)/services/[id]/page";
 
 const CheckoutForm = ({ clientSecret, productId, type }) => {
   const stripe = useStripe();

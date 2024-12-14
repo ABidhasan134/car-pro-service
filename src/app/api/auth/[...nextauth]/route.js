@@ -3,8 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google"; 
 import FacebookProvider from "next-auth/providers/facebook";
-import { signIn } from "next-auth/react";
-import { NextResponse } from "next/server";
+
 
 
 export const authOption = {
@@ -64,12 +63,20 @@ export const authOption = {
     async signIn({ user, account, profile }) {
       if (account.provider === 'google' || account.provider === 'facebook') {
         const { email, name, image } = user;
+        const newUser = {
+          email,
+          name,
+          image,
+          role: 'user',
+          userStatus: 'ok',
+          createdAt: new Date(),
+        };
         try{
           const db=await connectionDB();
           const userCollaction= db.collection('users');
           const userExists=await userCollaction.findOne({email})
           if(!userExists){
-            const res=await userCollaction.insertOne(user)
+            const res=await userCollaction.insertOne(newUser)
             return res;
           } else {
             // User already exists, continue login

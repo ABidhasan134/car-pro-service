@@ -1,11 +1,11 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
-import { getServiceDetails } from '../services/[id]/page';
 import useOneProduct from '@/Hooks/useOneProduct';
 import Image from 'next/image';
 import payImage from '@/../../public/assets/images/success/successPay.webp'
 import Link from 'next/link';
+import { getServiceDetails } from '../(page)/services/[id]/page';
 const page = () => {
     const searchParams = useSearchParams()
     const itemId=searchParams.get('id');
@@ -33,10 +33,7 @@ const page = () => {
     if(isLoading){
         return <p>Loading</p>
     }
-    // if(serviceLoading)
-    // {
-    //     return <p>loading</p>
-    // }
+    
   return (
     <div className='min-h-[600px] divide-y gap-0 text-center my-2'>
       <p className='text-5xl'>congratulations</p>
