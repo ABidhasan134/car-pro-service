@@ -8,7 +8,8 @@ export const POST = async(request)=>{
         const userCollection=db.collection("users");
         const user= await userCollection.findOne({email:newUser.email});
         if(user){
-            return NextResponse.json({message:'user exists'},{status: 304})
+            console.log("user already exists")
+            return NextResponse.json({message:'user exists'},{status: 200})
         }
         
         if(newUser.role==='admin' || newUser.role==='retailer')

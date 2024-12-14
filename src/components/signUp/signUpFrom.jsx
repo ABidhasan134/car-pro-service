@@ -4,9 +4,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import logImg from "@/../../public/assets/logo.png";
 import axios from "axios";
+import { useRouter, useSearchParams } from "next/navigation";
+import Swal from 'sweetalert2'
 
 const SignUpFrom = () => {
   const roles = ["user", "admin", "retailer"];
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -17,6 +20,33 @@ const SignUpFrom = () => {
     console.log(data);
     axios.post(`http://localhost:3000/signUp/api`, data).then((response) => {
       console.log(response);
+      if (response?.status===200) {
+        if(response?.data.message==='success'){
+          console.log("Login successful");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Now you are logged in",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          router.push('/');
+        }
+        else{
+          console.log("user already exists",response.data.message)
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "you already have an account please login",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          router.push('/logIn');
+        }
+      } 
+      else {
+        console.log("Login failed:", resp?.error);
+      }
     });
   };
 
