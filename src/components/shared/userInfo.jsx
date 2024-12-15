@@ -2,12 +2,23 @@ import UseUser from "@/Hooks/useUser";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import avater from "../../../public/assets/avater.png";
 
 const UserInfo = ({ user }) => {
   // console.log(user.email)
   const [oneUser, isloading, refetch] = UseUser(user.email);
   console.log(oneUser);
+
+  const useDropdown = (
+    <>
+      <li>
+        <Link href="#">DashBord</Link>
+      </li>
+      <li>
+        <Link href="#">profile</Link>
+      </li>
+    </>
+  );
   return (
     <div className="flex gap-2 w-auto">
       <button className="btn btn-outline btn-error" onClick={() => signOut()}>
@@ -19,7 +30,7 @@ const UserInfo = ({ user }) => {
             <Image
               className="rounded-full border-2 border-orange-600 p-[2px]"
               src={user?.image}
-              alt={user.name}
+              alt={avater}
               width={40}
               height={40}
             ></Image>
@@ -28,12 +39,7 @@ const UserInfo = ({ user }) => {
             tabIndex={0}
             className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow relative -left-32"
           >
-            <li>
-              <Link href="#">DashBord</Link>
-            </li>
-            <li>
-              <Link href="#">DashBord</Link>
-            </li>
+            {useDropdown}
           </ul>
         </div>
       ) : (

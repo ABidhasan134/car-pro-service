@@ -8,7 +8,7 @@ import { useSession } from 'next-auth/react';
 import UserInfo from './userInfo';
 import { motion, useScroll } from "framer-motion";
 import './nav.css'
-
+import avatar from '@/../../public/assets/avater.png'
 const NavBar = () => {
   const pathName = usePathname();
   const sesseion = useSession()
