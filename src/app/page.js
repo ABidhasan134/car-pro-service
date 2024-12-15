@@ -1,3 +1,4 @@
+'use client'
 import ServiceCard from "@/components/services/serviceCard";
 // import HomeMain from "./home/page";
 import Bannar from "@/components/homepage/bannar";
@@ -11,7 +12,9 @@ import Testimonial from "@/components/testimonila/testimonial";
 import ChooseUs from "@/components/chooseUs/chooseUs";
 
 
+
 export default function Home() {
+  
   return (
     <div>
       {/* <HomeMain></HomeMain> */}

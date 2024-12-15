@@ -12,7 +12,7 @@ const UserInfo = ({ user }) => {
   const useDropdown = (
     <>
       <li>
-        <Link href="#">DashBord</Link>
+        <Link href="/userDeshborad">DashBord</Link>
       </li>
       <li>
         <Link href="#">profile</Link>
