@@ -1,9 +1,9 @@
 'use client'
-import React from 'react'
-import NavBar from './navBar'
 import { usePathname } from 'next/navigation';
+import React from 'react'
+import Footer from './footer';
 
-const HidenHeader = () => {
+const HidenFooter = () => {
     const pathname = usePathname();
     // console.log(pathname)
     const hideHeaderPaths = ['/admin', '/admin/', '/userDeshborad', '/user-dashboard/'];
@@ -11,9 +11,9 @@ const HidenHeader = () => {
 
     return (
         <>
-            {!hideHeader && <NavBar />}
+            {!hideHeader && <Footer />}
         </>
-    );
+        )
 }
 
-export default HidenHeader
+export default HidenFooter

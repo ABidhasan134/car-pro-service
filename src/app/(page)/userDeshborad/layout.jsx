@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }) {
   return (
     <AuthProvider>
       <QueryProvider>
-        <div className="dashboard-wrapper antialiased text-black bg-gray-100 min-h-screen">
+        <div className="flex">
           <p>Here is the user dashboard</p>
           <div className="dashboard-container">{children}</div>
           <Link href="/">Home</Link>

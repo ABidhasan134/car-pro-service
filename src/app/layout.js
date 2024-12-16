@@ -6,6 +6,7 @@ import AuthProvider from "@/service/authProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import QueryProvider from "@/service/queryClinte";
 import HidenHeader from "@/components/shared/hidenHeader";
+import HidenFooter from "@/components/shared/hidenFooter";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,7 +37,7 @@ export default function RootLayout({ children }) {
             <div className="container mx-auto grid justify-center">
               {children}
             </div>
-            <Footer />
+            <HidenFooter></HidenFooter>
             </QueryProvider>
         </AuthProvider>
       </body>
