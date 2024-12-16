@@ -10,16 +10,14 @@ export const metadata = {
 
 export default function DashboardLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
-      <body className="antialiased text-black bg-gray-100">
-        <AuthProvider>
-          <QueryProvider>
-            here is the user dash
-            <div className="dashboard-container">{children}</div>
-            <Link  href='/'>Home</Link>
-          </QueryProvider>
-        </AuthProvider>
-      </body>
-    </html>
+    <AuthProvider>
+      <QueryProvider>
+        <div className="dashboard-wrapper antialiased text-black bg-gray-100 min-h-screen">
+          <p>Here is the user dashboard</p>
+          <div className="dashboard-container">{children}</div>
+          <Link href="/">Home</Link>
+        </div>
+      </QueryProvider>
+    </AuthProvider>
   );
 }
