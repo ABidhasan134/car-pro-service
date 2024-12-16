@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
         <QueryProvider>
             <HidenHeader/>
-            <div className="container mx-auto grid justify-center">
+            <div >
               {children}
             </div>
             <HidenFooter></HidenFooter>

@@ -16,7 +16,7 @@ import ChooseUs from "@/components/chooseUs/chooseUs";
 export default function Home() {
   
   return (
-    <div>
+    <div className="container mx-auto grid justify-center">
       {/* <HomeMain></HomeMain> */}
       <Bannar></Bannar>
       <AboutSection></AboutSection>

@@ -8,7 +8,7 @@ import React from 'react'
 const AboutUs = () => {
   return (
     <div>
-      <div className='flex justify-between'>
+      <div className='flex justify-between container mx-auto' >
       <ChooseText></ChooseText>
       <PhotoGallery></PhotoGallery>
       </div>

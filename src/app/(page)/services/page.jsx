@@ -4,7 +4,7 @@ const ServicePage = () => {
 
     return (
         <div>
-         <ServiceCard></ServiceCard>
+         <ServiceCard ></ServiceCard>
         </div>
     );
 };

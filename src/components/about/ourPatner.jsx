@@ -13,7 +13,7 @@ const OurPatner = () => {
   const patnarImage = [p1, p2, p3, p4, p5, p6];
 
   return (
-    <section className="mt-10 relative flex justify-evenly rounded-2xl p-6 mb-20 bg-gray-300">
+    <section className="container mx-auto mt-10 relative flex justify-evenly rounded-2xl p-6 mb-20 bg-gray-300">
       {patnarImage.map((img, index) => (
         <motion.div
           key={index}
