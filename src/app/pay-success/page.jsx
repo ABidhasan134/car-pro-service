@@ -35,7 +35,7 @@ const page = () => {
     }
     
   return (
-    <div className='min-h-[600px] divide-y gap-0 text-center my-2'>
+    <div className='min-h-[600px] divide-y gap-0 text-center my-2 container mx-auto'>
       <p className='text-5xl'>congratulations</p>
       <div className='flex justify-center'>
       <Image src={payImage} className='h-[50%] w-[40%]'></Image>

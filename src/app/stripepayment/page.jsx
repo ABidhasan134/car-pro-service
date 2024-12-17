@@ -44,7 +44,7 @@ const PaymentPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[600px]">
+    <div className="flex justify-center items-center min-h-[600px] container mx-auto">
       {clientSecret ? (
         <Elements stripe={stripePromise} options={options}>
          <CheckoutForm clientSecret={clientSecret} productId={productId} type={type}/>

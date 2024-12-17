@@ -4,7 +4,7 @@ import logImg from '@/../../public/assets/images/login/login.svg'
 import LogInFrom from '@/components/log/logInFrom'
 const page = () => {
   return (
-    <div className='m-6 flex justify-between'>
+    <div className='flex justify-center px-32 container mx-auto'>
       <Image src={logImg} ></Image>
       <LogInFrom ></LogInFrom>
     </div>
