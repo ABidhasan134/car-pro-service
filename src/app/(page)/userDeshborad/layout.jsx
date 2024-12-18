@@ -20,11 +20,13 @@ export default function DashboardLayout({ children }) {
           </p>
 
           {/* Main Dashboard Content */}
-          <main className="dashboard-container grid bg-[#d6dde6] flex-grow pb-4 text-white">
-            <h1 className="text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[80px]">
+          <main className="grid gap-0 bg-[#d6dde6] flex-grow pb-4 text-white h-[100%]]\">
+            <h1 className=" text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[15%]">
               Dashboard
             </h1>
+            <div className="absolute top-[150px] p-6 h-[80%] grid items-start text-black">
             {children}
+            </div>
           </main>
         </div>
       </QueryProvider>
