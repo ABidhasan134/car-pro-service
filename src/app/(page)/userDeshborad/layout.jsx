@@ -1,4 +1,5 @@
 import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import UserNavbar from "@/components/userDashborad/navbar/userNavbar";
 import Sidebar from "@/components/userDashborad/sidebar/sidebar";
 import AuthProvider from "@/service/authProvider";
 import QueryProvider from "@/service/queryClinte";
@@ -21,9 +22,9 @@ export default function DashboardLayout({ children }) {
           </div>
           {/* Main Dashboard Content */}
           <main className="grid gap-0 bg-[#d6dde6] flex-grow pb-4 text-white ">
-            <h1 className=" text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[10%]">
-              Dashboard
-            </h1>
+            <div className='text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[12%]'>
+            <UserNavbar ></UserNavbar>
+            </div>
             <div className="absolute top-[150px] p-6 h-[80%] grid items-start text-black">
             {children}
             </div>
