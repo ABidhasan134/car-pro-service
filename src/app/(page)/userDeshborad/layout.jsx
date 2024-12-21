@@ -22,10 +22,10 @@ export default function DashboardLayout({ children }) {
           </div>
           {/* Main Dashboard Content */}
           <main className="grid gap-0 bg-[#d6dde6] flex-grow pb-4 text-white ">
-            <div className='text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[12%]'>
+            <div className='text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[90px]'>
             <UserNavbar ></UserNavbar>
             </div>
-            <div className="absolute top-[150px] p-6 h-[80%] grid items-start text-black">
+            <div className="relative  p-6 h-[80%] grid items-start text-black">
             {children}
             </div>
           </main>

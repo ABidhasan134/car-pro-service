@@ -19,7 +19,7 @@ const UserNavbar = () => {
 
   return (
     <div className="flex justify-between items-center px-11 py-2">
-      <p className="font-medium text-gray-800 text-4xl">
+      <p className="font-medium text-4xl text-[#FF3811]">
         {currentLink?.title || "Dashboard"}
       </p>
 
