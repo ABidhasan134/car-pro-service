@@ -6,35 +6,36 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 
+export const sideLinks=[
+  {
+    url:'/userDeshborad',
+    title: 'Overview'
+  },
+  {
+    url:'/userDeshborad/profile',
+    title: 'profile'
+  },
+  {
+    url:'/userDeshborad/services',
+    title: 'services'
+  },
+  {
+    url:'/userDeshborad/products',
+    title: 'products'
+  },
+  {
+    url:'/userDeshborad/plans',
+    title: 'Update plans'
+  },
+  {
+    url:'/userDeshborad/payment-history',
+    title: 'Payments'
+  },
+  
+]
 const Sidebar = () => {
   const pathName = usePathname();
-  const sideLinks=[
-    {
-      url:'/userDeshborad',
-      title: 'Overview'
-    },
-    {
-      url:'/userDeshborad/profile',
-      title: 'profile'
-    },
-    {
-      url:'/userDeshborad/services',
-      title: 'services'
-    },
-    {
-      url:'/userDeshborad/products',
-      title: 'products'
-    },
-    {
-      url:'/userDeshborad/plans',
-      title: 'Update plans'
-    },
-    {
-      url:'/userDeshborad/payment-history',
-      title: 'Payments'
-    },
-    
-  ]
+  
   return (
     <div>
       
@@ -60,4 +61,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default Sidebar;
