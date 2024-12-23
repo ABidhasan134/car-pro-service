@@ -11,8 +11,8 @@ const BasicInfo = ({user}) => {
         <h3>Role:{oneUser.role}</h3>
       <h6>email:{user.email}</h6>
       <div >
-        <button className='mr-1 btn btn-primary'>Change Name</button>
-        <button className='btn btn-primary'>Change img</button>
+        <button className='mr-1 btn bg-transparent border-[#FF3811] hover:bg-[#FF3811] text-white '>Change Name</button>
+        <button className='btn bg-transparent border-[#FF3811] hover:bg-[#FF3811] text-white '>Change img</button>
       </div>
     </div>
   )

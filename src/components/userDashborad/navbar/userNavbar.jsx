@@ -31,7 +31,7 @@ const UserNavbar = () => {
           src={userImage}
           height={40}
           width={40}
-          alt={`${userName}'s avatar`}
+          alt={`${userName}`}
         />
       )}
     </div>

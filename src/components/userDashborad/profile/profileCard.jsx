@@ -14,24 +14,20 @@ const ProfileCard = () => {
 
   return (
 <div class="card">
-    <div class="card__img bg-blue-400"></div>
-    <Image className='card__img_bg opacity-30 w-[1350px] h-[450px] rounded-lg'  src={userBg}></Image>
-    <div class="card__avatar bg-red-500 left-[400px] top-[390px]">
+    <Image className='opacity-30 w-[1350px] h-[450px] rounded-lg'  src={userBg}></Image>
+    <div class="absolute grid justify-center text-center w-[80%] h-auto ">
       {status === "loading" ? (
               <div className="animate-pulse w-10 h-10 rounded-full " />
             ) : (
               <Image
-                className="rounded-full border-2 border-orange-600 p-[2px]"
+                className="relative left-20 rounded-full border-2 border-orange-600 p-[2px] flex justify-center"
                 src={userImage}
-                height={200}
-                width={200}
+                height={120}
+                width={120}
                 alt={`${userName}'s avatar`}
               />
             )}
-    </div>
-    <div className='relative flex justify-between mt-20 gap-6 w-2/3'>
-    <BasicInfo user={session?.user}></BasicInfo>
-            ganta
+            <BasicInfo user={session?.user}></BasicInfo>
     </div>
 
 </div>
