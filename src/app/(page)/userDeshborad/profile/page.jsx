@@ -4,14 +4,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div >
+    <div className='mt-36'>
       <ProfileCard></ProfileCard>
-      {/* <div className='flex justify-between mx-36 px-6 my-16'> */}
-      {/* <div className='grid justify-center'>
-      <BasicInfo></BasicInfo>
-      </div>
-      here 
-      </div> */}
+      
     </div>
   )
 }
