@@ -1,4 +1,3 @@
-import BasicInfo from '@/components/userDashborad/profile/basicInfo'
 import ProfileCard from '@/components/userDashborad/profile/profileCard'
 import React from 'react'
 
