@@ -1,9 +1,10 @@
 import React from 'react'
+import ServiceArea from './serviceArea'
 
 const Dashborad = () => {
   return (
     <div>
-      there is a gost
+      <ServiceArea></ServiceArea>
     </div>
   )
 }
