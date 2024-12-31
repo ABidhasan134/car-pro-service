@@ -11,20 +11,23 @@ const ServiceArea = () => {
   console.log("service History overview", oneUser?.servicesHistory);
   if (isloading) {
     refetch();
-
     return <div>Loading...</div>;
   }
   return (
     <div className="grid gap-2">
-      <p className="text-4xl font-semibold p-2 flex text-center">service area</p>
+      <p className="text-4xl font-semibold p-2 flex text-center">
+        service Area
+      </p>
 
-      {
-        oneUser?.servicesHistory?.map((item,index)=>{
-            return(
-                <div key={index} class="flex w-3/4 max-w-96 h-36 bg-white rounded-xl overflow-hidden shadow-lg">
-                <svg width="16" height='144' xmlns="http://www.w3.org/2000/svg">
-                <path
-      d="M 8 0 
+      {oneUser?.servicesHistory?.map((item, index) => {
+        return (
+          <div
+            key={index}
+            class="flex w-3/4 max-w-96 h-36 bg-white rounded-xl overflow-hidden shadow-lg"
+          >
+            <svg width="16" height="144" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M 8 0 
          Q 4 6.4, 8 12.8 
          T 8 25.6 
          Q 4 32, 8 38.4 
@@ -43,43 +46,39 @@ const ServiceArea = () => {
          L 0 192 
          L 0 0 
          Z"
-      fill="#66cdaa"
-      stroke="#66cdaa"
-      stroke-width="2"
-      stroke-linecap="round"
-    ></path>
-                </svg>
-                <div class="mx-2.5 overflow-hidden w-full">
-                  <p class="mt-1.5 text-xl font-bold text-[#66cdaa] leading-8 mr-3 overflow-hidden text-ellipsis whitespace-nowrap">
-                    Success !
-                  </p>
-                  <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
-                    serial No: {item.serialNo}
-                  </p>
-                  <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
-                    service Date: {item.currentDate}
-                  </p>
-                  <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
-                    service Date: {item.price}
-                  </p>
-                  
-                  <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
-                    
-                    {item.name} <br />
-                    {
-                      item.typeOffPay==="offline"?"you have to payment in offline":"Payment success by online"
-                    }
-                  </p>
-                  
-                </div>
-                <p className="text-5xl flex items-center pr-2 text-[#66cdaa]">
-                    <FcApproval></FcApproval>
-                </p>
-              </div>
-              
-            )
-        })
-      }
+                fill="#66cdaa"
+                stroke="#66cdaa"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+            <div class="mx-2.5 overflow-hidden w-full">
+              <p class="mt-1.5 text-xl font-bold text-[#66cdaa] leading-8 mr-3 overflow-hidden text-ellipsis whitespace-nowrap">
+                Success !
+              </p>
+              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+                serial No: {item.serialNo}
+              </p>
+              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+                service Date: {item.currentDate}
+              </p>
+              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+                service Date: {item.price}
+              </p>
+
+              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+                {item.name} <br />
+                {item.typeOffPay === "offline"
+                  ? "you have to payment in offline"
+                  : "Payment success by online"}
+              </p>
+            </div>
+            <p className="text-5xl flex items-center pr-2 text-[#66cdaa]">
+              <FcApproval></FcApproval>
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 };
