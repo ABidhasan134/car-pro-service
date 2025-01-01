@@ -6,9 +6,9 @@ import { FcApproval } from "react-icons/fc";
 
 const ServiceArea = () => {
   const sesseion = useSession();
-  console.log(sesseion);
+  // console.log(sesseion);
   const [oneUser, isloading, refetch] = UseUser(sesseion?.data?.user?.email);
-  console.log("service History overview", oneUser?.servicesHistory);
+  // console.log("service History overview", oneUser?.servicesHistory);
   if (isloading) {
     refetch();
     return <div>Loading...</div>;
@@ -23,7 +23,7 @@ const ServiceArea = () => {
         return (
           <div
             key={index}
-            class="flex w-3/4 max-w-96 h-36 bg-white rounded-xl overflow-hidden shadow-lg"
+            class="flex w-3/4 min-w-96 h-36 bg-white rounded-xl overflow-hidden shadow-lg"
           >
             <svg width="16" height="144" xmlns="http://www.w3.org/2000/svg">
               <path
