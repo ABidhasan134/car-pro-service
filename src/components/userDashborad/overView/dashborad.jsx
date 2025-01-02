@@ -1,6 +1,7 @@
 import React from 'react'
 import ServiceArea from './serviceArea'
 import ProductArea from './productArea'
+import CoustomService from './coustomService'
 
 const Dashborad = () => {
   return (
@@ -10,6 +11,7 @@ const Dashborad = () => {
       <ProductArea></ProductArea>
       </div>
       
+      <CoustomService></CoustomService>
     </div>
   )
 }
