@@ -102,6 +102,56 @@ const CoustomService = () => {
           </p>
           </div>
         </div>
+        {/* 3rd  */}
+        <div className="flex justify-center w-full gap-6">
+          <div className="grid w-full">
+            <label htmlFor="vehical">vehical Name</label>
+            <input
+              type="vehical"
+              id="vehical"
+              className={`w-full p-4 mb-4 rounded-md shadow-inner border-gray-600 border-2 focus:outline-none bg-inherit text-black ${
+                errors.vehical ? "border-red-600" : "border-gray-300"
+              }`}
+              placeholder=" vehical name"
+              {...register("vehical", {
+                required: "vehical name is required",
+                pattern: {
+                  value: /^[A-Za-z\s\-]+$/i,
+                  message: "Invalid vehical name"
+                }
+              })}
+            />
+            {errors.vehical && <span className="text-red-500">{errors.vehical.message}</span>}
+          </div>
+
+          <div className="grid w-full">
+            <label htmlFor="problem">Discrive Problem</label>
+            <input
+            type="text"
+            id="problem"
+            className={`w-full p-4 mb-4 rounded-md border-gray-600 border-2 shadow-inner focus:outline-none bg-inherit text-black ${
+              errors.problem ? "border-red-600 " : "border-gray-300"
+            }`}
+            placeholder="problem discription"
+            {...register("problem", {
+              required: "problem is required",
+              pattern: {
+                value: /^[A-Za-z\s\-]+$/i,
+                message: "Invalid problem format",
+              },
+              minLength: {
+                value: 6,
+                message: "problem must be at least 6 characters",
+              },
+              maxLength: {
+                value: 250,
+                message: "problem must inside 250 characters",
+              },
+            })}
+          />
+          {errors.problem && <span className="text-red-500">{errors.problem.message}</span>}
+          </div>
+        </div>
         {/* submit btn */}
         <div className="flex justify-center w-full">
         <button type="submit" className="w-2/3 hover:bg-black hover:text-white p-4 mt-5 font-bold text-gray-500 rounded-full shadow-lg cursor-pointer bg-inherit">
