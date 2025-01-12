@@ -1,10 +1,14 @@
 'use client'
 import CustomDateTimePicker from "@/components/shared/timeAndDate";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 const CoustomService = () => {
   const [dateError,setDateError]=useState();
+  const sesseion=useSession();
+  console.log(sesseion?.data?.user)
   const methods = useForm();
   const { register, handleSubmit, formState: { errors } } = methods;
    const onSubmit = async (data) => {
@@ -12,8 +16,21 @@ const CoustomService = () => {
         setDateError("There is no date")
         console.log('there is no date')
       }
-       console.log(data)
-       console.log(errors)
+      console.log(data)
+      const customInfo={
+        bookingemail: data.email,
+        bookingName: data.name,
+        bookingPhone:data.phone,
+        vehicalName: data.vehical,
+        problem: data.problem,
+        dateTime: data.dateTime,
+        bookingStatus: 'panding'
+
+      }
+      const respons=await axios.post('/api/user/customServic',{customInfo,email:sesseion?.data?.user?.email})
+
+       console.log(respons)
+      //  console.log(errors)
      };
   return (
     <FormProvider {...methods}>
@@ -115,9 +132,13 @@ const CoustomService = () => {
               placeholder=" vehical name"
               {...register("vehical", {
                 required: "vehical name is required",
-                pattern: {
-                  value: /^[A-Za-z\s\-]+$/i,
-                  message: "Invalid vehical name"
+                minLength: {
+                  value: 6,
+                  message: "Name must be at least 6 characters",
+                },
+                maxLength:{
+                  value: 20,
+                  message: "Name must be at most 20 characters"
                 }
               })}
             />

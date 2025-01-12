@@ -1,7 +1,7 @@
 import React from 'react'
 import ServiceArea from './serviceArea'
 import ProductArea from './productArea'
-import CoustomService from './coustomService'
+import CoustomService from './customService'
 
 const Dashborad = () => {
   return (
