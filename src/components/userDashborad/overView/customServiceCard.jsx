@@ -12,7 +12,7 @@ const CustomServiceCard = () => {
     return <div>Loading....</div>;
   }
   return (
-    <div className="mt-24 flex gap-3">
+    <div className="mt-4 flex gap-3">
       {oneUser?.customservices?.map((yourService) => {
         return (
           <div className="card glass w-96 ">

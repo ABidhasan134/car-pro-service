@@ -3,6 +3,7 @@ import ServiceArea from './serviceArea'
 import ProductArea from './productArea'
 import CoustomService from './customService'
 import CustomServiceCard from './customServiceCard'
+import TitleCustomService from './titleCustomService'
 
 const Dashborad = () => {
   return (
@@ -14,6 +15,7 @@ const Dashborad = () => {
       </div>
       <CoustomService></CoustomService>
     </div>
+    <TitleCustomService></TitleCustomService>
     <CustomServiceCard></CustomServiceCard>
     </>
   )
