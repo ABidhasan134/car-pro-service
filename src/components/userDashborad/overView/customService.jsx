@@ -8,7 +8,7 @@ import { FormProvider, useForm } from "react-hook-form";
 const CoustomService = () => {
   const [dateError,setDateError]=useState();
   const sesseion=useSession();
-  console.log(sesseion?.data?.user)
+  // console.log(sesseion?.data?.user)
   const methods = useForm();
   const { register, handleSubmit, formState: { errors } } = methods;
    const onSubmit = async (data) => {

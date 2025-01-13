@@ -14,16 +14,16 @@ const ProductArea = () => {
       return <div>Loading...</div>;
     }
     return (
-      <div className="grid gap-2">
+      <div className="grid gap-2 ">
         <p className="text-4xl font-semibold p-2 flex text-center">
           product Area
         </p>
-  
+        <div className='h-[350px] overflow-auto min-w-[400px]'>
         {oneUser?.servicesHistory?.map((item, index) => {
           return (
             <div
               key={index}
-              class="flex w-3/4 min-w-96 h-36 bg-white rounded-xl overflow-hidden shadow-lg"
+              class="flex w-3/4 min-w-96 h-36  mt-4 bg-white rounded-xl overflow-hidden shadow-lg"
             >
               <svg width="16" height="144" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -79,6 +79,7 @@ const ProductArea = () => {
             </div>
           );
         })}
+      </div>
       </div>
     );
 }
