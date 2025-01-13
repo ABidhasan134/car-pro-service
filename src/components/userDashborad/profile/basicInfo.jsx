@@ -7,9 +7,9 @@ const BasicInfo = ({user}) => {
       console.log("this is user from basic info",oneUser)
   return (
     <div className='text-center'>
-      <h1 className='text-5xl'>{user.name}</h1>
-        <h3>Role:{oneUser.role}</h3>
-      <h6>email:{user.email}</h6>
+      <h1 className='text-5xl'>{user?.name}</h1>
+        <h3>Role:{oneUser?.role || 'user'}</h3>
+      <h6>email:{user?.email || 'user001@gmail.com'}</h6>
       <div >
         <button className='mr-1 btn bg-transparent border-[#FF3811] hover:bg-[#FF3811] text-white '>Change Name</button>
         <button className='btn bg-transparent border-[#FF3811] hover:bg-[#FF3811] text-white '>Change img</button>

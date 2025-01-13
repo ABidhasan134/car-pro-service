@@ -36,7 +36,7 @@ const CoustomService = () => {
     <FormProvider {...methods}>
     <div className="grid w-full">
       {/* heading of custom service */}
-      <div className="flex justify-center border-red-500 border-2 w-full h-[60px]">
+      <div className="flex justify-center w-full h-[60px]">
         <h1 className="text-5xl font-semibold">custom your service</h1>
       </div>
 

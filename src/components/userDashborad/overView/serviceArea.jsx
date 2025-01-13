@@ -46,14 +46,14 @@ const ServiceArea = () => {
          L 0 192 
          L 0 0 
          Z"
-                fill="#66cdaa"
-                stroke="#66cdaa"
+                fill="#8BC34A"
+                stroke="#8BC34A"
                 stroke-width="2"
                 stroke-linecap="round"
               ></path>
             </svg>
             <div class="mx-2.5 overflow-hidden w-full">
-              <p class="mt-1.5 text-xl font-bold text-[#66cdaa] leading-8 mr-3 overflow-hidden text-ellipsis whitespace-nowrap">
+              <p class="mt-1.5 text-xl font-bold text-[#8BC34A] leading-8 mr-3 overflow-hidden text-ellipsis whitespace-nowrap">
                 Success !
               </p>
               <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
