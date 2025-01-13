@@ -11,26 +11,30 @@ const CustomServiceCard = () => {
   if (isloading) {
     return <div>Loading....</div>;
   }
-  return <div className="mt-24">
-    {
-      oneUser?.customservices.map((yourService)=>{
-        return <div className="card glass w-96">
-        <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="car!" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Life hack</h2>
-          <p>How to park your car at your garage?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Learn now!</button>
+  return (
+    <div className="mt-24 flex gap-3">
+      {oneUser?.customservices?.map((yourService) => {
+        return (
+          <div className="card glass w-96 ">
+            <div className="card-body text-start">
+              <h2 className="card-title">
+                Car model: {yourService.vehicalName || yourService.vehical}
+              </h2>
+              <p className="text-start">
+                service Time and date: {yourService.dateTime}
+              </p>
+              <p>service: {yourService.problem}</p>
+              {(yourService.bookingStatus === "panding" && <div className="absolute top-24 h-6 w-6 rounded-full bg-blue-600 right-0 mr-3 tooltip"  data-tip={yourService.bookingStatus}></div>) ||
+                (yourService.bookingStatus === "confirm" && <div className="absolute top-24 h-6 w-6 rounded-full bg-green-600 right-0 mr-3 tooltip" data-tip={yourService.bookingStatus}></div>) ||
+                (yourService.bookingStatus === "rejected" && <div className="absolute top-24 h-6 w-6 rounded-full bg-red-600 right-0 mr-3 tooltip" data-tip={yourService.bookingStatus}></div>) ||
+                (yourService.bookingStatus?"":  <div className="absolute top-24 h-6 w-6 rounded-full bg-red-600 right-0 mr-3 tooltip" data-tip="Rejected"></div>)
+                } 
+            </div>
           </div>
-        </div>
-      </div>
-      })
-    }
-  </div>;
+        );
+      })}
+    </div>
+  );
 };
 
 export default CustomServiceCard;
