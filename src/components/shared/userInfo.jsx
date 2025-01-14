@@ -15,7 +15,7 @@ const UserInfo = ({ user }) => {
         <Link href="/userDeshborad">DashBord</Link>
       </li>
       <li>
-        <Link href="#">profile</Link>
+        <Link href="/userDeshborad/profile">profile</Link>
       </li>
     </>
   );
@@ -40,6 +40,27 @@ const UserInfo = ({ user }) => {
             className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow relative -left-32"
           >
             {useDropdown}
+          </ul>
+        </div>
+      ) : (
+        ""
+      )}
+      {oneUser.role === "admin"  ? (
+        <div className="dropdown dropdown-bottom">
+          <div tabIndex={0} className="m-1">
+            <Image
+              className="rounded-full border-2 border-orange-600 p-[2px]"
+              src={user?.image}
+              alt={user?.name}
+              width={40}
+              height={40}
+            ></Image>
+          </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow relative -left-32"
+          >
+            admin panael
           </ul>
         </div>
       ) : (
