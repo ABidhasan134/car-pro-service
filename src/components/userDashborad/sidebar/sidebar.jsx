@@ -24,7 +24,7 @@ export const sideLinks=[
     title: 'products'
   },
   {
-    url:'/userDeshborad/plans',
+    url:'/userDeshborad/Update-plans',
     title: 'Update plans'
   },
   {
