@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import { getAllServices } from '@/utils/fetchServices';
 import Image from 'next/image';
 import Link from 'next/link';
+import PaginationService from './paginationService';
 
 const ServiceCard = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [currentPage,setCurrentPage]=useState(1)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,7 +23,8 @@ const ServiceCard = () => {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div className='container max-w-[1200px] mx-auto grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3 '>
+      <div className='container max-w-[1200px] mx-auto'>
+        <div className=' grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3 '>
             {data?.map(service => (
                  <div className="border-y-2 border-[#e76637] card bg-base-100 w-96 shadow-xl mb-2">
                  <figure>
@@ -39,6 +42,8 @@ const ServiceCard = () => {
                  </div>
                </div>
             ))}
+        </div>
+        <PaginationService></PaginationService>
         </div>
     );
 };
