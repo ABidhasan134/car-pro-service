@@ -4,8 +4,11 @@ import { getAllServices } from '@/utils/fetchServices';
 import Image from 'next/image';
 import Link from 'next/link';
 import PaginationService from './paginationService';
+import useAllServices from '@/Hooks/useAllService';
 
 const ServiceCard = () => {
+    const [products,isLoading, refetch]=useAllServices();
+    console.log("ptoducts as service ",products)
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [currentPage,setCurrentPage]=useState(1)
@@ -24,6 +27,7 @@ const ServiceCard = () => {
 
     return (
       <div className='container max-w-[1200px] mx-auto'>
+        {/* card of service */}
         <div className=' grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3 '>
             {data?.map(service => (
                  <div className="border-y-2 border-[#e76637] card bg-base-100 w-96 shadow-xl mb-2">
@@ -43,7 +47,29 @@ const ServiceCard = () => {
                </div>
             ))}
         </div>
-        <PaginationService></PaginationService>
+        {/* pagination of service */}
+        <div className='flex justify-between'>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="btn btn-primary"
+          >
+            Previous Page
+          </button>
+          <span>
+            Page 
+          </span>
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1))
+            }
+            
+            className="btn btn-primary"
+            disabled={currentPage }
+          >
+            Next Page
+          </button>
+        </div>
         </div>
     );
 };

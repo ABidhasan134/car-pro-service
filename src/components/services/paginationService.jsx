@@ -1,11 +1,11 @@
 import React from 'react'
 
-const PaginationService = ({currentpage,setCurrentpage}) => {
+const PaginationService = ({currentpage,setCurrentPage}) => {
   return (
     <div>
       <div className="flex justify-between mt-4 mb-2">
           <button
-          onClick={() => setCurrentpage((prev) => Math.max(prev - 1, 1))}
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentpage === 1}
           className="btn btn-primary"
           >
@@ -16,10 +16,11 @@ const PaginationService = ({currentpage,setCurrentpage}) => {
           </span>
           <button
             onClick={() =>
-                setCurrentpage((prev) => Math.min(prev + 1, totalPages))
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
             }
             
             className="btn btn-primary"
+            disabled={currentpage === totalPages}
           >
             Next Page
           </button>
