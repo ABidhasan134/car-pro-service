@@ -2,16 +2,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import useAllServices from '@/Hooks/useAllService';
+import SearchService from './filters/searchService';
+import CategoryService from './filters/categoryService';
 
 const ServiceCard = () => {
     const [products, isLoading, refetch, currentPage, setCurrentPage, totalPages] = useAllServices();
 
     if (isLoading) {
+      refetch();
         return <div>Loading...</div>;
     }
 
     return (
         <div className="container max-w-[1200px] mx-auto">
+            {/* filters of service */}
+            <div className='flex justify-between px-6 py-3'>
+            <SearchService></SearchService>
+            <CategoryService></CategoryService>
+            </div>
             {/* Cards */}
             <div className="grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3">
                 {products?.map((service) => (
@@ -33,7 +41,7 @@ const ServiceCard = () => {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center my-6">
                 <button
                     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}

@@ -1,68 +1,190 @@
-[
-  {
-    "expert_name": "Robert Johnson",
-    "position": "Transmission Specialist",
-    "working_experience": 12,
-    "specialties": ["Transmission Overhaul", "Clutch Repair", "Gearbox Tuning"],
-    "social_links": {
-      "linkedin": "https://linkedin.com/in/robertjohnson",
-      "facebook": "https://facebook.com/robertjohnson"
+[{
+  "service_id": "01",
+  "title": "Oil Change",
+  "img": "https://i.ibb.co/T2cpBd5/888.jpg",
+  "price": "30.00",
+  "description": "Keep your engine running smoothly with a quality oil change.",
+  "category": "General Maintenance",
+  "service_type": "service+",
+  "facility": [
+    {
+      "name": "Quick Oil Service",
+      "details": "Fast and reliable oil changes to save your time."
     },
-    "image": "https://shorturl.at/GU3hb"
-  },
-  {
-    "expert_name": "Emily Davis",
-    "position": "Diesel Engine Expert",
-    "working_experience": 8,
-    "specialties": ["Diesel Engines", "Turbochargers", "Fuel Injection Systems"],
-    "social_links": {
-      "linkedin": "https://linkedin.com/in/emilydavis",
-      "instagram": "https://instagram.com/emilydavis"
+    {
+      "name": "Quality Oil",
+      "details": "Using premium oil to ensure engine health."
+    }
+  ]
+},
+{
+  "service_id": "02",
+  "title": "Wheel Alignment",
+  "img": "https://i.ibb.co/ZYW3VTp/bike.jpg",
+  "price": "40.00",
+  "description": "Ensure proper tire alignment for a safer drive.",
+  "category": "General Maintenance",
+  "service_type": "service++",
+  "facility": [
+    {
+      "name": "Accurate Alignment",
+      "details": "State-of-the-art equipment for precision alignment."
     },
-    "image": "https://shorturl.at/7JNwJ"
-  },
-  {
-    "expert_name": "Michael Brown",
-    "position": "Electric Vehicle Technician",
-    "working_experience": 5,
-    "specialties": ["EV Batteries", "Motor Repairs", "Diagnostics"],
-    "social_links": {
-      "twitter": "https://twitter.com/michaelbrown",
-      "github": "https://github.com/michaelbrown"
+    {
+      "name": "Improved Tire Life",
+      "details": "Alignment to prevent uneven tire wear."
+    }
+  ]
+},
+{
+  "service_id": "03",
+  "title": "Brake Repair",
+  "img": "https://i.ibb.co/QJYFz5V/car.jpg",
+  "price": "50.00",
+  "description": "Stay safe with top-notch brake repair services.",
+  "category": "General Maintenance",
+  "service_type": "vip",
+  "facility": [
+    {
+      "name": "Expert Mechanics",
+      "details": "Certified technicians to ensure safety."
     },
-    "image": "https://shorturl.at/Xh7MQ"
-  },
-  {
-    "expert_name": "Sophia Wilson",
-    "position": "Brake Systems Specialist",
-    "working_experience": 6,
-    "specialties": ["Brake Pads Replacement", "Hydraulic Brakes", "ABS Systems"],
-    "social_links": {
-      "linkedin": "https://linkedin.com/in/sophiawilson",
-      "facebook": "https://facebook.com/sophiawilson"
+    {
+      "name": "Premium Parts",
+      "details": "Using only high-quality brake components."
+    }
+  ]
+},
+{
+  "service_id": "04",
+  "title": "Engine Diagnostics",
+  "img": "https://i.ibb.co/k2WN96n/engine.jpg",
+  "price": "70.00",
+  "description": "Identify and solve engine issues efficiently.",
+  "category": "Engine Services",
+  "service_type": "member",
+  "facility": [
+    {
+      "name": "Advanced Tools",
+      "details": "Latest diagnostic equipment for accurate results."
     },
-    "image": "https://shorturl.at/7JNwJ"
-  },
-  {
-    "expert_name": "William Martinez",
-    "position": "Suspension Expert",
-    "working_experience": 9,
-    "specialties": ["Suspension Tuning", "Shock Absorbers", "Wheel Alignment"],
-    "social_links": {
-      "linkedin": "https://linkedin.com/in/williammartinez",
-      "twitter": "https://twitter.com/williammartinez"
+    {
+      "name": "Detailed Reporting",
+      "details": "Clear insights into engine performance."
+    }
+  ]
+},
+{
+  "service_id": "05",
+  "title": "Battery Replacement",
+  "img": "https://i.ibb.co/mqZ3hLz/battery.jpg",
+  "price": "80.00",
+  "description": "Replace old batteries with high-performance ones.",
+  "category": "General Maintenance",
+  "service_type": "service+",
+  "facility": [
+    {
+      "name": "High Quality Batteries",
+      "details": "Choose from a range of trusted brands."
     },
-    "image": "https://shorturl.at/Xh7MQ"
-  },
-  {
-    "expert_name": "Olivia Hernandez",
-    "position": "Auto Electrician",
-    "working_experience": 11,
-    "specialties": ["Wiring Systems", "Battery Replacement", "Alternators"],
-    "social_links": {
-      "linkedin": "https://linkedin.com/in/oliviahernandez",
-      "facebook": "https://facebook.com/oliviahernandez"
+    {
+      "name": "Quick Installation",
+      "details": "Fast and hassle-free battery replacement."
+    }
+  ]
+},
+{
+  "service_id": "06",
+  "title": "AC Recharge",
+  "img": "https://i.ibb.co/hsCwh8Z/ac.jpg",
+  "price": "60.00",
+  "description": "Restore your car's cooling system with an AC recharge.",
+  "category": "Air Conditioning and Heating",
+  "service_type": "vip",
+  "facility": [
+    {
+      "name": "Cool Air Guaranteed",
+      "details": "Ensuring your comfort during hot weather."
     },
-    "image": "https://shorturl.at/GU3hb"
-  }
-]
+    {
+      "name": "Comprehensive Inspection",
+      "details": "Thorough checkup for AC system leaks."
+    }
+  ]
+},
+{
+  "service_id": "07",
+  "title": "Tire Rotation",
+  "img": "https://i.ibb.co/fxFy8Gh/tire.jpg",
+  "price": "20.00",
+  "description": "Extend the life of your tires with regular rotation.",
+  "category": "General Maintenance",
+  "service_type": "service+",
+  "facility": [
+    {
+      "name": "Even Tire Wear",
+      "details": "Prevent uneven wear and tear on your tires."
+    },
+    {
+      "name": "Enhanced Performance",
+      "details": "Improved traction and handling."
+    }
+  ]
+},
+{
+  "service_id": "08",
+  "title": "Exhaust Repair",
+  "img": "https://i.ibb.co/1GJd5PZ/exhaust.jpg",
+  "price": "90.00",
+  "description": "Fix issues with your car's exhaust system.",
+  "category": "Exhaust and Emissions",
+  "service_type": "service++",
+  "facility": [
+    {
+      "name": "Emission Control",
+      "details": "Ensure compliance with emission standards."
+    },
+    {
+      "name": "Improved Efficiency",
+      "details": "Optimize engine performance with a proper exhaust."
+    }
+  ]
+},
+{
+  "service_id": "09",
+  "title": "Suspension Repair",
+  "img": "https://i.ibb.co/1RcFddk/suspension.jpg",
+  "price": "100.00",
+  "description": "Fix suspension issues for a smoother ride.",
+  "category": "Suspension and Steering",
+  "service_type": "vip",
+  "facility": [
+    {
+      "name": "Enhanced Comfort",
+      "details": "Ride comfortably with a balanced suspension."
+    },
+    {
+      "name": "Improved Handling",
+      "details": "Sharper and more responsive steering."
+    }
+  ]
+},
+{
+  "service_id": "10",
+  "title": "Car Wash & Detailing",
+  "img": "https://i.ibb.co/qMBsZ3Y/carwash.jpg",
+  "price": "25.00",
+  "description": "Keep your car looking brand new with a thorough wash.",
+  "category": "Detailing and Cleaning",
+  "service_type": "service+",
+  "facility": [
+    {
+      "name": "Complete Cleaning",
+      "details": "Inside and out, your car will look spotless."
+    },
+    {
+      "name": "Premium Products",
+      "details": "Using top-notch cleaning materials for the best shine."
+    }
+  ]
+}]
