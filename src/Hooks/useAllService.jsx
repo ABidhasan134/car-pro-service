@@ -1,17 +1,24 @@
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+'use client'
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
 
 const useAllServices = () => {
-    const {data:products=[],isLoading,refetch}=useQuery({
-        queryKey:["products"],
-        queryFn:async()=>{
-            const response = await axios.get(`/api/service?page=10&pageSize=10`,{})
-            const result= response.data.result;
-            console.log("this is from the hook of service",result);
-            return result
-        }
-    })
-    return [products,isLoading, refetch]
-}
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
-export default useAllServices
+    const { data: products = [], isLoading, refetch } = useQuery({
+        queryKey: ["products", currentPage],
+        queryFn: async () => {
+            const response = await axios.get(
+                `/api/service?page=${currentPage}&pageSize=3`
+            );
+            setTotalPages(response.data.totalPages);
+            return response.data.result;
+        },
+    });
+
+    return [products, isLoading, refetch, currentPage, setCurrentPage, totalPages];
+};
+
+export default useAllServices;
