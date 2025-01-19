@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import useAllServices from '@/Hooks/useAllService';
@@ -11,6 +11,10 @@ const ServiceCard = () => {
     const [products, isLoading, refetch, currentPage, setCurrentPage, totalPages] = useAllServices();
     const [categoryData, setCategoryData] = useState([]);
     const [displayData, setDisplayData] = useState([]);
+    const [categoryTotalPages, setCategoryTotalPages] = useState(1); // To track category-based pagination
+
+    // Determine the correct total pages for pagination
+    const effectiveTotalPages = categoryData.length > 0 ? categoryTotalPages : totalPages;
 
     // Update displayData whenever products or categoryData change
     useEffect(() => {
@@ -24,11 +28,16 @@ const ServiceCard = () => {
 
     return (
         <div className="container max-w-[1200px] mx-auto">
-            {/* filters of service */}
+            {/* Filters of service */}
             <div className="flex justify-between px-6 py-3">
                 <SearchService />
-                <CategoryService setcategoryData={setCategoryData} />
+                <CategoryService 
+                    setcategoryData={setCategoryData} 
+                    setCategoryTotalPages={setCategoryTotalPages} 
+                    setCurrentPage={setCurrentPage} // Reset pagination on category change
+                />
             </div>
+            
             {/* Cards */}
             <div className="grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3">
                 <CardsServices displayData={displayData}></CardsServices>
@@ -44,11 +53,11 @@ const ServiceCard = () => {
                     Previous Page
                 </button>
                 <span className="mx-4">
-                    Page {currentPage} of {totalPages}
+                    Page {currentPage} of {effectiveTotalPages}
                 </span>
                 <button
-                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, effectiveTotalPages))}
+                    disabled={currentPage === effectiveTotalPages}
                     className="btn btn-primary"
                 >
                     Next Page
