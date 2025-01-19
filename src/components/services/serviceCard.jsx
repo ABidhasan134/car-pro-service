@@ -12,15 +12,16 @@ const ServiceCard = () => {
     const [categoryData, setCategoryData] = useState([]);
     const [displayData, setDisplayData] = useState([]);
     const [categoryTotalPages, setCategoryTotalPages] = useState(1); // To track category-based pagination
-
+    const [effectiveTotalPages,setEffectiveTotalPages]=useState(1)
     // Determine the correct total pages for pagination
-    const effectiveTotalPages = categoryData.length > 0 ? categoryTotalPages : totalPages;
 
     // Update displayData whenever products or categoryData change
     useEffect(() => {
         setDisplayData(categoryData.length > 0 ? categoryData : products);
-    }, [categoryData, products]);
-
+        setEffectiveTotalPages(categoryData.length > 0 ? categoryTotalPages : totalPages)
+    }, [categoryData, products,effectiveTotalPages]);
+    
+    console.log("Here is the current page and effective page",categoryData.length,currentPage,effectiveTotalPages)
     if (isLoading) {
         refetch();
         return <div>Loading...</div>;

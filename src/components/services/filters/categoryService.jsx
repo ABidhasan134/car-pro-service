@@ -10,7 +10,7 @@ const CategoryService = ({ setcategoryData, setCategoryTotalPages, setCurrentPag
 
       if (response.data.result) {
           setcategoryData(response.data.result);
-          setCategoryTotalPages(response.data.totalPages); // Update total pages
+          setCategoryTotalPages(response.data.totalPagescategory); // Update total pages
           setCurrentPage(1); // Reset to first page
       }
       console.log("Response:", response.data);
