@@ -4,40 +4,34 @@ import Link from 'next/link';
 import useAllServices from '@/Hooks/useAllService';
 import SearchService from './filters/searchService';
 import CategoryService from './filters/categoryService';
+import { useEffect, useState } from 'react';
+import CardsServices from './cardsServices';
 
 const ServiceCard = () => {
     const [products, isLoading, refetch, currentPage, setCurrentPage, totalPages] = useAllServices();
+    const [categoryData, setCategoryData] = useState([]);
+    const [displayData, setDisplayData] = useState([]);
+
+    // Update displayData whenever products or categoryData change
+    useEffect(() => {
+        setDisplayData(categoryData.length > 0 ? categoryData : products);
+    }, [categoryData, products]);
 
     if (isLoading) {
-      refetch();
+        refetch();
         return <div>Loading...</div>;
     }
 
     return (
         <div className="container max-w-[1200px] mx-auto">
             {/* filters of service */}
-            <div className='flex justify-between px-6 py-3'>
-            <SearchService></SearchService>
-            <CategoryService></CategoryService>
+            <div className="flex justify-between px-6 py-3">
+                <SearchService />
+                <CategoryService setcategoryData={setCategoryData} />
             </div>
             {/* Cards */}
             <div className="grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3">
-                {products?.map((service) => (
-                    <div key={service._id} className="border-y-2 border-[#e76637] card bg-base-100 w-96 shadow-xl mb-2">
-                        <figure>
-                            <Image src={service.img} alt={service.title} width={300} height={350} />
-                        </figure>
-                        <div className="card-body">
-                            <h2 className="card-title">{service.title}</h2>
-                            <p>{service.description.slice(0, 40)}...</p>
-                            <div className="card-actions justify-end">
-                                <Link href={`services/${service._id}`}>
-                                    <button className="btn btn-outline">View Details</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                <CardsServices displayData={displayData}></CardsServices>
             </div>
 
             {/* Pagination */}
