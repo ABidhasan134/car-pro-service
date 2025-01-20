@@ -33,7 +33,7 @@ const ServiceCard = () => {
         <div className="container max-w-[1200px] mx-auto">
             {/* Filters of service */}
             <div className="flex justify-between px-6 py-3">
-                <SearchService currentPage={currentPage} setSearcherService={setSearcherService} setSearcherServicePages={setSearcherServicePages}/>
+                <SearchService setCurrentPage={setCurrentPage} setSearcherService={setSearcherService} setSearcherServicePages={setSearcherServicePages}/>
                 <CategoryService 
                     setcategoryData={setCategoryData} 
                     setCategoryTotalPages={setCategoryTotalPages} 

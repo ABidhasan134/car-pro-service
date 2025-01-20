@@ -3,7 +3,7 @@ import "./searchService.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-const SearchService = ({currentPage,setSearcherService,setSearcherServicePages}) => {
+const SearchService = ({setCurrentPage,setSearcherService,setSearcherServicePages}) => {
   const {
     register,
     handleSubmit,
@@ -14,6 +14,9 @@ const SearchService = ({currentPage,setSearcherService,setSearcherServicePages})
     const title=data.searchValue
     const response= await axios.get(`/api/service/filter/${title}`);
     console.log(response.data);
+    setSearcherService(response.data.result)
+    setSearcherServicePages(response.data.totalPages)
+    setCurrentPage(1);
     console.log(data);
   }
 
