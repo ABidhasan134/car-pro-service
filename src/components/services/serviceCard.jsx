@@ -13,13 +13,15 @@ const ServiceCard = () => {
     const [displayData, setDisplayData] = useState([]);
     const [categoryTotalPages, setCategoryTotalPages] = useState(1); // To track category-based pagination
     const [effectiveTotalPages,setEffectiveTotalPages]=useState(1)
+    const [searcherService, setSearcherService] = useState([]);
+    const [searcherServicepages,setSearcherServicePages] = useState(1)
     // Determine the correct total pages for pagination
 
     // Update displayData whenever products or categoryData change
     useEffect(() => {
-        setDisplayData(categoryData.length > 0 ? categoryData : products);
-        setEffectiveTotalPages(categoryData.length > 0 ? categoryTotalPages : totalPages)
-    }, [categoryData, products,effectiveTotalPages]);
+        setDisplayData(categoryData.length > 0 ? categoryData:searcherService.length>0?searcherService: products);
+        setEffectiveTotalPages(categoryData.length > 0 ? categoryTotalPages:searcherService.length>0?searcherServicepages : totalPages)
+    }, [categoryData, products,effectiveTotalPages,searcherService]);
     
     console.log("Here is the current page and effective page",categoryData.length,currentPage,effectiveTotalPages)
     if (isLoading) {
@@ -31,7 +33,7 @@ const ServiceCard = () => {
         <div className="container max-w-[1200px] mx-auto">
             {/* Filters of service */}
             <div className="flex justify-between px-6 py-3">
-                <SearchService />
+                <SearchService currentPage={currentPage} setSearcherService={setSearcherService} setSearcherServicePages={setSearcherServicePages}/>
                 <CategoryService 
                     setcategoryData={setCategoryData} 
                     setCategoryTotalPages={setCategoryTotalPages} 

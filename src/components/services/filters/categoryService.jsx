@@ -5,7 +5,7 @@ const CategoryService = ({ setcategoryData, setCategoryTotalPages, setCurrentPag
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-      console.log(data);
+    //   console.log(data);
       const response = await axios.post(`/api/service/filter/category`, { data: data.category });
 
       if (response.data.result) {
@@ -13,7 +13,7 @@ const CategoryService = ({ setcategoryData, setCategoryTotalPages, setCurrentPag
           setCategoryTotalPages(response.data.totalPagescategory); // Update total pages
           setCurrentPage(1); // Reset to first page
       }
-      console.log("Response:", response.data);
+    //   console.log("Response:", response.data);
   };
 
   return (
