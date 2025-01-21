@@ -27,8 +27,8 @@ const NavBar = () => {
       title: 'Services',
     },
     {
-      url: '/contact',
-      title: 'Contact Us',
+      url: '/contect',
+      title: 'Contect Us',
     },
   ];
 
