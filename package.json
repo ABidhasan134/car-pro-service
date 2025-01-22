@@ -33,7 +33,7 @@
     "puppeteer": "^23.6.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.53.0",
+    "react-hook-form": "^7.54.2",
     "react-icons": "^5.4.0",
     "react-to-pdf": "^1.0.1",
     "sslcommerz-lts": "^1.1.0",
