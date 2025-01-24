@@ -3,16 +3,23 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
 const FeedBackFrom = () => {
-  const handelFeedBack = (e) => {
+  const sesseion = useSession()
+  console.log(sesseion);
+  const handelFeedBack = async(e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const phone = e.target.phone.value;
     const subject = e.target.subject.value;
     const description = e.target.description.value;
-    console.log(name, email, phone, subject, description);
+    // console.log(name, email, phone, subject, description);
+    const userInfo={name:sesseion.data.user.name||name, email:sesseion.data.user.email||email, phone:phone,subject:description,description:description}
+    const response=await axios.post(`/api/user/mail`,userInfo);
+    console.log(response.data)
   };
 
   return (
