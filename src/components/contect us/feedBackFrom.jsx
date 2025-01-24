@@ -1,25 +1,72 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 
-const FeedBackFrom = () => {
-  const sesseion = useSession()
-  console.log(sesseion);
-  const handelFeedBack = async(e) => {
+const FeedBackForm = () => {
+  const { data: session } = useSession(); // Destructure session for better readability
+  const [phoneError, setPhoneError] = useState(""); // State for phone validation error
+  const [subjectError, setSubjectError] = useState(""); // State for subject validation error
+  const [descriptionError, setDescriptionError] = useState(""); // State for description validation error
+
+  const handleFeedback = async (e) => {
     e.preventDefault();
+
     const name = e.target.name.value;
     const email = e.target.email.value;
     const phone = e.target.phone.value;
     const subject = e.target.subject.value;
     const description = e.target.description.value;
-    // console.log(name, email, phone, subject, description);
-    const userInfo={name:sesseion.data.user.name||name, email:sesseion.data.user.email||email, phone:phone,subject:description,description:description}
-    const response=await axios.post(`/api/user/mail`,userInfo);
-    console.log(response.data)
+
+    const userInfo = {
+      name: session?.user?.name || name,
+      email: session?.user?.email || email,
+      phone,
+      subject,
+      description,
+    };
+
+    // Validate Bangladeshi phone number
+    const validateBangladeshiPhone = (phone) => {
+      const regex = /^(?:\+880|880|01)[1-9][0-9]{8}$/;
+      return regex.test(phone);
+    };
+
+    // Phone validation
+    if (!validateBangladeshiPhone(phone)) {
+      setPhoneError("Invalid Bangladeshi phone number. Please try again.");
+      return;
+    } else {
+      setPhoneError(""); // Clear error message
+    }
+
+    // Subject validation
+    if (subject.length < 6) {
+      setSubjectError("Subject must be at least 6 characters long.");
+      return;
+    } else {
+      setSubjectError(""); // Clear error message
+    }
+
+    // Description validation
+    if (description.length < 10) {
+      setDescriptionError("Description must be at least 10 characters long.");
+      return;
+    } else {
+      setDescriptionError(""); // Clear error message
+    }
+
+    try {
+      const response = await axios.post(`/api/user/mail`, userInfo);
+      console.log(response.data);
+      alert("Feedback submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      alert("Failed to submit feedback. Please try again later.");
+    }
   };
 
   return (
@@ -27,7 +74,7 @@ const FeedBackFrom = () => {
       <div className="flex justify-center">
         <h1 className="text-3xl font-semibold">Give us Feedback</h1>
       </div>
-      <form onSubmit={handelFeedBack}>
+      <form onSubmit={handleFeedback}>
         <Box
           sx={{ "& > :not(style)": { m: 1, width: "340px" } }}
           noValidate
@@ -35,10 +82,10 @@ const FeedBackFrom = () => {
           className="text-white grid"
         >
           <TextField
-            id="standard-basic"
             label="Name"
             variant="standard"
             name="name"
+            defaultValue={session?.user?.name || ""}
             sx={{
               "& .MuiInput-underline:before": { borderBottomColor: "black" },
               "& .MuiInput-underline:hover:before": { borderBottomColor: "red" },
@@ -49,10 +96,10 @@ const FeedBackFrom = () => {
             }}
           />
           <TextField
-            id="standard-basic"
             label="Email"
             variant="standard"
             name="email"
+            defaultValue={session?.user?.email || ""}
             sx={{
               "& .MuiInput-underline:before": { borderBottomColor: "black" },
               "& .MuiInput-underline:hover:before": { borderBottomColor: "red" },
@@ -63,10 +110,12 @@ const FeedBackFrom = () => {
             }}
           />
           <TextField
-            id="standard-basic"
             label="Phone"
             variant="standard"
             name="phone"
+            required
+            error={Boolean(phoneError)}
+            helperText={phoneError}
             sx={{
               "& .MuiInput-underline:before": { borderBottomColor: "black" },
               "& .MuiInput-underline:hover:before": { borderBottomColor: "red" },
@@ -77,10 +126,11 @@ const FeedBackFrom = () => {
             }}
           />
           <TextField
-            id="standard-basic"
             label="Subject"
             variant="standard"
             name="subject"
+            error={Boolean(subjectError)}
+            helperText={subjectError}
             sx={{
               "& .MuiInput-underline:before": { borderBottomColor: "black" },
               "& .MuiInput-underline:hover:before": { borderBottomColor: "red" },
@@ -91,10 +141,11 @@ const FeedBackFrom = () => {
             }}
           />
           <TextField
-            id="standard-basic"
             label="Description"
             variant="standard"
             name="description"
+            error={Boolean(descriptionError)}
+            helperText={descriptionError}
             sx={{
               "& .MuiInput-underline:before": { borderBottomColor: "black" },
               "& .MuiInput-underline:hover:before": { borderBottomColor: "red" },
@@ -116,4 +167,4 @@ const FeedBackFrom = () => {
   );
 };
 
-export default FeedBackFrom;
+export default FeedBackForm;
