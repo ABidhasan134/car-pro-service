@@ -27,7 +27,8 @@ export async function POST  (request) {
         return NextResponse.json({message:"user tocuch successfully",customserviceinfo})
     }
     catch(error){
-        console.log("this is from the coustom serves backend" ,error);
+        // console.log("this is from the coustom serves backend" ,error);
+        return NextResponse.json({message: "your custom service is not available",status:500})
     }
 }
 

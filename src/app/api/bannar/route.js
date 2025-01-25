@@ -14,6 +14,7 @@ export async function GET(){
         })
     }
     catch(error){
-        console.log("Bannar data error: ", error)
+        // console.log("Bannar data error: ", error)
+        return NextResponse.json({message:"Bannar data error",error:error})
     }
 }

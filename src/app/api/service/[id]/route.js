@@ -32,5 +32,6 @@ export async function POST(request, {params}){
   }
   catch(error){
     console.log("Error is heandling by for service", error)
+    return NextResponse.json({message: "Error is heandling by for service",status:500})
   }
 }

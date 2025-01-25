@@ -27,7 +27,7 @@ export async function handler(req, res) {
       res.setHeader('Content-Disposition', 'attachment; filename=invoice.pdf');
       return res.end(pdfBuffer);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       res.status(500).json({ error: 'Failed to generate PDF' });
     }
   } else {

@@ -14,6 +14,7 @@ export async function GET() {
       status: 200,
     });
   } catch (error) {
-    console.log("error form mechanic route", error);
+    // console.log("error form mechanic route", error);
+    return NextResponse.json({message: "error form mechanic route",error})
   }
 }

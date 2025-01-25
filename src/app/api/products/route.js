@@ -15,6 +15,7 @@ export async function GET(request){
         })
     }
     catch(error){
-        console.log("product is not available Error:",error);
+        // console.log("product is not available Error:",error);
+        return NextResponse.json({message:"product is not available Error",error})
     }
 }

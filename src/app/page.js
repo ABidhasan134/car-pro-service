@@ -10,7 +10,7 @@ import ProductList from "@/components/products/productList";
 import MainTeam from "@/components/team/mainTeam";
 import Testimonial from "@/components/testimonila/testimonial";
 import ChooseUs from "@/components/chooseUs/chooseUs";
-
+export const dynamic= 'force-dynamic';
 
 
 export default function Home() {
