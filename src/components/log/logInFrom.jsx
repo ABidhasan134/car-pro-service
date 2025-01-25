@@ -89,7 +89,7 @@ const LogInForm = () => {
 
           {/* Sign Up Link */}
           <p className="text-gray-500 mt-4 text-sm">
-            Don't have an account? <Link href="/signUp" className="font-bold">Sign Up</Link>
+            Do not have an account? <Link href="/signUp" className="font-bold">Sign Up</Link>
           </p>
         </div>
       </div>

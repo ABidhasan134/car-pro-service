@@ -13,9 +13,9 @@ const CustomServiceCard = () => {
   }
   return (
     <div className="mt-4 flex gap-3">
-      {oneUser?.customservices?.map((yourService) => {
+      {oneUser?.customservices?.map((yourService,index) => {
         return (
-          <div className="card glass w-96 ">
+          <div key={index} className="card glass w-96 ">
             <div className="card-body text-start">
               <h2 className="card-title">
                 Car model: {yourService.vehicalName || yourService.vehical}

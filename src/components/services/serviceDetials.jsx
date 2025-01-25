@@ -98,9 +98,9 @@ const ServiceDetials = ({ service }) => {
       </div>
       <section className="w-[30%]">
         <div className=" bg-orange-100 mx-4 py-2">
-          {services.map((service) => {
+          {services.map((service,index) => {
             return (
-              <ServiceCatagory servicesTitle={service.title} serviceId={service._id}></ServiceCatagory>
+              <ServiceCatagory key={index} servicesTitle={service.title} serviceId={service._id}></ServiceCatagory>
             );
           })}
         </div>

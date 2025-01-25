@@ -30,8 +30,8 @@ const CardTeam = () => {
 >
   
   {
-    mechanics.map((person)=>{
-     return <SwiperSlide className="swiper-slideX">
+    mechanics.map((person,index)=>{
+     return <SwiperSlide key={index} className="swiper-slideX">
  <ProfileOfmechanic person={person}></ProfileOfmechanic>
 </SwiperSlide>
     })
