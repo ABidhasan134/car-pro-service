@@ -38,7 +38,7 @@ const OnAndOffPay = ({ service,serialNo }) => {
   
   return (
     <section className="w-[92%] py-4 bg-black grid justify-center text-center text-white m-4 rounded-lg">
-      <Image className="p-4 relative left-7" src={logImg}></Image>
+      <Image className="p-4 relative left-7" src={logImg}alt={'logImage'}></Image>
       <h1 className="mx-4 flex text-center py-2">Pay Online Get 2% bonus</h1>
       <button
         onClick={handelPayOnline}

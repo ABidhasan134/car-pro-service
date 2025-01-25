@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import PdfInvoice from "../invoice/pdfInvoice";
 import OnAndOffPay from "./onAndOffPay";
 import uuid4 from "uuid4";
+import Image from "next/image";
 
 const ServiceDetials = ({ service }) => {
   const [services, setService] = useState([]);
@@ -77,11 +78,11 @@ const ServiceDetials = ({ service }) => {
   return (
     <>
       <div className="w-[70%]">
-        <img
+        <Image height={200} width={200}
           src={service.img}
           alt={service.img}
           className="w-full h-[450px]"
-        ></img>
+        />
         <p className="my-6 text-3xl font-bold">{service.title}</p> <br />
         <p>{service.description}</p>
         <div className="grid grid-cols-2 justify-evenly">

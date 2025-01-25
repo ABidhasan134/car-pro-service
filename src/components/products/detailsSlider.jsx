@@ -9,6 +9,7 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 import './style.css';
 import useOneProduct from '@/Hooks/useOneProduct';
+import Image from 'next/image';
 
 const DetailsSlider = ({ id }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -82,7 +83,7 @@ const DetailsSlider = ({ id }) => {
         ) : (
           [...Array(10)].map((_, index) => (
             <SwiperSlide key={index}>
-              <img
+              <Image height={200} width={200}
                 src={`https://swiperjs.com/demos/images/nature-${index + 1}.jpg`}
                 alt={`Thumbnail Placeholder ${index + 1}`}
                 className="h-[50px] w-[50px]"

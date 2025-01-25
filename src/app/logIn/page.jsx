@@ -5,7 +5,7 @@ import LogInFrom from '@/components/log/logInFrom'
 const page = () => {
   return (
     <div className='flex justify-center px-32 container mx-auto'>
-      <Image src={logImg} ></Image>
+      <Image src={logImg} alt='logIn'></Image>
       <LogInFrom ></LogInFrom>
     </div>
   )
