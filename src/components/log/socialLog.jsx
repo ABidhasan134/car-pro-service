@@ -2,9 +2,9 @@
 import { signIn} from 'next-auth/react';
 import { useSession } from "next-auth/react";
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
 import React from 'react';
-import { GiHamburgerMenu } from "react-icons/gi";
+import { FaGoogle } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 const SocialLog = () => {
   const session=useSession();
@@ -24,12 +24,12 @@ const SocialLog = () => {
   };
 
   return (
-    <div className='w-full'>
-      <button onClick={() => handleSocialLogin('google')} className="w-[50%] hover:bg-black hover:text-white mt-4 p-4 text-black text-center font-bold rounded-full shadow-lg cursor-pointer bg-inherit">
-        <GiHamburgerMenu></GiHamburgerMenu>Login with Google
+    <div className='w-full flex'>
+      <button onClick={() => handleSocialLogin('google')} className="w-[50%] hover:bg-black hover:text-green-500 mt-4 p-4 text-black text-center font-bold rounded-full shadow-lg cursor-pointer bg-inherit flex justify-center">
+      <FaGoogle className='text-3xl' />
       </button>
-      <button onClick={() => handleSocialLogin('facebook')} className="w-[50%] hover:bg-black hover:text-white mt-4 p-4 text-black text-center font-bold rounded-full shadow-lg cursor-pointer bg-inherit">
-        Login with Facebook
+      <button onClick={() => handleSocialLogin('facebook')} className="w-[50%] hover:bg-black hover:text-blue-500 mt-4 p-4 text-black text-center font-bold rounded-full shadow-lg cursor-pointer bg-inherit flex justify-center">
+      <FaFacebook className='text-3xl'></FaFacebook>
       </button>
     </div>
   );
