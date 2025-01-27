@@ -11,9 +11,9 @@ const SocialLog = () => {
    const searchParams=useSearchParams()
    const path = searchParams.get("redirect")
     // console.log(session)
-
+    console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+    console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET)
   const handleSocialLogin = async (provider) => {
-    
     const res = await signIn(provider,{
       redirect: true,
       callbackUrl: path?path:'/'
