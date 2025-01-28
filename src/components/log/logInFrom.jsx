@@ -34,10 +34,10 @@ const LogInForm = () => {
   return (
     <>
       <div className="w-full ">
-        <div className="grid items-center justify-center h-full lg:py-16 md:w-[600px] lg:w-auto  relative lg:left-0  bg-transparent">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center w-full">
+        <div className="grid items-center justify-center  lg:py-16 absolute left-8 md:left-52 md:h-[400px] h-[500px] lg:relative lg:left-0  bg-transparent">
+          <form onSubmit={handleSubmit(onSubmit)} className="gap-0 flex flex-col items-center justify-center w-full text-red-600 lg:text-black">
             <div className="text-4xl font-semibold text-black mb-8 text-center">
-              Welcome back <br />Car Doctor
+              Welcome back <br />to Moto Magic
             </div>
 
             {/* Email Field */}
@@ -75,12 +75,12 @@ const LogInForm = () => {
             {errors.password && <span className="text-red-500">{errors.password.message}</span>}
 
             {/* Submit Button */}
-            <button type="submit" className="w-full hover:bg-black hover:text-white p-4 mt-5 font-bold text-gray-500 rounded-full shadow-lg cursor-pointer bg-inherit">
+            <button type="submit" className="w-full hover:bg-black hover:text-white p-4 mt-5 font-bold md:text-red-500 lg:text-gray-500 rounded-full shadow-lg cursor-pointer bg-inherit">
               Log In
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 w-4/5 my-4">
+          <p className="text-center text-sm md:text-red-500 lg:text-gray-500 md:w-full w-4/5 my-4">
             Forgotten your login details? <a href="#" className="font-bold">Get help with signing in.</a>
           </p>
 
@@ -88,7 +88,7 @@ const LogInForm = () => {
           <SocialLog />
 
           {/* Sign Up Link */}
-          <p className="text-gray-500 mt-4 text-sm">
+          <p className="md:text-red-500 text-center lg:text-gray-500 mt-4 text-sm">
             Do not have an account? <Link href="/signUp" className="font-bold">Sign Up</Link>
           </p>
         </div>
