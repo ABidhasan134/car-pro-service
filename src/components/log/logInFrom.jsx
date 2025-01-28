@@ -34,7 +34,7 @@ const LogInForm = () => {
   return (
     <>
       <div className="w-full ">
-        <div className="grid items-center justify-center h-full py-16 relative -left-[120px] bg-transparent">
+        <div className="grid items-center justify-center h-full lg:py-16 md:w-[600px] lg:w-auto  relative lg:left-0  bg-transparent">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center w-full">
             <div className="text-4xl font-semibold text-black mb-8 text-center">
               Welcome back <br />Car Doctor

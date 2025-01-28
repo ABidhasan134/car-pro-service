@@ -42,7 +42,7 @@ const NavBar = () => {
   }}
 />
 
-    <div className="navbar sticky top-0 z-50 bg-slate-300 px-10 mb-1">
+    <div className="navbar sticky top-0 z-50 bg-slate-300 px-10 mb-1 w-full">
       <div className="navbar-start">
         
       <Link href="/" className='lg:w-[100px] w-[70px]'>

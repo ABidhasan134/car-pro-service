@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="footer bg-[rgb(203,213,225)] text-base-content justify-center md:justify-evenly p-10">
+    <footer className="footer bg-[rgb(203,213,225)] text-base-content w-full justify-center md:justify-evenly p-10">
   <aside>
     <Link href="/" className='lg:w-[100px] w-[70px]'>
     <Image src={logo} className='lg:w-[100px] w-[70px]'></Image>
