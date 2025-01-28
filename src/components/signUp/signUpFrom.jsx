@@ -52,18 +52,18 @@ const SignUpFrom = () => {
 
   return (
     <div className="w-full">
-      <div className="grid items-center justify-center h-full py-16 bg-gray-100">
+      <div className="gap-0 grid items-center justify-center md:relative absolute left-[110px] md:left-0 sm:py-16 py-1  bg-transparent sm:h-auto h-[700px] text-red-500">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col items-center justify-center w-full max-w-md"
         >
           {/* Logo and Title */}
-          <div className="text-4xl font-semibold text-black mb-8 text-center flex items-center">
+          <div className="text-4xl font-semibold text-black mb-8 text-center md:flex grid items-center">
             Welcome to{" "}
             <Image
               src={logImg}
               alt="Logo"
-              className="w-[180px] h-[150px] pl-2 ml-2"
+              className="lg:w-[180px] sm:w-[1200px] lg:h-[150px] sm:h-[110px] w-[150px] h-[120px] pl-2 ml-2"
             />
           </div>
 
