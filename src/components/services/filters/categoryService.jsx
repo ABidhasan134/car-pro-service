@@ -17,7 +17,7 @@ const CategoryService = ({ setcategoryData, setCategoryTotalPages, setCurrentPag
   };
 
   return (
-      <form onChange={handleSubmit(onSubmit)} className="border-1 border-red-500">
+      <form onChange={handleSubmit(onSubmit)} className="relative mt-2 md:mt-0 ml-2 md:ml-2 border-1 border-red-500">
           <select
               {...register("category")}
               className="btn btn-ghost px-3 border-2 border-[#FF3811] hover:bg-[#FF3811] hover:text-white"

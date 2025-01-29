@@ -1,0 +1,27 @@
+/* searchMobile.css */
+@media (max-width: 480px) {
+    .searchBox {
+      max-width: 90%;
+      flex-direction: column;
+      background: none;
+      gap: 0px;
+    }
+  
+    .searchInput {
+      width: 90%;
+      padding: 10px;
+      background: #2f3640;
+      border-radius: 0px;
+    }
+  
+    .searchButton {
+      position: static;
+      width: 100%;
+      border-radius: 25px;
+    }
+  
+    .searchButton:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }

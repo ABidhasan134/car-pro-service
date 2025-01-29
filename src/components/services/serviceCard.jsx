@@ -30,9 +30,9 @@ const ServiceCard = () => {
     }
 
     return (
-        <div className="container max-w-[1200px] mx-auto">
+        <div className="container max-w-[1200px] mx-auto grid justify-center">
             {/* Filters of service */}
-            <div className="flex justify-between px-6 py-3">
+            <div className="relative md:flex sm:grid sm:justify-center md:left-0 left-7 gap-2 md:justify-between px-6 py-3">
                 <SearchService setCurrentPage={setCurrentPage} setSearcherService={setSearcherService} setSearcherServicePages={setSearcherServicePages}/>
                 <CategoryService 
                     setcategoryData={setCategoryData} 
@@ -42,7 +42,7 @@ const ServiceCard = () => {
             </div>
             
             {/* Cards */}
-            <div className="grid justify-center my-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="relative grid justify-center my-5 md:grid-cols-3 md:mx-3  lg:mx-5 grid-cols-1 gap-3 w-full">
                 <CardsServices displayData={displayData}></CardsServices>
             </div>
 

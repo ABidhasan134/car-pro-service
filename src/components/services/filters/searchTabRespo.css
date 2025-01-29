@@ -1,0 +1,16 @@
+/* searchTablet.css */
+@media (min-width: 481px) and (max-width: 768px) {
+    .searchBox {
+      max-width: 200px;
+      gap: 12px;
+    }
+  
+    .searchInput {
+      padding: 20px 40px 20px 20px;
+    }
+  
+    .searchButton {
+      width: 60px;
+      height: 60px;
+    }
+  }

@@ -21,7 +21,7 @@ const SearchService = ({setCurrentPage,setSearcherService,setSearcherServicePage
   }
 
   return (
-    <div className="grid">
+    <div className="grid mx-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="searchBox grid">
           <label htmlFor="searchValue" className="sr-only">
