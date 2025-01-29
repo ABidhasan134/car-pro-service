@@ -62,7 +62,7 @@ const Bannar = () => {
         navigation={true}
         modules={[Autoplay, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className="mySwiper m-0 py-0 px-6 relative flex justify-center bg-[#F3F4F6] lg:w-[1000px] lg:h-[500px] md:w-[600px] md:h-[350px] w-[400px] h-[150px]"
+        className="mySwiper m-0 py-0 px-6 relative flex justify-center bg-[#F3F4F6] xl:w-[1500px] lg:w-[1000px] lg:h-[500px] md:w-[600px] md:h-[350px] w-[400px] h-[150px]"
       >
         {/* 1st slider */}
         {bannarList.map((bannar, index) => {
