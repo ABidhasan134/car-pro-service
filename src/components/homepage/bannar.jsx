@@ -62,7 +62,7 @@ const Bannar = () => {
         navigation={true}
         modules={[Autoplay, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className="mySwiper m-0 py-0 px-6 relative flex justify-center bg-[#F3F4F6] w-[1500px] h-[600px]"
+        className="mySwiper m-0 py-0 px-6 relative flex justify-center bg-[#F3F4F6] lg:w-[1000px] lg:h-[500px] md:w-[600px] md:h-[350px] w-[400px] h-[150px]"
       >
         {/* 1st slider */}
         {bannarList.map((bannar, index) => {
@@ -70,12 +70,12 @@ const Bannar = () => {
             <SwiperSlide key={index} className="bg-[#F3F4F6] m-0 p-0 ">
               <div className="w-[50%] grid justify-center text-start">
                 <BoxReveal>
-                  <h1 className="text-3xl font-semibold w-[300px]">
+                  <h1 className=" md:text-xl text-sm font-semibold lg:w-[200px] md:w-[50px]">
                     {bannar.title}
                   </h1>
                   </BoxReveal>
                   <BoxReveal>
-                  <h6 className="text-xl">{bannar.offer}</h6>
+                  <h6 className="md:text-xl text-sm">{bannar.offer}</h6>
                   </BoxReveal>
 
                 <CustomBtn title="Get Offer" color="e76637"></CustomBtn>
@@ -83,7 +83,7 @@ const Bannar = () => {
               <Image
                 src={bannarImage[index]}
                 alt={bannar.image}
-                className="w-[90%] h-[600px] rounded-lg"
+                className="lg:w-[70%] lg:h-[500px] md:w-[60%] md:h-[350px] w-[60%] h-[150px] rounded-lg"
               ></Image>
             </SwiperSlide>
           );
