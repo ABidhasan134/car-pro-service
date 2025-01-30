@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import UserInfo from './userInfo';
 import { motion, useScroll } from "framer-motion";
-import './nav.css'
+// import './nav.css'
 const NavBar = () => {
   const pathName = usePathname();
   const sesseion = useSession()
@@ -35,7 +35,7 @@ const NavBar = () => {
   return (
     <>
      <motion.div
-  className="progress-bar rounded-b-2xl mb-2"
+  className="progress-bar rounded-b-2xl mb-2 fixed bg-red-500 lg:top-[105px] top-[80px] h-2 z-50 left-0 right-0"
   style={{
     scaleX: scrollYProgress, 
     transformOrigin: '0%', 

@@ -27,6 +27,20 @@ const CardTeam = () => {
   navigation={true}
   modules={[ Navigation]}
   className="swiperX" 
+  breakpoints={{
+    425: {
+      slidesPerView: 1,
+      spaceBetween: 0,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 10,
+    },
+  }}
 >
   
   {

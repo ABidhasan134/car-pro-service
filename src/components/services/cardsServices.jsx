@@ -8,7 +8,7 @@ const CardsServices = ({displayData}) => {
     {displayData.map((service) => (
                     <div
                         key={service._id}
-                        className="border-y-2 border-[#e76637] card bg-base-100 xl:w-96 lg:w-72 md:w-56 w-62 shadow-xl mb-2"
+                        className="border-y-2 border-[#e76637] card bg-base-100 xl:w-96 lg:w-72 md:w-56 w-62 ml-1 shadow-xl mb-2"
                     >
                         <figure>
                             <Image src={service.img} alt={service.title} width={300} height={350} />

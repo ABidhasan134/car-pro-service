@@ -42,7 +42,7 @@ const ServiceCard = () => {
             </div>
             
             {/* Cards */}
-            <div className="relative grid justify-center my-5 md:grid-cols-3 md:mx-3  lg:mx-5 grid-cols-1 gap-3 w-full">
+            <div className="relative grid justify-center my-5 md:grid-cols-3 md:mx-3  lg:mx-0 grid-cols-1 gap-3 w-full">
                 <CardsServices displayData={displayData}></CardsServices>
             </div>
 
