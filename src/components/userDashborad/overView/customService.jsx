@@ -34,10 +34,10 @@ const CoustomService = () => {
      };
   return (
     <FormProvider {...methods}>
-    <div className="grid w-full">
+    <div className="grid ">
       {/* heading of custom service */}
-      <div className="flex justify-center w-full h-[60px]">
-        <h1 className="text-5xl font-semibold">custom your service</h1>
+      <div className="flex justify-center">
+        <h1 className="xl:text-5xl text-3xl font-semibold">custom your service</h1>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="grid items-center w-full">

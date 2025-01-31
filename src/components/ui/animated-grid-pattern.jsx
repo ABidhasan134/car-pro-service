@@ -3,8 +3,10 @@ import { useEffect, useId, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export default function AnimatedGridPattern({
+  
   width = 40,
   height = 40,
   x = -1,
@@ -14,13 +16,15 @@ export default function AnimatedGridPattern({
   className,
   maxOpacity = 0.5,
   duration = 4,
-  repeatDelay = 0.5,
+  repeatDelay = 0.4,
   ...props
 }) {
   const id = useId();
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [squares, setSquares] = useState(() => generateSquares(numSquares));
+  const path=usePathname();
+  console.log(path)
 
   function getPos() {
     return [
@@ -79,14 +83,16 @@ export default function AnimatedGridPattern({
   }, [containerRef]);
 
   return (
-    (<svg
+    <svg
       ref={containerRef}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 min-h-screen w-full fill-gray-400/30 stroke-gray-400/30",
+        `pointer-events-none absolute inset-0 z-50 min-h-screen xl:min-h-screen w-full fill-gray-400/30 stroke-gray-400/30`,
+        path === '/userDeshborad' ? 'lg:h-[1900px]' : '',
         className
       )}
-      {...props}>
+      {...props}
+    >
       <defs>
         <pattern
           id={id}
@@ -94,15 +100,17 @@ export default function AnimatedGridPattern({
           height={height}
           patternUnits="userSpaceOnUse"
           x={x}
-          y={y}>
+          y={y}
+        >
           <path
             d={`M.5 ${height}V.5H${width}`}
             fill="none"
-            strokeDasharray={strokeDasharray} />
+            strokeDasharray={strokeDasharray}
+          />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill={`url(#${id})`} />
-      <svg x={x} y={y} className="overflow-visible ">
+      <svg x={x} y={y} className="overflow-visible">
         {squares.map(({ pos: [x, y], id }, index) => (
           <motion.rect
             initial={{ opacity: 0 }}
@@ -120,9 +128,11 @@ export default function AnimatedGridPattern({
             x={x * width + 1}
             y={y * height + 1}
             fill="currentColor"
-            strokeWidth="0" />
+            strokeWidth="0"
+          />
         ))}
       </svg>
-    </svg>)
+    </svg>
   );
+  
 }

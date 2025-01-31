@@ -24,7 +24,7 @@ const UserInfo = ({ user }) => {
       <button className="btn btn-outline btn-error" onClick={() => signOut()}>
         Log out
       </button>
-      {oneUser.role === "user" && oneUser.userStatus === "ok" ? (
+      {oneUser?.role === "user" && oneUser.userStatus === "ok" ? (
         <div className="dropdown dropdown-bottom">
           <div tabIndex={0} className="m-1">
             <Image

@@ -17,15 +17,15 @@ export default function DashboardLayout({ children }) {
         <div className="flex  bg-[#F3F4F6] min-h-screen">
           {/* Decorative Grid Pattern */}
 
-          <div className="text-lg font-medium p-6 bg-[#e2d3c2] text-black">
-           <Sidebar></Sidebar>
+          <div className="hidden md:grid text-lg font-medium p-6 bg-[#e2d3c2] text-black">
+           <Sidebar ></Sidebar>
           </div>
           {/* Main Dashboard Content */}
-          <main className="bg-[#d6dde6] flex-grow pb-4 text-white ">
+          <main className="bg-[#d6dde6] flex-grow pb-4 text-white relative w-[70%]">
             <div className='text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[110px]'>
             <UserNavbar ></UserNavbar>
             </div>
-            <div className="relative  p-6 h-[80%] grid justify-normal text-black">
+            <div className="relative ml-0 p-6 h-[80%] text-black">
             {children}
             </div>
           </main>
