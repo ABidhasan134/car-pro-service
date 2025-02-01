@@ -21,13 +21,13 @@ const TableService = () => {
         <thead>
           <tr>
             <th></th>
-            <th className="text-2xl">serial No</th>
-            <th className="text-2xl">service Id</th>
-            <th className="text-2xl">Name</th>
-            <th className="text-2xl">price</th>
-            <th className="text-2xl">status</th>
-            <th className="text-2xl">Service Date</th>
-            <th className="text-2xl">payment by</th>
+            <th className="xl:text-2xl lg:text-xl">serial No</th>
+            <th className="xl:text-2xl lg:text-xl xl:flex hidden">service Id</th>
+            <th className="xl:text-2xl lg:text-xl">Name</th>
+            <th className="xl:text-2xl lg:text-xl">price</th>
+            <th className="xl:text-2xl lg:text-xl">status</th>
+            <th className="xl:text-2xl lg:text-xl">Service Date</th>
+            <th className="xl:text-2xl lg:text-xl">payment by</th>
           </tr>
         </thead>
         {/* Table body */}

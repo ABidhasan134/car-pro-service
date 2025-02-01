@@ -6,7 +6,7 @@ const RowTable = ({ data, index }) => {
     <tr>
       <th>{index + 1}</th>
       <th>{data.serialNo}</th>
-      <th>{data.serviceId}</th>
+      <th className="xl:flex hidden">{data.serviceId}</th>
       <td>{data.name}</td>
       <td>{data.price}</td>
       <td>{data.status}</td>
