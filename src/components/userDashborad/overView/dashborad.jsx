@@ -8,9 +8,9 @@ import TitleCustomService from './titleCustomService'
 const Dashborad = () => {
   return (
     <>
-    <div className=' w-full gap-4 md:grid lg:flex-row-reverse xl:justify-center justify-start  ml-0 p-0'>
+    <div className=' w-full gap-4 md:grid lg:flex-row-reverse lg:flex xl:justify-evenly justify-start  ml-0 p-0'>
       <CoustomService></CoustomService>
-      <div className='lg:grid xl:flex gap-4'>
+      <div className='lg:grid xl:flex xl:justify-between gap-4'>
       <ServiceArea></ServiceArea>
       <ProductArea></ProductArea>
       </div>

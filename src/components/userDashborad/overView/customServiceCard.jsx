@@ -12,7 +12,7 @@ const CustomServiceCard = () => {
     return <div>Loading....</div>;
   }
   return (
-    <div className="mt-4 xl:flex grid gap-3">
+    <div className="mt-4 lg:flex md:grid gap-3">
       {oneUser?.customservices?.map((yourService,index) => {
         return (
           <div key={index} className="card glass w-96 ">

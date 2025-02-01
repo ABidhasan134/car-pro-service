@@ -45,7 +45,7 @@ const UserInfo = ({ user }) => {
       ) : (
         ""
       )}
-      {oneUser.role === "admin"  ? (
+      {oneUser?.role === "admin"  ? (
         <div className="dropdown dropdown-bottom">
           <div tabIndex={0} className="m-1">
             <Image

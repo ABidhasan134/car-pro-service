@@ -40,7 +40,7 @@ const CoustomService = () => {
         <h1 className="xl:text-5xl text-3xl font-semibold">custom your service</h1>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="grid items-center w-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid justify-center relative lg:-top-48 xl:top-0 w-full h-[350px]">
         {/* 1st row  */}
         <div className="flex justify-center w-full gap-6">
           <div className="grid w-full">

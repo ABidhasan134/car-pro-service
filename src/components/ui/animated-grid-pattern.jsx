@@ -88,7 +88,7 @@ export default function AnimatedGridPattern({
       aria-hidden="true"
       className={cn(
         `pointer-events-none absolute inset-0 z-50 min-h-screen xl:min-h-screen w-full fill-gray-400/30 stroke-gray-400/30`,
-        path === '/userDeshborad' ? 'lg:h-[1900px]' : '',
+        path === '/userDeshborad' ? 'lg:h-[1280px] md:h-[1850px] xl:h-screen h-[1820px]' : '',
         className
       )}
       {...props}
