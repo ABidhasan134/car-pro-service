@@ -6,8 +6,8 @@ const AboutSection = () => {
   return (
     <section className='relative flex justify-center p-6 mb-20 w-full'>
       <div className='w-[50%] mx-1'>
-        <Image className='relative z-10 lg:h-[400px] lg:w-[400px] md:h-[300px] md:w-[300px] h-[200px] w-[200px]' src={person} ></Image>
-        <Image  className='absolute z-20 lg:top-60 md:top-52 top-36 left-40 lg:left-48 md:left-40  border-[8px] border-white lg:h-[250px] lg:w-[300px] md:h-[200px] md:w-[200px] h-[100px] w-[100px]' src={parts}></Image>
+        <Image className='relative z-10 lg:h-[400px] lg:w-[400px] md:h-[300px] md:w-[300px] h-[200px] w-[180px]' src={person} ></Image>
+        <Image  className='absolute z-20 lg:top-60 md:top-52 top-36 left-32 lg:left-48 md:left-40  border-[8px] border-white lg:h-[250px] lg:w-[300px] md:h-[200px] md:w-[200px] h-[80px] w-[80px]' src={parts}></Image>
       </div>
       <div className='w-[50%]'>
         <h1 className='lg:text-3xl md:text-2xl text-xl text-[#e76637]'>About us</h1>
