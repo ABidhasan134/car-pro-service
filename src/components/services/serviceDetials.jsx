@@ -76,12 +76,12 @@ const ServiceDetials = ({ service }) => {
     }
   };
   return (
-    <>
-      <div className="w-[70%]">
+    <div className="lg:flex md:grid justify-center">
+      <div className="lg:w-[70%] w-full lg:ml-2 m-0 grid  justify-center">
         <Image height={200} width={200}
+        className="w-full h-[450px] rounded-sm"
           src={service.img}
           alt={service.img}
-          className="w-full h-[450px]"
         />
         <p className="my-6 text-3xl font-bold">{service.title}</p> <br />
         <p>{service.description}</p>
@@ -97,7 +97,7 @@ const ServiceDetials = ({ service }) => {
         </div>
         {/* 20% side section */}
       </div>
-      <section className="w-[30%]">
+      <section className="lg:w-[30%] w-full">
         <div className=" bg-orange-100 mx-4 py-2">
           {services.map((service,index) => {
             return (
@@ -120,7 +120,7 @@ const ServiceDetials = ({ service }) => {
         
         
       </section>
-    </>
+    </div>
   );
 };
 

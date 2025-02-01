@@ -24,7 +24,7 @@ const Page = ({ params }) => {
   if (!service) return <div>Loading...</div>;
 
   return (
-    <section>
+    <section className='container mx-auto grid'>
       <ServiceBannar></ServiceBannar>
       <section className="flex justify-center mt-20">
      <ServiceDetials service={service}></ServiceDetials>

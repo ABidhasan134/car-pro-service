@@ -135,7 +135,7 @@ const DetailsText = ({ id }) => {
   }
 
   return (
-    <div className="text-2xl grid gap-3">
+    <div className="text-2xl grid gap-3 relative md:mt-0 -mt-52">
       <p className="font-semibold">{oneProduct?.name}</p>
       <p>Brand: {oneProduct?.brand_name}</p>
       <hr />

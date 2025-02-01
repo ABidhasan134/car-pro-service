@@ -6,7 +6,7 @@ const page = ({params}) => {
   // console.log("paramiter from main details page",params.id)
   // console.log('details page hit')
   return (
-      <div className='flex justify-between mt-6 gap-6 w-full p-5'>
+      <div className='container mx-auto md:flex grid justify-between mt-6 gap-6 w-full p-5'>
     <div>
     <DetailsSlider id={params.id}></DetailsSlider>
     </div>
