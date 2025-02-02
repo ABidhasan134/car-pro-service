@@ -24,7 +24,7 @@ export default function AnimatedGridPattern({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [squares, setSquares] = useState(() => generateSquares(numSquares));
   const path=usePathname();
-  console.log(path)
+  // console.log(path)
 
   function getPos() {
     return [
