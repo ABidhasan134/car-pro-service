@@ -19,6 +19,12 @@ const UserInfo = ({ user }) => {
       </li>
     </>
   );
+  const adminDropdown=(
+    <>
+    <li><Link href='/admin'>Dash Bord</Link></li>
+    <li>profile</li>
+    </>
+  )
   return (
     <div className="flex gap-2 w-auto">
       <button className="btn btn-outline btn-error" onClick={() => signOut()}>
@@ -60,7 +66,7 @@ const UserInfo = ({ user }) => {
             tabIndex={0}
             className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow relative -left-32"
           >
-            admin panael
+           {adminDropdown}
           </ul>
         </div>
       ) : (
