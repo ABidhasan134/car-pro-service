@@ -1,7 +1,7 @@
 "use client";
 import UseUser from "@/Hooks/useUser";
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 
@@ -11,12 +11,16 @@ const BasicInfo = ({ user }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [loading, setLoading] = useState(false); // Add loading state
 
-  const [oneUser, isloading, refetch] = UseUser(user?.email);
+  const [oneUser, isLoading, refetch] = UseUser(user?.email);
+
+  useEffect(() => {
+    console.log("Updated user data:", oneUser);
+  }, [oneUser])
 
   const handleNameChange = async (data) => {
     document.getElementById("name_modal").close();
-    console.log(data);
     Swal.fire({
       title: "Are you sure?",
       text: "You want to change your name?",
@@ -27,21 +31,23 @@ const BasicInfo = ({ user }) => {
       confirmButtonText: "Yes, change it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
+        setLoading(true); // Show loading
         try {
           const response = await axios.post("/api/user/profile", {
             email: user?.email,
-            newName: data.newName, // Corrected payload
+            newName: data.newName, // Fix: Ensure correct payload
           });
-          console.log(response);
+
           if (response.status === 200) {
             Swal.fire("Updated!", "Your name has been changed.", "success");
             refetch(); // Refresh user data
-
-            
-            
+          } else {
+            Swal.fire("Error!", response.data.message, "error");
           }
         } catch (error) {
           Swal.fire("Error!", "Failed to update name.", "error");
+        } finally {
+          setLoading(false); // Hide loading
         }
       }
     });
@@ -49,7 +55,7 @@ const BasicInfo = ({ user }) => {
 
   return (
     <div className="text-center relative md:-top-24 -top-24 xl:top-0">
-      <h1 className="text-5xl">{user?.name}</h1>
+      <h1 className="text-5xl">{ oneUser?.name || user?.name}</h1>
       <h3>Role: {oneUser?.role || "user"}</h3>
       <h6>Email: {user?.email || "user001@gmail.com"}</h6>
 
@@ -88,8 +94,12 @@ const BasicInfo = ({ user }) => {
               />
               {errors.newName && <span className="text-red-500">{errors.newName.message}</span>}
 
-              <button type="submit" className="w-1/2 text-black btn bg-transparent border-[#FF3811] hover:bg-[#FF3811]">
-                Confirm Name Change
+              <button
+                type="submit"
+                disabled={loading}
+                className={`w-1/2 btn ${loading ? "opacity-50 cursor-not-allowed" : ""} bg-transparent border-[#FF3811] hover:bg-[#FF3811]`}
+              >
+                {loading ? "Updating..." : "Confirm Name Change"}
               </button>
             </form>
 
@@ -102,10 +112,6 @@ const BasicInfo = ({ user }) => {
             </div>
           </div>
         </dialog>
-
-        <button className="btn bg-transparent border-[#FF3811] hover:bg-[#FF3811] text-black">
-          Change Image
-        </button>
       </div>
     </div>
   );
