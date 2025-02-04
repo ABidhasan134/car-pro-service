@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DetailsModal from "./detailsModal";
+import Link from "next/link";
 
 const ServiceTableRow = ({ services }) => {
     const [selectedServiceId, setSelectedServiceId] = useState(null);
@@ -27,7 +28,7 @@ const ServiceTableRow = ({ services }) => {
             <td className="w-[350px]">{services?.category}</td>
             <td className="w-[350px]">{services?.price}</td>
             <td>
-                <button className="btn bg-transparent hover:bg-red-500 border-2 border-red-500">Update Service</button>
+            <Link href={`/admin/services/${services._id}`}><button className="btn bg-transparent hover:bg-red-500 border-2 border-red-500">Update Service</button></Link>
             </td>
             <th className="w-[350px]">
                 <button
