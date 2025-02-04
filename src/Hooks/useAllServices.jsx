@@ -8,7 +8,8 @@ const useAllServices = () => {
             const response= await axios.get('/api/service/allService');
             console.log(response)
             const result=response.data.result;
-            console.log("this is all services without pagination",result)
+            console.log("this is all services without pagination",result);
+            return result
         }
     })
     return [allService,isLoading,refetch];
