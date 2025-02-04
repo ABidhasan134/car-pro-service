@@ -14,8 +14,11 @@ export const sideLinks=[
   {
     url:'/admin/profile',
     title: 'profile'
+  },
+  {
+    url: '/admin/services',
+    title: "Services"
   }
-  
 ]
 const AdminSideBar = () => {
   const pathName = usePathname();
