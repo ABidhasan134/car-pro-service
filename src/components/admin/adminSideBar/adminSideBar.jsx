@@ -8,29 +8,13 @@ import { signOut } from 'next-auth/react'
 
 export const sideLinks=[
   {
-    url:'/userDeshborad',
-    title: 'Overview'
+    url:'/admin',
+    title: 'Admin panel'
   },
   {
-    url:'/userDeshborad/profile',
+    url:'/admin/profile',
     title: 'profile'
-  },
-  {
-    url:'/userDeshborad/services',
-    title: 'services'
-  },
-  {
-    url:'/userDeshborad/products',
-    title: 'products'
-  },
-  {
-    url:'/userDeshborad/Update-plans',
-    title: 'Update plans'
-  },
-  {
-    url:'/userDeshborad/payment-history',
-    title: 'Payments'
-  },
+  }
   
 ]
 const AdminSideBar = () => {
