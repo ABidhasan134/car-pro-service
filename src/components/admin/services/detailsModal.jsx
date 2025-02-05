@@ -1,41 +1,24 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+"use client";
+import React from "react";
 
-const DetailsModal = ({ serviceId }) => {
-    const [service, setService] = useState(null);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        if (!serviceId) return;
-        setLoading(true);
-        axios
-            .get(`/api/service/${serviceId}`)
-            .then((response) => {
-                setService(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching service details:", error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, [serviceId]);
-
-    if (loading) {
-        return <p>Loading details...</p>;
-    }
-
-    if (!service) {
-        return <p>No details available.</p>;
-    }
+const DetailsModal = ({ service, closeModal }) => {
+    if (!service) return null;
 
     return (
-        <div>
-            <h2 className="text-lg font-bold">{service.title}</h2>
-            <p>Category: {service.category}</p>
-            <p>Type: {service.service_type}</p>
-            <p>Price: ${service.price}</p>
-            <p>Description: {service.description}</p>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white opacity-100 p-6 rounded-lg shadow-lg w-[400px]">
+                <button
+                    onClick={closeModal}
+                    className="relative top-2 right-2 text-gray-600 hover:text-gray-900"
+                >
+                    ✕
+                </button>
+                <h2 className="text-lg font-bold">{service.title}</h2>
+                <p>Category: {service.category}</p>
+                <p>Type: {service.service_type}</p>
+                <p>Price: ${service.price}</p>
+                <p>Description: {service.description}</p>
+            </div>
         </div>
     );
 };
