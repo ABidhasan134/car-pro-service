@@ -1,5 +1,6 @@
 "use client";
 import { getServiceDetails } from "@/app/(page)/services/[id]/page";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -28,13 +29,21 @@ const UpdateService = ({ id }) => {
         facility2: result?.facility?.[1]?.name || "",
         facility2Dis: result?.facility?.[1]?.details || "",
         service_type: result?.service_type || "",
-        description: result?.description||""
+        description: result?.description || "",
       });
     };
     fetchService();
   }, [id, reset]);
-  // console.log(service);
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+  try {
+    const response = await axios.put('/api/admin/service', {data,id:service._id});
+    console.log(response.data);
+  } catch (error) {
+    console.error("Error updating service:", error);
+  }
+};
+
 
   return (
     <form
