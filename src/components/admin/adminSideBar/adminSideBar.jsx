@@ -18,6 +18,10 @@ export const sideLinks=[
   {
     url: '/admin/services',
     title: "Services"
+  },
+  {
+    url: '/admin/add-service',
+    title: "Add Service"
   }
 ]
 const AdminSideBar = () => {
