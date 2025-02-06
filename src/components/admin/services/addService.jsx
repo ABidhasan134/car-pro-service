@@ -1,8 +1,12 @@
 "use client";
+import axios from "axios";
+import { useRouter } from 'next/navigation';
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const AddService = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -10,7 +14,20 @@ const AddService = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const response = await axios.post('/api/admin/service',data)
+    console.log(response.data.result);
+    if(response?.data?.result?.insertedId){
+      Swal.fire({
+        title: "New service Add!",
+        icon: "success",
+        draggable: true
+      });
+      setTimeout(()=>{
+        router.push('/admin/services')
+      },2000)
+    }
+  }
 
   return (
     <form
