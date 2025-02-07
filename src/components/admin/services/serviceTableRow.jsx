@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DetailsModal from "./detailsModal";
 import Link from "next/link";
+import { AiFillDelete } from "react-icons/ai";
 
 const ServiceTableRow = ({ services }) => {
     const [selectedService, setSelectedService] = useState(null);
@@ -40,6 +41,9 @@ const ServiceTableRow = ({ services }) => {
                             Update Service
                         </button>
                     </Link>
+                </td>
+                <td>
+                    <button className="btn bg-transparent hover:bg-red-500 border-2 border-red-500"><AiFillDelete className="text-black"></AiFillDelete></button>
                 </td>
                 <th className="w-[350px]">
                     <button

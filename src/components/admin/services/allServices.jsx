@@ -19,6 +19,7 @@ const AllServices = () => {
             <th>category </th>
             <th>price </th>
             <th>update service</th>
+            <th>Delete service</th>
             <th></th>
           </tr>
         </thead>
