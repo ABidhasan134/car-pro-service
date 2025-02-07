@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import DetailsModal from "./detailsModal";
 import Link from "next/link";
 import { AiFillDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-const ServiceTableRow = ({ services }) => {
+const ServiceTableRow = ({ services,refetch }) => {
     const [selectedService, setSelectedService] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,6 +18,30 @@ const ServiceTableRow = ({ services }) => {
         setSelectedService(null);
         setIsModalOpen(false);
     };
+
+    const handelDelete=()=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async(result) => {
+            const response= await axios.delete(`/api/admin/service/${services._id}`)
+            console.log (response.data);
+            if (result.isConfirmed && response.data.result) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            
+            refetch();
+            }
+          });
+    }
 
     return (
         <>
@@ -43,7 +69,7 @@ const ServiceTableRow = ({ services }) => {
                     </Link>
                 </td>
                 <td>
-                    <button className="btn bg-transparent hover:bg-red-500 border-2 border-red-500"><AiFillDelete className="text-black"></AiFillDelete></button>
+                    <button className="btn bg-transparent hover:bg-red-500 border-2 border-red-500" onClick={handelDelete}><AiFillDelete className="text-black"></AiFillDelete></button>
                 </td>
                 <th className="w-[350px]">
                     <button

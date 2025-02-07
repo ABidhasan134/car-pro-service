@@ -29,6 +29,7 @@ const AllServices = () => {
             return (
               <ServiceTableRow
                 services={services}
+                refetch={refetch}
                 key={index}
               ></ServiceTableRow>
             );
