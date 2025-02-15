@@ -1,6 +1,7 @@
 'use client'
 import useProducts from '@/Hooks/useProducts'
 import React from 'react'
+import ProductRowAdmin from './productRowAdmin'
 
 const ProductTable = () => {
  const [productss, isLoading, refetch]=useProducts()
@@ -15,20 +16,23 @@ const ProductTable = () => {
     <thead>
       <tr>
         <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>Product Name</th>
+        <th>Brand Name</th>
+        <th>category</th>
+        <th>quantity available</th>
+        <th>price(1 pic)</th>
+        <th>Retailer Name</th>
+        <th>size available</th>
       </tr>
     </thead>
     <tbody>
       {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      
+      {
+        productss.map((product,index)=>{
+          return(
+          <ProductRowAdmin key={index} product={product} index={index} refetch={refetch}></ProductRowAdmin>)
+        })
+      }
     </tbody>
   </table>
 </div>
