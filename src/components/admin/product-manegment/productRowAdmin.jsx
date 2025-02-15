@@ -1,8 +1,22 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
+import DetailsModal from '../services/detailsModal';
 
 const ProductRowAdmin = ({product,index,refetch}) => {
-    console.log(product,index)
+  const [selectedProduct, setSelectedProduct] = useState(null);
+      const [isModalOpen, setIsModalOpen] = useState(false);
+      const openModal = (product) => {
+        setSelectedProduct(product);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setSelectedProduct(null);
+        setIsModalOpen(false);
+    };
+    // console.log(product,index)
   return (
+           <>
     <tr>
            <th>{index+1}</th>
            <td>{product.name}</td>
@@ -12,8 +26,20 @@ const ProductRowAdmin = ({product,index,refetch}) => {
            <td>{product.price}</td>
            <td>{product.size}</td>
            <td>{product.retailer_name}</td>
-           <td></td>
+           {/* Modal */}
+           <th className="w-[350px]">
+                    <button
+                        className="btn bg-transparent hover:bg-red-500 border-2 border-red-500"
+                        onClick={() => openModal(product)}
+                    >
+                        Details
+                    </button>
+                </th>
          </tr>
+         {isModalOpen && (
+                <DetailsModal service={selectedProduct} closeModal={closeModal} />
+            )}
+      </>
   )
 }
 
