@@ -36,14 +36,16 @@ const UpdateService = ({ id }) => {
   }, [id, reset]);
 
   const onSubmit = async (data) => {
-  try {
-    const response = await axios.put('/api/admin/service', {data,id:service._id});
-    console.log(response.data);
-  } catch (error) {
-    console.error("Error updating service:", error);
-  }
-};
-
+    try {
+      const response = await axios.put("/api/admin/service", {
+        data,
+        id: service._id,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error updating service:", error);
+    }
+  };
 
   return (
     <form
