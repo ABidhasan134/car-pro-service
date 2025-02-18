@@ -1,5 +1,6 @@
 "use client";
 import useOneProduct from "@/Hooks/useOneProduct";
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -12,7 +13,7 @@ const UpdateProductAdmin = ({ id }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     // Assign default values if fields are empty
     const updatedData = {
       productId: data.productId || oneProduct._id || oneProduct.id,
@@ -26,7 +27,9 @@ const UpdateProductAdmin = ({ id }) => {
       size: data.size || oneProduct.size,
       description: data.description || oneProduct.description,
     };
-    console.log("Updated Product Data:", updatedData);
+    const response=await axios.put(`/api/admin/productManage/${oneProduct._id}`,updatedData)
+    const result=response.data
+    console.log("Updated Product Data:", result);
   };
 
   return (
