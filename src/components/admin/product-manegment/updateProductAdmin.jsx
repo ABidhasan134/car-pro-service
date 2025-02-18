@@ -15,18 +15,17 @@ const UpdateProductAdmin = ({ id }) => {
   const onSubmit = (data) => {
     // Assign default values if fields are empty
     const updatedData = {
-      productId: oneProduct._id || oneProduct.id,
+      productId: data.productId || oneProduct._id || oneProduct.id,
       name: data.name || oneProduct.name,
       image: data.image || oneProduct.image,
       review: data.review || oneProduct.review,
       price: data.price || oneProduct.price,
       retailer_name: data.retailer_name || oneProduct.retailer_name,
       brand_name: data.brand_name || oneProduct.brand_name,
+      quantity: data.quantity || oneProduct.quantity,
       size: data.size || oneProduct.size,
       description: data.description || oneProduct.description,
-      quantity: data.quantity || oneProduct.quantity,
     };
-
     console.log("Updated Product Data:", updatedData);
   };
 
@@ -44,8 +43,7 @@ const UpdateProductAdmin = ({ id }) => {
             type="text"
             id="productId"
             defaultValue={oneProduct._id || oneProduct.id}
-            className="w-full p-4 mb-4 rounded-md border-2 border-gray-300 focus:outline-none bg-gray-100 cursor-not-allowed"
-            readOnly
+            className="w-full p-4 mb-4 rounded-md border-2 border-gray-300 focus:outline-none bg-gray-100 "
             {...register("productId")}
           />
         </div>
@@ -63,7 +61,9 @@ const UpdateProductAdmin = ({ id }) => {
             }`}
             {...register("name")}
           />
-          {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+          {errors.name && (
+            <span className="text-red-500">{errors.name.message}</span>
+          )}
         </div>
       </div>
 
@@ -82,25 +82,39 @@ const UpdateProductAdmin = ({ id }) => {
             }`}
             {...register("image")}
           />
-          {errors.image && <span className="text-red-500">{errors.image.message}</span>}
+          {errors.image && (
+            <span className="text-red-500">{errors.image.message}</span>
+          )}
         </div>
 
         {/* Review Field */}
         <div className="grid w-full">
-          <label htmlFor="review">Review Score</label>
-          <input
-            type="number"
-            id="review"
-            placeholder="Enter review score"
-            defaultValue={oneProduct.review}
-            step="0.1"
-            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
-              errors.review ? "border-red-600" : "border-gray-300"
-            }`}
-            {...register("review")}
-          />
-          {errors.review && <span className="text-red-500">{errors.review.message}</span>}
-        </div>
+  <label htmlFor="review">Review Score</label>
+  <input
+    type="number"
+    id="review"
+    placeholder="Enter review score"
+    defaultValue={oneProduct.review}
+    step="0.1"
+    className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+      errors.review ? "border-red-600" : "border-gray-300"
+    }`}
+    {...register("review", {
+      max: {
+        value: 5,
+        message: "Your rating should be less than or equal to 5",
+      },
+      min: {
+        value: 0,
+        message: "Your rating should be at least 0",
+      },
+    })}
+  />
+  {errors.review && (
+    <span className="text-red-500">{errors.review.message}</span>
+  )}
+</div>
+
       </div>
 
       {/* 3rd Row: Price & Quantity */}
@@ -118,7 +132,9 @@ const UpdateProductAdmin = ({ id }) => {
             }`}
             {...register("price")}
           />
-          {errors.price && <span className="text-red-500">{errors.price.message}</span>}
+          {errors.price && (
+            <span className="text-red-500">{errors.price.message}</span>
+          )}
         </div>
 
         {/* Quantity Field */}
@@ -135,7 +151,9 @@ const UpdateProductAdmin = ({ id }) => {
             }`}
             {...register("quantity")}
           />
-          {errors.quantity && <span className="text-red-500">{errors.quantity.message}</span>}
+          {errors.quantity && (
+            <span className="text-red-500">{errors.quantity.message}</span>
+          )}
         </div>
       </div>
 
@@ -154,7 +172,9 @@ const UpdateProductAdmin = ({ id }) => {
             }`}
             {...register("retailer_name")}
           />
-          {errors.retailer_name && <span className="text-red-500">{errors.retailer_name.message}</span>}
+          {errors.retailer_name && (
+            <span className="text-red-500">{errors.retailer_name.message}</span>
+          )}
         </div>
 
         {/* Brand Name Field */}
@@ -170,10 +190,50 @@ const UpdateProductAdmin = ({ id }) => {
             }`}
             {...register("brand_name")}
           />
-          {errors.brand_name && <span className="text-red-500">{errors.brand_name.message}</span>}
+          {errors.brand_name && (
+            <span className="text-red-500">{errors.brand_name.message}</span>
+          )}
         </div>
       </div>
-
+      {/* 5th Row: discription & size */}
+      <div className="flex justify-center w-full gap-6">
+        {/* size Field */}
+        <div className="grid w-full">
+          <label htmlFor="size">product size</label>
+          <input
+            type="text"
+            id="size"
+            placeholder={oneProduct.size}
+            defaultValue={oneProduct.size}
+            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+              errors.size ? "border-red-600" : "border-gray-300"
+            }`}
+            {...register("size")}
+          />
+          {errors.size && (
+            <span className="text-red-500">{errors.size.message}</span>
+          )}
+        </div>
+        
+        {/* description Field */}
+        <div className="grid w-full">
+          <label htmlFor="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            placeholder={oneProduct.description}
+            defaultValue={oneProduct.description}
+            step="0.1"
+            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+              errors.description ? "border-red-600" : "border-gray-300"
+            }`}
+            {...register("description")}
+          />
+          {errors.description && (
+            <span className="text-red-500">{errors.description.message}</span>
+          )}
+        </div>
+      </div>
       {/* Submit Button */}
       <div className="flex justify-center w-full">
         <button
