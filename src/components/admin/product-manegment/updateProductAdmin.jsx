@@ -1,24 +1,28 @@
 "use client";
 import useOneProduct from "@/Hooks/useOneProduct";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const UpdateProductAdmin = ({ id }) => {
   const [oneProduct, isLoading, refetch] = useOneProduct(id);
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = async(data) => {
+  if(isLoading){
+    return <p>Loading...</p>
+  }
+  const onSubmit = async (data) => {
     // Assign default values if fields are empty
     const updatedData = {
       productId: data.productId || oneProduct._id || oneProduct.id,
       name: data.name || oneProduct.name,
-      image: data.image || oneProduct.image,
       review: data.review || oneProduct.review,
       price: data.price || oneProduct.price,
       retailer_name: data.retailer_name || oneProduct.retailer_name,
@@ -26,12 +30,32 @@ const UpdateProductAdmin = ({ id }) => {
       quantity: data.quantity || oneProduct.quantity,
       size: data.size || oneProduct.size,
       description: data.description || oneProduct.description,
+      image: [data.image1, data.image2, data.image3, data.image4] ||[oneProduct.image],
     };
-    const response=await axios.put(`/api/admin/productManage/${oneProduct._id}`,updatedData)
-    const result=response.data
+    const response = await axios.put(
+      `/api/admin/productManage/${oneProduct._id}`,
+      updatedData
+    );
+    const result = response.data.result;
     console.log("Updated Product Data:", result);
+    if(result.modifiedCount>0){
+      refetch();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      setTimeout(()=>{
+        router.push('/admin/product-managment')
+      },2000)
+    }
+    else{
+      console.log('your product could not be updated')
+    }
   };
-
+  console.log(oneProduct.image)
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -74,50 +98,49 @@ const UpdateProductAdmin = ({ id }) => {
       <div className="flex justify-center w-full gap-6">
         {/* Image Field */}
         <div className="grid w-full">
-          <label htmlFor="image">Image URL</label>
+          <label htmlFor="offer">Offer</label>
           <input
-            type="url"
-            id="image"
-            placeholder="Enter image URL"
-            defaultValue={oneProduct.image}
+            type="text"
+            id="offer"
+            placeholder={oneProduct.offer || "Enter your offer"}
+            defaultValue={oneProduct.offer}
             className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
-              errors.image ? "border-red-600" : "border-gray-300"
+              errors.offer ? "border-red-600" : "border-gray-300"
             }`}
-            {...register("image")}
+            {...register("offer")}
           />
-          {errors.image && (
-            <span className="text-red-500">{errors.image.message}</span>
+          {errors.offer && (
+            <span className="text-red-500">{errors.offer.message}</span>
           )}
         </div>
 
         {/* Review Field */}
         <div className="grid w-full">
-  <label htmlFor="review">Review Score</label>
-  <input
-    type="number"
-    id="review"
-    placeholder="Enter review score"
-    defaultValue={oneProduct.review}
-    step="0.1"
-    className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
-      errors.review ? "border-red-600" : "border-gray-300"
-    }`}
-    {...register("review", {
-      max: {
-        value: 5,
-        message: "Your rating should be less than or equal to 5",
-      },
-      min: {
-        value: 0,
-        message: "Your rating should be at least 0",
-      },
-    })}
-  />
-  {errors.review && (
-    <span className="text-red-500">{errors.review.message}</span>
-  )}
-</div>
-
+          <label htmlFor="review">Reating</label>
+          <input
+            type="number"
+            id="review"
+            placeholder="Enter review score"
+            defaultValue={oneProduct.review}
+            step="0.1"
+            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+              errors.review ? "border-red-600" : "border-gray-300"
+            }`}
+            {...register("review", {
+              max: {
+                value: 5,
+                message: "Your rating should be less than or equal to 5",
+              },
+              min: {
+                value: 0,
+                message: "Your rating should be at least 0",
+              },
+            })}
+          />
+          {errors.review && (
+            <span className="text-red-500">{errors.review.message}</span>
+          )}
+        </div>
       </div>
 
       {/* 3rd Row: Price & Quantity */}
@@ -217,7 +240,7 @@ const UpdateProductAdmin = ({ id }) => {
             <span className="text-red-500">{errors.size.message}</span>
           )}
         </div>
-        
+
         {/* description Field */}
         <div className="grid w-full">
           <label htmlFor="description">Description</label>
@@ -234,6 +257,82 @@ const UpdateProductAdmin = ({ id }) => {
           />
           {errors.description && (
             <span className="text-red-500">{errors.description.message}</span>
+          )}
+        </div>
+      </div>
+      {/* 6th Row: Image1 & Image2 */}
+      <div className="flex justify-center w-full gap-6">
+        {/* Image1 Field */}
+        <div className="grid w-full">
+          <label htmlFor="image1">Image URL1</label>
+          <input
+            type="url"
+            id="image1"
+            placeholder={ oneProduct?.image[0] || oneProduct.image||"Enter your 1st image"}
+            defaultValue={oneProduct?.image[0] || ''}
+            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+              errors.image1 ? "border-red-600" : "border-gray-300"
+            }`}
+            {...register("image1")}
+          />
+          {errors.image1 && (
+            <span className="text-red-500">{errors.image1.message}</span>
+          )}
+        </div>
+
+        {/* Image1 Field */}
+        <div className="grid w-full">
+          <label htmlFor="image2">Image URL2</label>
+          <input
+            type="url"
+            id="image2"
+            placeholder={ oneProduct.image[1] || oneProduct.image || "Enter your 2nd image"}
+            defaultValue={oneProduct.image[1] || oneProduct.image}
+            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+              errors.image2 ? "border-red-600" : "border-gray-300"
+            }`}
+            {...register("image2")}
+          />
+          {errors.image2 && (
+            <span className="text-red-500">{errors.image2.message}</span>
+          )}
+        </div>
+      </div>
+       {/* 7th Row: Image3 & Image4 */}
+       <div className="flex justify-center w-full gap-6">
+        {/* Image1 Field */}
+        <div className="grid w-full">
+          <label htmlFor="image3">Image URL3</label>
+          <input
+            type="url"
+            id="image3"
+            placeholder={ oneProduct.image[2] || oneProduct.image || "Enter your 3rd image"}
+            defaultValue={oneProduct.image[2] || oneProduct.image}
+            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+              errors.image3 ? "border-red-600" : "border-gray-300"
+            }`}
+            {...register("image3")}
+          />
+          {errors.image3 && (
+            <span className="text-red-500">{errors.image3.message}</span>
+          )}
+        </div>
+
+        {/* Image1 Field */}
+        <div className="grid w-full">
+          <label htmlFor="image4">Image URL4</label>
+          <input
+            type="url"
+            id="image4"
+            placeholder={ oneProduct.image[3] || oneProduct.image || "Enter your 4th image"}
+            defaultValue={oneProduct.image[3]}
+            className={`w-full p-4 mb-4 rounded-md border-2 focus:outline-none ${
+              errors.image4 ? "border-red-600" : "border-gray-300"
+            }`}
+            {...register("image4")}
+          />
+          {errors.image4 && (
+            <span className="text-red-500">{errors.image4.message}</span>
           )}
         </div>
       </div>
