@@ -6,6 +6,9 @@ import Link from 'next/link';
 const ProductRowAdmin = ({product,index,refetch}) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
       const [isModalOpen, setIsModalOpen] = useState(false);
+      const handelDelete=(id)=>{
+        console.log("delete btn hiting here",id);
+    }
       const openModal = (product) => {
         setSelectedProduct(product);
         setIsModalOpen(true);
@@ -15,6 +18,7 @@ const ProductRowAdmin = ({product,index,refetch}) => {
         setSelectedProduct(null);
         setIsModalOpen(false);
     };
+    
     // console.log(product,index)
   return (
            <>
@@ -27,7 +31,6 @@ const ProductRowAdmin = ({product,index,refetch}) => {
            <td>{product.price}</td>
            <td>{product.size}</td>
            <td>{product.retailer_name}</td>
-           {/* Modal */}
            <td>
                     <Link href={`/admin/product-managment/${product._id}`}>
                         <button className="btn bg-transparent hover:bg-red-500 border-2 border-red-500">
@@ -35,6 +38,15 @@ const ProductRowAdmin = ({product,index,refetch}) => {
                         </button>
                     </Link>
                 </td>
+           <td>
+                    
+                        <button onClick={()=>handelDelete(product._id)} className="btn bg-transparent hover:bg-red-500 border-2 border-red-500">
+                            Delete
+                        </button>
+                    
+                </td>
+           {/* Modal */}
+           
            <th className="w-[350px]">
                     <button
                         className="btn bg-transparent hover:bg-red-500 border-2 border-red-500"
@@ -43,6 +55,7 @@ const ProductRowAdmin = ({product,index,refetch}) => {
                         Details
                     </button>
                 </th>
+                
          </tr>
          {isModalOpen && (
                 <DetailsModal service={selectedProduct} closeModal={closeModal} />
