@@ -1,4 +1,5 @@
 'use client'
+import axios from 'axios';
 import React from 'react'
 import { useForm } from "react-hook-form";
 
@@ -9,12 +10,26 @@ const AddProductFromAdmin = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const hendelAddProduct =async (data) => {
     console.log(data);
+    const info={
+      productId: data.productId,
+      name: data.name,
+      offer: data.offer,
+      price: data.price,
+      retailer_name: data.retailer_name,
+      brand_name: data.brand_name,
+      quantity: data.quantity,
+      size: data.size,
+      description: data.description,
+      image: [data.image1, data.image2, data.image3, data.image4],
+    }
+    const response= await axios.post("/api/products",info)
+    console.log(response.data);
   }
   return (
     <form
-    onSubmit={handleSubmit(onSubmit)}
+    onSubmit={handleSubmit(hendelAddProduct)}
     className="grid justify-center relative lg:-top-48 xl:top-0 w-full h-auto"
   >
     {/* 1st Row: Product ID & Name */}
@@ -29,12 +44,12 @@ const AddProductFromAdmin = () => {
           {...register("productId",{
             required: "product ID is required",
             min:{
-                value: 2,
+                value: 1,
                 message: "Product ID must be 2 characters long"
             },
             max:{
-                value: 10,
-                message: "Product ID not more than 10 characters long"
+                value: 1000,
+                message: "Product ID not more than 1000 characters long"
             }
           })}
         />
@@ -317,7 +332,7 @@ const AddProductFromAdmin = () => {
     </div>
     {/* Submit Button */}
     <div className="flex justify-center w-full">
-      <button
+      <button 
         type="submit"
         className="w-2/3 hover:bg-black hover:text-white p-4 mt-5 font-bold text-gray-500 rounded-full shadow-lg cursor-pointer bg-inherit"
       >
