@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
 
 const AddProductFromAdmin = () => {
   const {
@@ -26,6 +27,29 @@ const AddProductFromAdmin = () => {
     }
     const response= await axios.post("/api/products",info)
     console.log(response.data);
+    if(response.data.status ===409){
+      // alert("your product Id is not valid")
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "your product Id is not valid",
+      });
+    }
+    if(response.data.status ===500){
+      // alert("your product Id is not valid")
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "you can not add product",
+      });
+    }
+    if(response.data.status ===201){
+      // alert("your product Id is not valid")
+      Swal.fire({
+        icon: "success",
+        text: "you product add successfuly",
+      });
+    }
   }
   return (
     <form
@@ -40,6 +64,7 @@ const AddProductFromAdmin = () => {
         <input
           type="text"
           id="productId"
+          placeholder='Enter your product ID'
           className="w-full p-4 mb-4 rounded-md border-2 border-gray-300 focus:outline-none bg-gray-100 "
           {...register("productId",{
             required: "product ID is required",
