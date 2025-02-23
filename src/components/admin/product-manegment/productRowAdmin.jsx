@@ -2,12 +2,15 @@
 import React, { useState } from 'react'
 import DetailsModal from '../services/detailsModal';
 import Link from 'next/link';
+import axios from 'axios';
 
 const ProductRowAdmin = ({product,index,refetch}) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
       const [isModalOpen, setIsModalOpen] = useState(false);
-      const handelDelete=(id)=>{
-        console.log("delete btn hiting here",id);
+      const handelDelete=async(id)=>{
+        // console.log("delete btn hiting here",id);
+        const response= await axios.delete(`/api/products/${id}`);
+        console.log(response.data)
     }
       const openModal = (product) => {
         setSelectedProduct(product);

@@ -82,3 +82,27 @@ export async function POST(request, { params }) {
     });
   }
 }
+
+export async function DELETE(request,{params}){
+  const db= await connectionDB();
+  
+ try{
+  const productListCollection = db.collection("productsList");
+  const id=params.id
+  const filter={_id: new ObjectId(id)}
+  console.log(filter);
+  const result= await productListCollection.deleteOne(filter);
+  return NextResponse.json({
+    message: "Successful delete",
+    status: 200,
+    result
+  })
+ }
+ catch(error){
+  console.log("Have to fix",error);
+  return NextResponse.json({
+    message: "deletion faild",
+    status: 500
+  })
+ }
+}
