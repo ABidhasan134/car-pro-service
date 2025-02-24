@@ -30,6 +30,10 @@ export const sideLinks=[
   {
     url: '/admin/product-managment',
     title: "Manage Products"
+  },
+  {
+    url: '/admin/custom-products',
+    title: "custom products"
   }
 ]
 const AdminSideBar = () => {

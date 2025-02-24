@@ -7,7 +7,7 @@ import avater from "../../../public/assets/avater.png";
 const UserInfo = ({ user }) => {
   // console.log(user.email)
   const [oneUser, isloading, refetch] = UseUser(user.email);
-  console.log(oneUser);
+  // console.log(oneUser);
 
   const useDropdown = (
     <>
