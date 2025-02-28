@@ -1,8 +1,10 @@
 'use client'
+import useAllUser from '@/Hooks/useAllUser'
 import React from 'react'
 
 const CustomProductTable = () => {
-    
+    const  [AllUser,refetch,isLoading]=useAllUser();
+    console.log(AllUser);
   return (
     <div className="overflow-x-auto">
   <table className="table">
