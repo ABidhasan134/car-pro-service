@@ -1,10 +1,11 @@
 'use client'
 import useAllUser from '@/Hooks/useAllUser'
 import React from 'react'
+import CustomTableRow from './customTableRow';
 
 const CustomProductTable = () => {
     const  [AllUser,refetch,isLoading]=useAllUser();
-    console.log(AllUser);
+    // console.log(AllUser);
   return (
     <div className="overflow-x-auto">
   <table className="table">
@@ -19,12 +20,13 @@ const CustomProductTable = () => {
     </thead>
     <tbody>
       {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
+      {
+        AllUser.map((user,index)=>{
+          return (
+            <CustomTableRow user={user} key={index}></CustomTableRow>
+          )
+        })
+      }
     </tbody>
   </table>
 </div>
