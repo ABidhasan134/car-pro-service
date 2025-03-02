@@ -18,6 +18,7 @@ const CoustomService = () => {
       }
       console.log(data)
       const customInfo={
+        userEmail: sesseion?.data?.user?.email,
         bookingemail: data.email,
         bookingName: data.name,
         bookingPhone:data.phone,

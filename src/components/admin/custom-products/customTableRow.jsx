@@ -2,7 +2,9 @@ import React from 'react';
 
 const CustomTableRow = ({ user }) => {
   console.log('Single user:', user?.customservices);
-
+  const changeStatus=(status )=>{
+    console.log(status);
+  }
   return (
     <>
       {user?.customservices?.length > 0
@@ -14,7 +16,40 @@ const CustomTableRow = ({ user }) => {
               <td>{service.bookingPhone}</td>
               <td>{service.vehicalName}</td>
               <td>{service.dateTime}</td>
-              <td>{service.bookingStatus}</td>
+              <td className='flex items-center'>{service.bookingStatus}
+              {
+              (service.bookingStatus === "panding" && <div className="dropdown ml-2">
+                <div tabIndex={0} role="button" className="h-6 w-6 rounded-full bg-blue-600  ooltip"></div>
+                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                  <li><button onClick={()=>changeStatus("confirm")}>confirm</button></li>
+                  <li><button onClick={()=>changeStatus("rejected")}>rejected</button></li>
+                </ul>
+              </div> )||
+              
+                (service.bookingStatus === "confirm" && <div className="dropdown ml-2">
+                  <div tabIndex={0} role="button" className="h-6 w-6 rounded-full bg-green-600  ooltip"></div>
+                  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                    <li><button onClick={()=>changeStatus("pending")}>pending</button></li>
+                    <li><button onClick={()=>changeStatus("rejected")}>rejected</button></li>
+                  </ul>
+                </div> ) ||
+                (service.bookingStatus === "rejected" && <div className="dropdown ml-2">
+                  <div tabIndex={0} role="button" className="h-6 w-6 rounded-full bg-red-600  ooltip"></div>
+                  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                    <li><button onClick={()=>changeStatus("confirm")}>confirm</button></li>
+                    <li><button onClick={()=>changeStatus("pending")}>pending</button></li>
+                  </ul>
+                </div> ) ||
+                (service.bookingStatus?"":  <div className="dropdown ml-14">
+                  <div tabIndex={0} role="button" className="h-6 w-6 rounded-full bg-red-600  ooltip"></div>
+                  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                    <li><button onClick={()=>changeStatus("confirm")}>confirm</button></li>
+                    <li><button onClick={()=>changeStatus("pending")}>pending</button></li>
+                    <li><button onClick={()=>changeStatus("rejected")}>rejected</button></li>
+                  </ul>
+                </div>)
+                } 
+              </td>
             </tr>
           ))
         : null}
