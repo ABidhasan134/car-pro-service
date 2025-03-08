@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function PUT(request,{params}){
+    console.log(params.email);
     try{
         return NextResponse.json({
             message: "custom service sucessfully",
