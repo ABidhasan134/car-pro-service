@@ -6,7 +6,7 @@ const CustomTableRow = ({ user }) => {
   console.log(user)
     const changeStatus =async (status, userEmail) => {
     console.log(status, userEmail);
-    const response= await axios.put(`/api/admin/customService/${userEmail}`);
+    const response= await axios.put(`/api/admin/customService/${userEmail}`,{bookingStatus:status});
     console.log(response.data)
   };
 
