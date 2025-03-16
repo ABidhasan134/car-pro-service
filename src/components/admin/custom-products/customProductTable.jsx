@@ -27,7 +27,7 @@ const CustomProductTable = () => {
       {
         AllUser.map((user,index)=>{
           return (
-            <CustomTableRow user={user} key={index}></CustomTableRow>
+            <CustomTableRow user={user}  key={index}></CustomTableRow>
           )
         })
       }

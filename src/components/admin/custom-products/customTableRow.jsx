@@ -1,13 +1,36 @@
 'use client'
+import useAllUser from '@/Hooks/useAllUser';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Swal from 'sweetalert2';
 
 const CustomTableRow = ({ user }) => {
+  const  [AllUser,refetch,isLoading]=useAllUser();
   console.log(user)
     const changeStatus =async (status, userEmail) => {
     console.log(status, userEmail);
     const response= await axios.put(`/api/admin/customService/${userEmail}`,{bookingStatus:status});
-    console.log(response.data)
+    console.log(response.data.result)
+    if(response.data.result.modifiedCount>0){
+      Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your have update custom service status",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        refetch();
+    }
+    else{
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Your can't update this service",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    
   };
 
   return (
