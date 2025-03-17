@@ -3,10 +3,12 @@ import useAllUser from '@/Hooks/useAllUser';
 import axios from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
+import { MdDelete } from "react-icons/md";
+
 
 const CustomTableRow = ({ user }) => {
   const  [AllUser,refetch,isLoading]=useAllUser();
-  console.log(user)
+  // console.log(user)
     const changeStatus =async (status, userEmail) => {
     console.log(status, userEmail);
     const response= await axios.put(`/api/admin/customService/${userEmail}`,{bookingStatus:status});
@@ -32,6 +34,12 @@ const CustomTableRow = ({ user }) => {
     }
     
   };
+
+  const handelDelete=async()=>{
+    console.log("delete event fire")
+  
+
+  }
 
   return (
     <>
@@ -75,6 +83,7 @@ const CustomTableRow = ({ user }) => {
                   </div>
                 )}
               </td>
+              <td onClick={handelDelete} className='text-3xl hover:text-red-500 hover:cursor-pointer'><MdDelete /></td>
             </tr>
           ))
         : null}

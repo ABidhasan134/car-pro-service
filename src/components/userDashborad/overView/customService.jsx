@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import uuid4 from 'uuid4';
 
 const CoustomService = () => {
   const [dateError,setDateError]=useState();
@@ -18,6 +19,7 @@ const CoustomService = () => {
       }
       console.log(data)
       const customInfo={
+        customID: uuid4().slice(0,4),
         userEmail: sesseion?.data?.user?.email,
         bookingemail: data.email,
         bookingName: data.name,
