@@ -31,3 +31,39 @@ export async function PUT(request, { params }) {
         });
     }
 }
+export async function DELETE(request, { params }) {
+    try {
+        const db = await connectionDB();
+        const userCollection = db.collection("users"); // Ensure this matches your DB setup
+        const body = await request.json();
+        const userEmail = params.email; 
+        const  customID  = body.customID;
+
+        console.log("Deleting:",  customID, userEmail );
+
+        const result = await userCollection.updateOne(
+            { email: userEmail }, // Match the correct user email field
+            { $pull: { customservices: { customID: customID } } } // Match customID as a string
+        );
+
+        if (result.modifiedCount === 0) {
+            return NextResponse.json({
+                message: "Custom service not found or already deleted",
+                status: 404,
+            });
+        }
+        console.log(result);
+        return NextResponse.json({
+            message: "Custom service deleted successfully",
+            status: 200,
+            result
+        });
+
+    } catch (error) {
+        console.error("Delete Error:", error);
+        return NextResponse.json({
+            message: "Something went wrong",
+            status: 500
+        });
+    }
+}

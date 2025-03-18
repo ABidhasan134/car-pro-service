@@ -35,11 +35,19 @@ const CustomTableRow = ({ user }) => {
     
   };
 
-  const handelDelete=async()=>{
-    console.log("delete event fire")
-  
+  const handleDelete = async (customID, userEmail) => {
+    try {
+        console.log("Deleting:", customID, userEmail);
+        
+        const response = await axios.delete(`/api/admin/customService/${userEmail}`, {
+            data: { customID }
+        });
 
-  }
+        console.log("Response:", response.data);
+    } catch (error) {
+        console.error("Error deleting custom service:", error);
+    }
+};
 
   return (
     <>
@@ -56,13 +64,16 @@ const CustomTableRow = ({ user }) => {
               <td className="flex items-center">
                 {service.bookingStatus}
                 {service.bookingStatus === "panding" && (
-                  <div className="dropdown ml-2">
+                <>
+                  <div className="dropdown ml-2 mr-2">
                     <div tabIndex={0} role="button" className="h-6 w-6 rounded-full bg-blue-600 tooltip"></div>
                     <ul tabIndex={0} className="z-50 dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow-sm">
                       <li><button onClick={() => changeStatus("confirm", service.userEmail)}>Confirm</button></li>
                       <li><button onClick={() => changeStatus("rejected", service.userEmail)}>Rejected</button></li>
                     </ul>
                   </div>
+                    <button onClick={()=>handleDelete( service.customID,service.userEmail )} className='text-3xl hover:text-red-500 hover:cursor-pointer'><MdDelete /></button>
+                  </>
                 )}
                 {service.bookingStatus === "confirm" && (
                   <div className="dropdown ml-2">
@@ -71,6 +82,7 @@ const CustomTableRow = ({ user }) => {
                       <li><button onClick={() => changeStatus("pending", service.userEmail)}>Pending</button></li>
                       <li><button onClick={() => changeStatus("rejected", service.userEmail)}>Rejected</button></li>
                     </ul>
+                    <button onClick={handleDelete} className='text-3xl hover:text-red-500 hover:cursor-pointer'><MdDelete /></button>
                   </div>
                 )}
                 {service.bookingStatus === "rejected" && (
@@ -80,10 +92,11 @@ const CustomTableRow = ({ user }) => {
                       <li><button onClick={() => changeStatus("confirm", service.userEmail)}>Confirm</button></li>
                       <li><button onClick={() => changeStatus("pending", service.userEmail)}>Pending</button></li>
                     </ul>
+                    <button onClick={handleDelete} className='text-3xl hover:text-red-500 hover:cursor-pointer'><MdDelete /></button>
                   </div>
                 )}
               </td>
-              <td onClick={handelDelete} className='text-3xl hover:text-red-500 hover:cursor-pointer'><MdDelete /></td>
+              
             </tr>
           ))
         : null}
