@@ -1,40 +1,59 @@
 'use client'
 import useAllUser from '@/Hooks/useAllUser'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import CustomTableRow from './customTableRow';
+import TitleAndSub from '@/components/shared/titleAndSub';
 
 const CustomProductTable = () => {
-    const  [AllUser,refetch,isLoading]=useAllUser();
-    // console.log(AllUser);
-   
+    const [AllUser, refetch, isLoading] = useAllUser();
+    const [totalServiceArr, setTotalServiceArr] = useState([]);
+    // const totalCustomServiceNo=totalServiceArr.length();
+    // Calculate total number of custom services
+    const totalCustomServices = AllUser?.reduce((sum, user) => {
+      return sum + (user.customservices?.length || 0);
+    }, 0);
+
+    // Update totalServiceArr when totalCustomServices changes
+    useEffect(() => {
+      const newArray = Array.from({ length: totalCustomServices }, (_, idx) => idx + 1);
+      setTotalServiceArr(newArray);
+    }, [totalCustomServices]);
+
+
   return (
+    <>
+    <TitleAndSub title={`Total custom service is ${totalCustomServices}`}></TitleAndSub>
     <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>user Email</th>
-        <th>Booking Email</th>
-        <th>user Name</th>
-        <th>Phone</th>
-        <th>Model</th>
-        <th>Time and date</th>
-        <th>status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      {
-        AllUser.map((user,index)=>{
-          return (
-            <CustomTableRow user={user}  key={index}></CustomTableRow>
-          )
-        })
-      }
-    </tbody>
-  </table>
-</div>
-  )
+      <table className="table">
+        {/* Table Head */}
+        <thead>
+          <tr>
+            <th>#</th> {/* Serial Number Column */}
+            <th>User Email</th>
+            <th>Booking Email</th>
+            <th>User Name</th>
+            <th>Phone</th>
+            <th>Model</th>
+            <th>Time and Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {AllUser.map((user, userIndex,index) => 
+            (
+              <CustomTableRow 
+                key={index+1} 
+                user={user}
+                // service={service}
+                serialNo={totalServiceArr} // Assigning serial number
+              />
+            )
+          )}
+        </tbody>
+      </table>
+    </div>
+    </>
+  );
 }
 
-export default CustomProductTable
+export default CustomProductTable;

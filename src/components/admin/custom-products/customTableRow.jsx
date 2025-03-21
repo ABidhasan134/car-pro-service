@@ -1,13 +1,16 @@
 "use client";
 import useAllUser from "@/Hooks/useAllUser";
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { MdDelete } from "react-icons/md";
 
-const CustomTableRow = ({ user }) => {
+               
+const CustomTableRow = ({ user,totalCustomServices,totalServiceArr,serialNo}) => {
   const [AllUser, refetch, isLoading] = useAllUser();
-  // console.log(user)
+  // console.log("this is from the ",serialNo)
+  
+  
   const changeStatus = async (status, userEmail) => {
     console.log(status, userEmail);
     const response = await axios.put(`/api/admin/customService/${userEmail}`, {
@@ -129,7 +132,7 @@ const CustomTableRow = ({ user }) => {
       {user?.customservices?.length > 0
         ? user.customservices.map((service, index) => (
             <tr key={index}>
-              {/* <th>{index + 1}</th> Serial Number */}
+              <td>{index+1}</td>
               <td>{service.userEmail}</td>
               <td>{service.bookingemail || service.email}</td>
               <td>{service.bookingName || service.name}</td>
