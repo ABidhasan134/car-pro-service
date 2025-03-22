@@ -30,7 +30,7 @@ const CoustomService = () => {
         vehicalName: data.vehical,
         problem: data.problem,
         dateTime: data.dateTime,
-        bookingStatus: 'panding'
+        bookingStatus: 'pending'
 
       }
       const respons=await axios.post('/api/user/customServic',{customInfo,email:sesseion?.data?.user?.email})

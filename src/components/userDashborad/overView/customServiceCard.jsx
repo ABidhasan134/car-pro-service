@@ -12,10 +12,10 @@ const CustomServiceCard = () => {
     return <div>Loading....</div>;
   }
   return (
-    <div className="mt-4 lg:flex md:grid gap-3">
+    <div className="mt-4 lg:flex md:grid gap-3 overflow-x-auto">
       {oneUser?.customservices?.map((yourService,index) => {
         return (
-          <div key={index} className="card glass w-96 ">
+          <div key={index} className="card glass min-w-96 ">
             <div className="card-body text-start">
               <h2 className="card-title">
                 Car model: {yourService.vehicalName || yourService.vehical}
@@ -24,7 +24,7 @@ const CustomServiceCard = () => {
                 service Time and date: {yourService.dateTime}
               </p>
               <p>service: {yourService.problem}</p>
-              {(yourService.bookingStatus === "panding" && <div className="absolute top-24 h-6 w-6 rounded-full bg-blue-600 right-0 mr-3 tooltip"  data-tip={yourService.bookingStatus}></div>) ||
+              {(yourService.bookingStatus === "pending" && <div className="absolute top-24 h-6 w-6 rounded-full bg-blue-600 right-0 mr-3 tooltip"  data-tip={yourService.bookingStatus}></div>) ||
                 (yourService.bookingStatus === "confirm" && <div className="absolute top-24 h-6 w-6 rounded-full bg-green-600 right-0 mr-3 tooltip" data-tip={yourService.bookingStatus}></div>) ||
                 (yourService.bookingStatus === "rejected" && <div className="absolute top-24 h-6 w-6 rounded-full bg-red-600 right-0 mr-3 tooltip" data-tip={yourService.bookingStatus}></div>) ||
                 (yourService.bookingStatus?"":  <div className="absolute top-24 h-6 w-6 rounded-full bg-red-600 right-0 mr-3 tooltip" data-tip="Rejected"></div>)
