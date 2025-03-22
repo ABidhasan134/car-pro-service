@@ -1,14 +1,17 @@
 'use client'
 import CustomDateTimePicker from "@/components/shared/timeAndDate";
+import useAllUser from "@/Hooks/useAllUser";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import uuid4 from 'uuid4';
 
 const CoustomService = () => {
   const [dateError,setDateError]=useState();
   const sesseion=useSession();
+  const [AllUser, refetch, isLoading] = useAllUser();
   // console.log(sesseion?.data?.user)
   const methods = useForm();
   const { register, handleSubmit, formState: { errors } } = methods;
@@ -31,8 +34,25 @@ const CoustomService = () => {
 
       }
       const respons=await axios.post('/api/user/customServic',{customInfo,email:sesseion?.data?.user?.email})
-
-       console.log(respons)
+      if(respons.data.customserviceinfo.modifiedCount>0){
+        Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your have add one custom service ",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              refetch();
+            } else {
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Your can't add this service",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+      }
+       console.log(respons.data.customserviceinfo)
       //  console.log(errors)
      };
   return (

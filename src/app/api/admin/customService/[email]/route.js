@@ -6,14 +6,14 @@ export async function PUT(request, { params }) {
     const db = await connectionDB();
     const body = await request.json();
     const { email } = params;
-    const { bookingStatus } = body;
+    const { bookingStatus,customID } = body;
 
     try {
         const userCollection = db.collection("users");
 
         // Use `$elemMatch` to find the correct sub-document inside `customservices`
         const result = await userCollection.updateOne(
-            { email, "customservices.bookingStatus": { $exists: true } }, 
+            { email, "customservices.customID": customID }, 
             { $set: { "customservices.$.bookingStatus": bookingStatus } }
         );
 

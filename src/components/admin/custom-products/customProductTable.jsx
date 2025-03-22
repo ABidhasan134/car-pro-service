@@ -7,7 +7,6 @@ import TitleAndSub from '@/components/shared/titleAndSub';
 const CustomProductTable = () => {
     const [AllUser, refetch, isLoading] = useAllUser();
     const [totalServiceArr, setTotalServiceArr] = useState([]);
-    // const totalCustomServiceNo=totalServiceArr.length();
     // Calculate total number of custom services
     const totalCustomServices = AllUser?.reduce((sum, user) => {
       return sum + (user.customservices?.length || 0);
@@ -17,7 +16,7 @@ const CustomProductTable = () => {
     useEffect(() => {
       const newArray = Array.from({ length: totalCustomServices }, (_, idx) => idx + 1);
       setTotalServiceArr(newArray);
-    }, [totalCustomServices]);
+    }, [totalCustomServices,AllUser]);
 
 
   return (
@@ -44,7 +43,6 @@ const CustomProductTable = () => {
               <CustomTableRow 
                 key={index+1} 
                 user={user}
-                // service={service}
                 serialNo={totalServiceArr} // Assigning serial number
               />
             )
