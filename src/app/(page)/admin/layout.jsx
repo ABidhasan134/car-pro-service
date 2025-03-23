@@ -1,3 +1,4 @@
+import AdminNavBar from "@/app/api/admin/adminNavBar/adminNavBar";
 import AdminSideBar from "@/components/admin/adminSideBar/adminSideBar";
 import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
 import UserNavbar from "@/components/userDashborad/navbar/userNavbar";
@@ -24,7 +25,7 @@ export default function DashboardLayout({ children }) {
           {/* Main Dashboard Content */}
           <main className="bg-[#d6dde6] flex-grow pb-4 text-white relative w-[70%]">
             <div className='text-2xl font-bold text-white bg-[#e2d3c2] p-6 h-[110px]'>
-            <UserNavbar ></UserNavbar>
+            <AdminNavBar></AdminNavBar>
             </div>
             <div className="relative ml-0 p-6 h-[80%] text-black">
             {children}

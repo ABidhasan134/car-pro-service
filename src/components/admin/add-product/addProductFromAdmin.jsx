@@ -54,7 +54,7 @@ const AddProductFromAdmin = () => {
   return (
     <form
     onSubmit={handleSubmit(hendelAddProduct)}
-    className="grid justify-center relative lg:-top-48 xl:top-0 w-full h-auto"
+    className="grid justify-center relative lg:top-0 xl:top-0 w-full h-auto"
   >
     {/* 1st Row: Product ID & Name */}
     <div className="flex justify-center w-full gap-6">
