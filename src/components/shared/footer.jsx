@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="footer bg-[rgb(203,213,225)] text-base-content w-full justify-center md:justify-evenly p-10">
   <aside>
     <Link href="/" className='lg:w-[100px] w-[70px]'>
-    <Image src={logo} className='lg:w-[100px] w-[70px]'></Image>
+    <Image src={logo} alt='logo' className='lg:w-[100px] w-[70px]'></Image>
     </Link>
     <p>
       ACME Industries Ltd.

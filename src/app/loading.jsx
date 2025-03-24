@@ -71,12 +71,12 @@ const loading = () => {
         ></rect>
       </svg> */}
     </div>
-    <div class="truckTires">
+    <div className="truckTires">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 30 30"
-        class="tiresvg"
+        className="tiresvg"
       >
         <circle
           stroke-width="3"
@@ -92,7 +92,7 @@ const loading = () => {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 30 30"
-        class="tiresvg"
+        className="tiresvg"
       >
         <circle
           stroke-width="3"
@@ -105,7 +105,7 @@ const loading = () => {
         <circle fill="#DFDFDF" r="7" cy="15" cx="15"></circle>
       </svg> */}
     </div>
-    <div class="road"></div>
+    <div className="road"></div>
 
     {/* <svg
       xml:space="preserve"

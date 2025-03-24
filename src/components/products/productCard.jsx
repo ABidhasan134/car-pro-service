@@ -23,7 +23,6 @@ const ProductCard = () => {
   // console.log('Is array:', Array.isArray(productss));
 
   if (isLoading) {
-    refetch();
     return <p>Loading...</p>;
   }
 
@@ -38,8 +37,8 @@ const ProductCard = () => {
         <div key={index} className="border-y-2 border-[#e76637] card bg-base-100 w-96 shadow-xl">
           <figure>
             <Image
-              src={parts[index] ||product.image?.[0]} 
-              alt={product.image}
+              src={parts[index] ||product.image?.[0] || '/fallback-image.png'} 
+              alt={product.image || 'photo'}
               height={200}
               width={200}
             />

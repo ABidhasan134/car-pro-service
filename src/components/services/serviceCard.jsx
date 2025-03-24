@@ -6,28 +6,30 @@ import SearchService from './filters/searchService';
 import CategoryService from './filters/categoryService';
 import { useEffect, useState } from 'react';
 import CardsServices from './cardsServices';
+import { useMemo } from 'react';
 
 const ServiceCard = () => {
     const [products, isLoading, refetch, currentPage, setCurrentPage, totalPages] = useAllServices();
     const [categoryData, setCategoryData] = useState([]);
-    const [displayData, setDisplayData] = useState([]);
     const [categoryTotalPages, setCategoryTotalPages] = useState(1); // To track category-based pagination
-    const [effectiveTotalPages,setEffectiveTotalPages]=useState(1)
     const [searcherService, setSearcherService] = useState([]);
     const [searcherServicepages,setSearcherServicePages] = useState(1)
     // Determine the correct total pages for pagination
 
     // Update displayData whenever products or categoryData change
-    useEffect(() => {
-        setDisplayData(categoryData.length > 0 ? categoryData:searcherService.length>0?searcherService: products);
-        setEffectiveTotalPages(categoryData.length > 0 ? categoryTotalPages:searcherService.length>0?searcherServicepages : totalPages)
-    }, [categoryData, products,effectiveTotalPages,searcherService]);
+    const displayData = useMemo(() => {
+        return categoryData.length > 0 ? categoryData : searcherService.length > 0 ? searcherService : products;
+    }, [categoryData, searcherService, products]);
+
+    // ✅ Compute effectiveTotalPages dynamically
+    const effectiveTotalPages = useMemo(() => {
+        return categoryData.length > 0 ? categoryTotalPages : searcherService.length > 0 ? searcherServicepages : totalPages;
+    }, [categoryData, searcherService, categoryTotalPages, searcherServicepages, totalPages]);
     
-    console.log("Here is the current page and effective page",categoryData.length,currentPage,effectiveTotalPages)
     if (isLoading) {
-        refetch();
         return <div>Loading...</div>;
     }
+    
 
     return (
         <div className="container max-w-[1200px] mx-auto grid justify-center">

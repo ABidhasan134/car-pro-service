@@ -16,9 +16,9 @@ const ProfileOfMechanic = ({ person }) => {
       <Image
         className="image"
         src={person.image}
+        alt={ "mechanic img"}
         height={200}
         width={200}
-        alt={`${person.expert_name}'s profile picture`}
       />
       <div className="card-infoProfile">
         <span>{person.expert_name}</span>
@@ -87,7 +87,7 @@ const ProfileOfMechanic = ({ person }) => {
 
               {/* Avatar */}
               <div className="relative w-24 h-24 mx-auto mt-6  rounded-full shadow-lg bg-gray-300">
-                <Image src={person.image} className="w-24 h-24 rounded-full border-4 border-white" height={190} width={200}></Image>
+                <Image src={person.image} alt="person img" className="w-24 h-24 rounded-full border-4 border-white" height={190} width={200}></Image>
               </div>
 
               {/* Title and Description */}

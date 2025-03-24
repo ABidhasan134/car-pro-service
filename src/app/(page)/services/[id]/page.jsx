@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 export const getServiceDetails = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/service/${id}`);
+  const res = await fetch(`https://car-pro-service.vercel.app/service/${id}`);
   const result = await res.json();
   return result;
 };

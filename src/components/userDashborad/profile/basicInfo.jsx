@@ -5,6 +5,10 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 
+export const metadata = {
+  title: "user || Profile",
+  description: "User Dashboard",
+};
 const BasicInfo = ({ user }) => {
   const {
     register,

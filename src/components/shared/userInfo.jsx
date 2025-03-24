@@ -36,7 +36,7 @@ const UserInfo = ({ user }) => {
             <Image
               className="rounded-full border-2 border-orange-600 p-[2px]"
               src={user?.image}
-              alt={user?.name}
+              alt="user image"
               width={40}
               height={40}
             ></Image>

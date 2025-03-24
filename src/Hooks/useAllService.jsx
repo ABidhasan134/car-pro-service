@@ -1,7 +1,7 @@
 'use client'
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // with pagination
 const useAllServices = () => {
@@ -14,12 +14,18 @@ const useAllServices = () => {
             const response = await axios.get(
                 `/api/service?page=${currentPage}&pageSize=3`
             );
-            setTotalPages(response.data.totalPages);
-            return response.data.result;
+            return response.data; // Return the full response data
         },
     });
 
-    return [products, isLoading, refetch, currentPage, setCurrentPage, totalPages];
+    //  Move state update to useEffect
+    useEffect(() => {
+        if (products?.totalPages) {
+            setTotalPages(products.totalPages);
+        }
+    }, [products]); // Runs only when products change
+
+    return [products?.result || [], isLoading, refetch, currentPage, setCurrentPage, totalPages];
 };
 
 export default useAllServices;

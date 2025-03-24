@@ -4,10 +4,6 @@ import Sidebar from "@/components/userDashborad/sidebar/sidebar";
 import AuthProvider from "@/service/authProvider";
 import QueryProvider from "@/service/queryClinte";
 
-export const metadata = {
-  title: "Dashboard",
-  description: "User Dashboard",
-};
 
 export default function DashboardLayout({ children }) {
   return (
