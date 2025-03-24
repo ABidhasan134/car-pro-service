@@ -1,5 +1,4 @@
 "use client";
-import GiftBox from "@/components/shared/giftBox";
 import UseUser from "@/Hooks/useUser";
 import { useSession } from "next-auth/react";
 import React from "react";
