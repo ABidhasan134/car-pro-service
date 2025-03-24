@@ -1,24 +1,20 @@
-import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
  
 export function middleware(request) {
-    const token = cookies(request).get('next-auth.session-token')
-    const pathName= request.url
-    // console.log("This path from the middelware",pathName);
-  // this eception for home page 
-    if(pathName.includes('api'))
-    {
-      return NextResponse.next();
+    const token = request.cookies.get('next-auth.session-token') || request.cookies.get('__Secure-next-auth.session-token'); 
+    const pathName = request.nextUrl.pathname;
+
+    if (pathName.includes('api')) {
+        return NextResponse.next();
     }
 
-    if(!token) {
-        // pathName as search params 
-        return NextResponse.redirect(new URL(`/logIn?redirect=${pathName}`, request.url))
+    if (!token) {
+        return NextResponse.redirect(new URL(`/logIn?redirect=${pathName}`, request.url));
     }
-  return NextResponse.next();
+
+    return NextResponse.next();
 }
  
-
 export const config = {
-  matcher: ['/services/:path*','/products/:path*']
+  matcher: ['/services/:path*', '/products/:path*']
 }
