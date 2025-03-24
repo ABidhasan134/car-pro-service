@@ -2,12 +2,13 @@
 import useAllServices from "@/Hooks/useAllServices";
 import React from "react";
 import ServiceTableRow from "./serviceTableRow";
+import TruckLoader from "@/components/shared/TruckLoader";
 
 const AllServices = () => {
   const [allService, isLoading, refetch] = useAllServices();
   // console.log(allService);
   if (isLoading) {
-    return <p>Loading...</p>; // Show a loading state while fetching data
+    return <TruckLoader></TruckLoader>; // Show a loading state while fetching data
   }
   return (
     <div className="overflow-x-auto">

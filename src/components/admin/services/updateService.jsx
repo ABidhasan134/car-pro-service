@@ -50,7 +50,7 @@ const UpdateService = ({ id }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid justify-center relative lg:-top-48 xl:top-0 w-full h-auto"
+      className="grid justify-center relative lg:top-0 xl:top-0 w-full h-auto"
     >
       {/* 1st row  */}
       <div className="flex justify-center w-full gap-6">

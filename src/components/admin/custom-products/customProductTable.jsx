@@ -3,6 +3,7 @@ import useAllUser from '@/Hooks/useAllUser'
 import React, { useState, useEffect } from 'react'
 import CustomTableRow from './customTableRow';
 import TitleAndSub from '@/components/shared/titleAndSub';
+import TruckLoader from '@/components/shared/TruckLoader';
 
 const CustomProductTable = () => {
     const [AllUser, refetch, isLoading] = useAllUser();
@@ -17,7 +18,9 @@ const CustomProductTable = () => {
       const newArray = Array.from({ length: totalCustomServices }, (_, idx) => idx + 1);
       setTotalServiceArr(newArray);
     }, [totalCustomServices,AllUser]);
-
+    if(isLoading){
+      return <TruckLoader></TruckLoader>
+    }
 
   return (
     <>

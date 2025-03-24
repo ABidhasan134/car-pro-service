@@ -1,4 +1,5 @@
 "use client";
+import TruckLoader from "@/components/shared/TruckLoader";
 import useOneProduct from "@/Hooks/useOneProduct";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -16,7 +17,7 @@ const UpdateProductAdmin = ({ id }) => {
     formState: { errors },
   } = useForm();
   if(isLoading){
-    return <p>Loading...</p>
+    return <TruckLoader></TruckLoader>
   }
   const onSubmit = async (data) => {
     // Assign default values if fields are empty
@@ -59,7 +60,7 @@ const UpdateProductAdmin = ({ id }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid justify-center relative lg:-top-48 xl:top-0 w-full h-auto"
+      className="grid justify-center relative lg:top-0 xl:top-0 w-full h-auto"
     >
       {/* 1st Row: Product ID & Name */}
       <div className="flex justify-center w-full gap-6">
