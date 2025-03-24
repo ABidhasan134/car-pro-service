@@ -1,4 +1,5 @@
 'use client'
+import GiftBox from '@/components/shared/giftBox';
 import UseUser from '@/Hooks/useUser';
 import { useSession } from 'next-auth/react';
 import React from 'react'
@@ -13,13 +14,17 @@ const ProductArea = () => {
       refetch();
       return <div>Loading...</div>;
     }
+    if(!oneUser){
+      return <GiftBox></GiftBox>
+    }
     return (
       <div className="grid gap-2 ">
         <p className="text-4xl font-semibold p-2 flex text-center">
           product Area
         </p>
         <div className='h-[350px] overflow-auto min-w-[400px]'>
-        {oneUser?.servicesHistory?.map((item, index) => {
+          {oneUser?.servicesHistory ?
+        oneUser?.servicesHistory?.map((item, index) => {
           return (
             <div
               key={index}
@@ -78,7 +83,8 @@ const ProductArea = () => {
               </p>
             </div>
           );
-        })}
+        }):<GiftBox></GiftBox>
+      }
       </div>
       </div>
     );
