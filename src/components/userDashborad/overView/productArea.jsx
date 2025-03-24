@@ -1,30 +1,26 @@
-'use client'
-import GiftBox from '@/components/shared/giftBox';
-import UseUser from '@/Hooks/useUser';
-import { useSession } from 'next-auth/react';
-import React from 'react'
-import { FcApproval } from 'react-icons/fc';
+"use client";
+import GiftBox from "@/components/shared/giftBox";
+import UseUser from "@/Hooks/useUser";
+import { useSession } from "next-auth/react";
+import React from "react";
+import { FcApproval } from "react-icons/fc";
 
 const ProductArea = () => {
-    const sesseion = useSession();
-    // console.log(sesseion);
-    const [oneUser, isloading, refetch] = UseUser(sesseion?.data?.user?.email);
-    console.log("service History overview", oneUser?.orderHistory);
-    if (isloading) {
-      refetch();
-      return <div>Loading...</div>;
-    }
-    if(!oneUser){
-      return <GiftBox></GiftBox>
-    }
-    return (
-      <div className="grid gap-2 ">
-        <p className="text-4xl font-semibold p-2 flex text-center">
-          product Area
-        </p>
-        <div className='h-[350px] overflow-auto min-w-[400px]'>
-          {oneUser?.servicesHistory ?
-        oneUser?.servicesHistory?.map((item, index) => {
+  const sesseion = useSession();
+  // console.log(sesseion);
+  const [oneUser, isloading, refetch] = UseUser(sesseion?.data?.user?.email);
+  console.log("service History overview", oneUser?.orderHistory);
+  if (isloading) {
+    refetch();
+    return <div>Loading...</div>;
+  }
+  return (
+    <div className="grid gap-2 ">
+      <p className="text-4xl font-semibold p-2 flex text-center">
+        product Area
+      </p>
+      <div className="h-[350px] overflow-auto min-w-[400px]">
+        {oneUser?.servicesHistory?.map((item, index) => {
           return (
             <div
               key={index}
@@ -70,7 +66,7 @@ const ProductArea = () => {
                 <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
                   service Date: {item.price}
                 </p>
-  
+
                 <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
                   {item.name} <br />
                   {item.typeOffPay === "offline"
@@ -83,11 +79,10 @@ const ProductArea = () => {
               </p>
             </div>
           );
-        }):<GiftBox></GiftBox>
-      }
+        })}
       </div>
-      </div>
-    );
-}
+    </div>
+  );
+};
 
-export default ProductArea
+export default ProductArea;
