@@ -2,9 +2,9 @@ import React from 'react'
 import './loading.css'
 const loading = () => {
   return (
-<div class="loader">
-  <div class="truckWrapper">
-    <div class="truckBody">
+<div className="loader">
+  <div className="truckWrapper">
+    <div className="truckBody">
       {/* <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -79,7 +79,7 @@ const loading = () => {
         className="tiresvg"
       >
         <circle
-          stroke-width="3"
+          strokeWidth="3"
           stroke="#282828"
           fill="#282828"
           r="13.5"
