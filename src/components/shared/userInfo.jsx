@@ -35,7 +35,7 @@ const UserInfo = ({ user }) => {
           <div tabIndex={0} className="m-1">
             <Image
               className="rounded-full border-2 border-orange-600 p-[2px]"
-              src={user?.image}
+              src={user?.image || avater}
               alt="user image"
               width={40}
               height={40}

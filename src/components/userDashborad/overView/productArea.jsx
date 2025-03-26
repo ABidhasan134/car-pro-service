@@ -48,8 +48,8 @@ const ProductArea = () => {
            Z"
                   fill="#8BC34A"
                   stroke="#8BC34A"
-                  stroke-width="2"
-                  stroke-linecap="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                 ></path>
               </svg>
               <div class="mx-2.5 overflow-hidden w-full">

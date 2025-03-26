@@ -23,7 +23,7 @@ const ServiceArea = () => {
         return (
           <div
             key={index}
-            class="flex w-3/4 min-w-96 h-36 mt-4 bg-white rounded-xl overflow-hidden shadow-lg"
+            className="flex w-3/4 min-w-96 h-36 mt-4 bg-white rounded-xl overflow-hidden shadow-lg"
           >
             <svg width="16" height="144" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -48,25 +48,25 @@ const ServiceArea = () => {
          Z"
                 fill="#8BC34A"
                 stroke="#8BC34A"
-                stroke-width="2"
-                stroke-linecap="round"
+                strokeWidth="2"
+                strokeLinecap="round"
               ></path>
             </svg>
-            <div class="mx-2.5 overflow-hidden w-full">
-              <p class="mt-1.5 text-xl font-bold text-[#8BC34A] leading-8 mr-3 overflow-hidden text-ellipsis whitespace-nowrap">
+            <div className="mx-2.5 overflow-hidden w-full">
+              <p className="mt-1.5 text-xl font-bold text-[#8BC34A] leading-8 mr-3 overflow-hidden text-ellipsis whitespace-nowrap">
                 Success !
               </p>
-              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+              <p className="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
                 serial No: {item.serialNo}
               </p>
-              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+              <p className="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
                 service Date: {item.currentDate}
               </p>
-              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+              <p className="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
                 service Date: {item.price}
               </p>
 
-              <p class="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
+              <p className="overflow-hidden leading-5 break-all text-zinc-400 max-h-10">
                 {item.name} <br />
                 {item.typeOffPay === "offline"
                   ? "you have to payment in offline"

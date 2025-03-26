@@ -40,7 +40,7 @@ const Sidebar = () => {
     <div className='z-40'>
       
       <Link href='/'>
-      <Image src={logo} className='xl:h-[180px] lg:h-[160px] xl:w-[200px] lg:w-[180px] md:h-[140px] md:w-[140px] w-[100px] h-[80px]'></Image>
+      <Image src={logo} alt='brand logo' className='xl:h-[180px] lg:h-[160px] xl:w-[200px] lg:w-[180px] md:h-[140px] md:w-[140px] w-[100px] h-[80px]'></Image>
       </Link>
       {
         sideLinks.map((item,index)=>{

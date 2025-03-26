@@ -26,21 +26,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  if (!children) return null; // Prevent rendering errors
+
   return (
     <html lang="en" data-theme="light">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-black bg-gray-100`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-black bg-gray-100`}>
         <AuthProvider>
-        <QueryProvider>
-            <HidenHeader/>
-            <div >
-              {children}
-            </div>
-            <HidenFooter></HidenFooter>
-            </QueryProvider>
+          <QueryProvider>
+            <HidenHeader />
+            <main>{children}</main>
+            <HidenFooter />
+          </QueryProvider>
         </AuthProvider>
       </body>
     </html>
   );
 }
+
+
