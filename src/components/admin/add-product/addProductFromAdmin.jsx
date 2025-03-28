@@ -1,13 +1,10 @@
 'use client'
-import TruckLoader from '@/components/shared/TruckLoader';
-import useProducts from '@/Hooks/useProducts';
 import axios from 'axios';
 import React from 'react'
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 
 const AddProductFromAdmin = () => {
-  const [isLoading]=useProducts();
   const {
     register,
     handleSubmit,
@@ -53,9 +50,6 @@ const AddProductFromAdmin = () => {
         text: "you product add successfuly",
       });
     }
-  }
-  if(isLoading){
-    return <TruckLoader></TruckLoader>
   }
   return (
     <form
