@@ -1,6 +1,7 @@
 'use client'
 import ServiceBannar from '@/components/services/serviceBannar';
 import ServiceDetials from '@/components/services/serviceDetials';
+import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export const getServiceDetails = async (id) => {
@@ -10,12 +11,12 @@ export const getServiceDetails = async (id) => {
 };
 
 const Page = ({ params }) => {
-  const paramsData = React.use(params); // Unwrap the params Promise
+  const paramsData = useParams(); 
   const [service, setService] = useState(null);
-
+  console.log("params data is here",paramsData)
   useEffect(() => {
     const fetchService = async () => {
-      const result = await getServiceDetails(paramsData.id);
+      const result = await getServiceDetails(params.id);
       setService(result);
     };
     fetchService();
