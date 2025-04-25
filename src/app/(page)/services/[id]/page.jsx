@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export const getServiceDetails = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/service/${id}`);
+  const res = await fetch(`https://car-pro-service.vercel.app/api/service/${id}`);
   const result = await res.json();
   return result;
 };
@@ -13,10 +13,11 @@ export const getServiceDetails = async (id) => {
 const Page = ({ params }) => {
   const paramsData = useParams(); 
   const [service, setService] = useState(null);
-  console.log("params data is here",paramsData)
+  // console.log("params data is here",paramsData.id)
   useEffect(() => {
     const fetchService = async () => {
       const result = await getServiceDetails(params.id);
+      console.log('This result for the spacific service',result);
       setService(result);
     };
     fetchService();
