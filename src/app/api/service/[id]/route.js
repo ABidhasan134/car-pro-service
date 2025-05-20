@@ -14,27 +14,20 @@ export async function GET(request, { params }) {
     if (!service) {
       return NextResponse.json({
         message: "your service is not found",
-        status: 500,headers: {
-      ...corsHeaders(),
-      'Content-Type': 'application/json',
-    },
+        status: 500
       })
     }
 
     return NextResponse.json({
       result: service,
       status: 200,
-      headers: {
-      ...corsHeaders(),
-      'Content-Type': 'application/json',
-    },
     })
   } catch (error) {
     console.error("Error fetching service", error);
-    return new NextResponse(
-      JSON.stringify({ message: "Failed to fetch service" }),
-      { status: 500, headers: corsHeaders() }
-    );
+    return NextResponse.json({
+      message: "Interner server error",
+      error
+    })
   }
 }
 

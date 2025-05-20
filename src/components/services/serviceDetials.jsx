@@ -28,7 +28,7 @@ const ServiceDetials = ({ service }) => {
       setLoading(false);
     };
     fetchData();
-  }, []); // ✅ Fetch once on mount
+  }, []); // 
 
   if (!service) {
     return <DetialsLoading />;

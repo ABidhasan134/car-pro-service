@@ -24,6 +24,11 @@ export async function GET(request) {
             success: true,
             result,
             totalPages,
+            headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
         });
     } catch (error) {
         console.error(error);
