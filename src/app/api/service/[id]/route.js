@@ -10,17 +10,25 @@ export async function GET(request, { params }) {
   
   try {
     const service = await serviceCollection.findOne({ _id: new ObjectId(params.id) });
-
+    console.log("this is singel service", service);
     if (!service) {
-      return new NextResponse(
-        JSON.stringify({ message: "Service not found" }),
-        { status: 404, headers: corsHeaders() }
-      );
+      return NextResponse.json({
+        message: "your service is not found",
+        status: 500,headers: {
+      ...corsHeaders(),
+      'Content-Type': 'application/json',
+    },
+      })
     }
 
-    return new NextResponse(JSON.stringify(service), {
-      headers: corsHeaders(),
-    });
+    return NextResponse.json({
+      result: service,
+      status: 200,
+      headers: {
+      ...corsHeaders(),
+      'Content-Type': 'application/json',
+    },
+    })
   } catch (error) {
     console.error("Error fetching service", error);
     return new NextResponse(

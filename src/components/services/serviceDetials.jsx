@@ -41,7 +41,6 @@ const ServiceDetials = ({ service }) => {
       console.error("User email not available");
       return;
     }
-
     const payInfo = {
       serialNo,
       serviceId: service._id,

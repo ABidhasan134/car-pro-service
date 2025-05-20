@@ -1,12 +1,14 @@
 'use client'
 import ServiceBannar from '@/components/services/serviceBannar';
 import ServiceDetials from '@/components/services/serviceDetials';
+import axios from 'axios';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export const getServiceDetails = async (id) => {
-  const res = await fetch(`https://car-pro-service.vercel.app/api/service/${id}`);
-  const result = await res.json();
+  const res = await axios.get(`/api/service/${id}`);
+  const result = res.data.result;
+  console.log('single service detials', result);
   return result;
 };
 
